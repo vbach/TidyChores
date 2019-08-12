@@ -82,4 +82,4 @@ Class Dojo originated as a behavior incentive for classrooms. They expanded to C
 
 *Identify what 3rd party APIs, data sets, or external integrations are planned for use and outline how you will use them transformatively. Provide links to their respective documentation and verify that your intended use complies with their Terms of Service.*
 
-(Tidy Chores Video Proposal)[https://spark.adobe.com/video/Ctf4igToqtNlH]
+[Tidy Chores Video Proposal](https://spark.adobe.com/video/Ctf4igToqtNlH)
