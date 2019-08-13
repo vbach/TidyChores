@@ -21,6 +21,29 @@ During this milestone, I will be working on creating my migrations, models, seed
 ###  Models:
 [add list of all models and their properties with data types and validation (minimum of 6)]
 
+1. Parent
+  - id (uuid, uuidV4)
+  - name (string, notNull, minLength: 4)
+  - username (string, notNull, minLength: 4)
+  - password (string, notNull, minLength: 8)
+  - access_token (string, notNull, minLength: 12)
+2. Child
+  - id (uuid, uuidV4)
+  - name (string, notNull, minLength: 4)
+  - pointTotal (int, minLength: 1)
+  - parentId
+3. Chore
+  - id (uuid, uuidV4)
+  - name (string, notNull, minLength: 4)
+  - type (enum['complete', 'incomplete'], notNull)
+  - pointValue (int, minLength: 0)
+  - childId
+4. Rewards
+  - id (uuid, uuidV4)
+  - name (string, notNull, minLength: 4)
+  - pointTotal (int, minLength: 1)
+  
+
 Example:
 1. Quiz
   - id (uuid, uuidV1)
