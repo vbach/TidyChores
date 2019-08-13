@@ -24,14 +24,16 @@ I will be using the following Visual Frameworks (VF) and UI kits:
 
 
 ###  Pages To Design:
-1. Home Page
-2. Login
-3. Sign Up
-4. User Page
-5. Child View
-6. Rewards
-7. Chore Bank
-8. Add Chore
+- Home Page
+- Login
+- Sign Up
+- User Page
+- Child View
+- Add Child/Edit Child
+- Rewards
+- Add Reward/Edit Reward
+- Chore Bank
+- Add Chore/Edit Chore
 
 
 ### Things I might struggle with...
