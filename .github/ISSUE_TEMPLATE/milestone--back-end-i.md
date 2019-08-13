@@ -45,47 +45,69 @@ During this milestone, I will be working on creating my migrations, models, seed
 ### Routes:
 [add list of all routes in your api, with data that will be sent and received]
 
-/api/parent
+#### Parent
+/api/parent/:id
 - Retrieve all children for parent.
   - GET /
     - **Request Body**: N/A
-    - **Response Data**: array of children [{name: ''}]
-    
+    - **Response Data**: array of children [{name: ' '}]
+
+#### Child
 /api/child/:id
 - Retrive child and chores for child.
   - GET /
     - **Request Body**: id
-    - **Response Data**: name, chores
-    
-/api/child
+    - **Response Data**: name, pointValue, chores
 - Add a new child.
   - POST /
-    - **Request Body**: id
-    - **Response Data**: N/A
-
-/api/child/:id
+    - **Request Body**: name
+    - **Response Data**: id
 - Update a child.
   - PUT /
     - **Request Body**: id
     - **Response Data**: name
-    
-/api/child/:id
 - Delete a child.
   - DELETE /
     - **Request Body**: id
     - **Response Data**: N/A
-   
+
+#### Chores
 /api/chores/:id
 - Retrieve a single chore.
   - GET /
-    - **Request Body**: id
-    - **Response Data**: name, type, pointValue
-    
-/api/chores
+    - **Request Body**: name, type, pointValue
+    - **Response Body**: id
 - Create a new chore.
   - POST /
-    - **Request Body**: N/A
+    - **Request Body**: name, type, pointValue
+    - **Response Body**: id
+- Update a chore
+  - PUT /
+    - **Request Body**: name, type, pointValue
     - **Response Body**: name, type, pointValue
+- Delete a Chore
+  - DELETE /
+    - **Request Body**: id
+    - **Response Body**: N/A
+    
+#### Rewards
+/api/rewards/:id
+- Retrieve a single reward.
+  - GET /
+    - **Request Body**: id
+    - **Response Body**: name, pointTotal
+- Create a new reward.
+  - POST /
+    - **Request Body**: name, pointTotal
+    - **Response Body**: id
+- Update a reward
+  - PUT /
+    - **Request Body**: id
+    - **Response Body**: name, pointTotal
+- Delete a reward
+  - DELETE /
+    - **Request Body**: id
+    - **Response Body**: N/A
 
 Example:
 - /api/quizzes
