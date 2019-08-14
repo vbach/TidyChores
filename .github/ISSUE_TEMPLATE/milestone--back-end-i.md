@@ -30,32 +30,30 @@ During this milestone, I will be working on creating my migrations, models, seed
   - id (uuid, uuidV4)
   - name (string, notNull, minLength: 4)
   - pointTotal (int, minLength: 1)
-  - parentId
+  - parentId (uuid, uuidV4)
 3. Chore
   - id (uuid, uuidV4)
   - name (string, notNull, minLength: 4)
   - type (enum['complete', 'incomplete'], notNull)
   - pointValue (int, minLength: 0)
-  - childId
+  - childId (uuid, uuidV4)
 4. Rewards
   - id (uuid, uuidV4)
   - name (string, notNull, minLength: 4)
   - pointTotal (int, minLength: 1)
 
 ### Routes:
-[add list of all routes in your api, with data that will be sent and received]
-
-#### Parent
+### Parent
 /api/parent/:id
 - Retrieve all children for parent.
   - GET /
-    - **Request Body**: N/A
+    - **Request Body**: id
     - **Response Data**: array of children [{name: ' '}]
 
-#### Child
-/api/child/:id
+### Child
+/api/child
 - Retrive child and chores for child.
-  - GET /
+  - GET /:id
     - **Request Body**: id
     - **Response Data**: name, pointValue, chores
 - Add a new child.
@@ -63,18 +61,18 @@ During this milestone, I will be working on creating my migrations, models, seed
     - **Request Body**: name
     - **Response Data**: id
 - Update a child.
-  - PUT /
+  - PUT /:id
     - **Request Body**: id
     - **Response Data**: name
 - Delete a child.
-  - DELETE /
+  - DELETE /:id
     - **Request Body**: id
     - **Response Data**: N/A
-
-#### Chores
-/api/chores/:id
+    
+### Chores
+/api/chores
 - Retrieve a single chore.
-  - GET /
+  - GET /:id
     - **Request Body**: name, type, pointValue
     - **Response Body**: id
 - Create a new chore.
@@ -82,41 +80,47 @@ During this milestone, I will be working on creating my migrations, models, seed
     - **Request Body**: name, type, pointValue
     - **Response Body**: id
 - Update a chore
-  - PUT /
-    - **Request Body**: name, type, pointValue
+  - PUT /:id
+    - **Request Body**: id
     - **Response Body**: name, type, pointValue
 - Delete a Chore
-  - DELETE /
+  - DELETE /:id
     - **Request Body**: id
     - **Response Body**: N/A
-    
-#### Rewards
-/api/rewards/:id
-- Retrieve a single reward.
+
+### Rewards
+/api/rewards
+- Retrieve all rewards.
   - GET /
-    - **Request Body**: id
+    - **Request Body**: N/A
     - **Response Body**: name, pointTotal
 - Create a new reward.
-  - POST /
+  - POST /:id
     - **Request Body**: name, pointTotal
     - **Response Body**: id
 - Update a reward
-  - PUT /
+  - PUT /:id
     - **Request Body**: id
     - **Response Body**: name, pointTotal
 - Delete a reward
-  - DELETE /
+  - DELETE /:id
     - **Request Body**: id
     - **Response Body**: N/A
-
-Example:
-- /api/quizzes
-  - GET /
-    - **Request Body**: N/A
-    - **Response Data**: array of quizzes [{name: '', type: 'private|public'}]
-  - POST /quiz
-    - **Request Body**: name, type
-    - **Response Data**: id
+    
+### Auth
+/api/auth
+- Get access token
+  - POST /exchange
+    - **Request Body**: access_token
+    - **Response Body**: N/A
+- Create a username and password.
+  - POST /signup
+    - **Request Body**: name, username, password
+    - **Response Body**: id
+- Login with a username and password
+  - POST /login
+    - **Request Body**: username, password
+    - **Response Body**: access_token
 
 ### Things I might struggle with...
-[list anything you can think of that you might want to work on before this week to prepare]
+I'm working on further learning with routing and express. I feel comfortable enough with routing that I will be successful however I want to avoid confusion and any issues with not including the appropriate routes for the type of app that I am creating.
