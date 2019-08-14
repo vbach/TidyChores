@@ -32,7 +32,7 @@ During this milestone I will be working on creating a click-through of my applic
 11. /parent/rewards -> View all rewards
 12. /parent/rewards/new -> Add new reward
 13. /parent/rewards/edit/:id -> Edit reward
-14. /parent/child/rewards/:id -> Cashout points for reward
+14. /parent/rewards/child/:id -> Cashout points for reward
 
 
 ### Things I might struggle with...
