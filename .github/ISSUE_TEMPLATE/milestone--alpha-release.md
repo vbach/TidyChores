@@ -20,17 +20,57 @@ During this milestone, I will be working on integrating the API and Back-end and
 
 ### Use Case Testing
 
-[Create a checklist based upon each use case defined in your project proposal and ensure that the PR submission addresses each use case]
+* User wants to view todays chores
+  * [ ] New user can create account
+  * [ ] User can login
+    * [ ] User can logout
+    * [ ] User can close browser without ending logged in session
+      * [ ] User can select and view specific childs chore page
+        * [ ] User can check off completed chores
+        * [ ] User can view point reward total
+     
+* User wants to add a chore
+  * [ ] New user can create account
+  * [ ] User can login
+    * [ ] User can logout
+    * [ ] User can close browser without ending logged in session
+      * [ ] User can view child page with list of chores
+        * [ ] User can add a chore
 
-Example:
+* User wants to move a chore to a different child
+  * [ ] New user can create account
+  * [ ] User can login
+    * [ ] User can logout
+    * [ ] User can close browser without ending logged in session
+      * [ ] User can view child page with list of chores
+        * [ ] User can select chore and assign to another child
 
-* Users are able to post to social media...
-  * [ ] New users able to create accounts
-    * [ ] New users are able to log out
-  * [ ] Existing users able to log in
-    * [ ] Existing users can close their browser without terminating their authenticated session
-      * [ ] Authenticated user can navigate to and create post
-      * [ ] Authenticated user can successfully share post on Twitter
+* User wants to delete a chore
+  * [ ] New user can create account
+  * [ ] User can login
+    * [ ] User can logout
+    * [ ] User can close browser without ending logged in session
+      * [ ] User can view child page with list of chores
+        * [ ] User can select chore and delete
+       
+* User wants to add rewards
+  * [ ] New user can create account
+  * [ ] User can login
+    * [ ] User can logout
+    * [ ] User can close browser without ending logged in session
+      * [ ] User can view rewards
+        * [ ] User can add a reward
+       
+* User wants to cash out points for a reward
+  * [ ] New user can create account
+  * [ ] User can login
+    * [ ] User can logout
+    * [ ] User can close browser without ending logged in session
+      * [ ] User can view childs chore page
+        * [ ] User can select cash out rewards
+          * [ ] User can select a chore and confirm
+          * [ ] Parent receives email notification of reward
+            * [ ] Reward points deducted from childs total chore points
 
 ### Things I might struggle with...
 
