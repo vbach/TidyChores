@@ -23,7 +23,7 @@ During this milestone, I will be working on creating my migrations, models, seed
 1. Parent
   - id (uuid, uuidV4)
   - name (string, notNull, minLength: 4)
-  - username (string, notNull, minLength: 4)
+  - email (string, notNull, minLength: 4)
   - password (string, notNull, minLength: 8)
   - access_token (string, notNull, minLength: 12)
 2. Child
@@ -115,11 +115,11 @@ During this milestone, I will be working on creating my migrations, models, seed
     - **Response Body**: N/A
 - Create a username and password.
   - POST /signup
-    - **Request Body**: name, username, password
+    - **Request Body**: name, email, password
     - **Response Body**: id
 - Login with a username and password
   - POST /login
-    - **Request Body**: username, password
+    - **Request Body**: email, password
     - **Response Body**: access_token
 
 ### Things I might struggle with...
