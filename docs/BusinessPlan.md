@@ -54,31 +54,36 @@ Parents deal with a lot of stressors and frustrations on a daily basis, chores b
 
 ## Keywords
 
-chores
-household chores
-kids chores
-how to track chores
-chore app
-Parents
-chore ideas for kids
-household management
-chore incentives for kids
-kids chore schedule ideas
-home organization
-chore schedule
-chore chart
-list of household chores for kids
-chores list
-daily chores for kids
-best chore app for kids
+* chores
+* household chores
+* kids chores
+* how to track chores
+* chore app
+* Parents
+* chore ideas for kids
+* household management
+* chore incentives for kids
+* kids chore schedule ideas
+* home organization
+* chore schedule
+* chore chart
+* list of household chores for kids
+* chores list
+* daily chores for kids
+* best chore app for kids
 
 # Change Orders
 
 ### Change Order Template
 
 Date: 
+
 Request Name: 
+
 Change Description:
+
 Reason for change:
+
 Timeline for change:
+
 Expected impact for change:
