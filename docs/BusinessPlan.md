@@ -20,6 +20,7 @@ S’mores Up is another app that I entirely free. It is unclear how S’mores Up
 ## Projected income
 
 ###Freemium revenue
+
 According to SweetPricing.com’s article about (Freemium Mobile Apps)[https://sweetpricing.com/blog/2017/01/freemium-mobile-apps/], 0.5-2% of users are willing to take advantage of in-app purchases or subscriptions. The idea is to enhance the experience, not inhibit free users. With this in mind, Tidy Chores will take advantage of the following freemium features:
 
 Free users are limited to: 4 household members per account, 3 chores per household member.
