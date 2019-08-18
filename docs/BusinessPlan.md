@@ -32,8 +32,6 @@ Tidy Chores freemium options will offer:
 With an assumption of 3 million users, a value determined by the median of users of our competitors and assuming 1.25% (37,500 freemium users) purchase freemium services this revenue would essentially accrue annually: $93,712.50
 
 ### Ad Revenue - CPC & CPM
-https://goingclear.com/how-much-advertising-revenue-will-website-make/
-
 For my competitors that have a website, through the use of (siterankdata.com)[siterankdata.com] I was able to search my competitors to see what their estimated monthly visitors are. These are the results:
 
  * Cozi Family Organizer - 4,156,924 monthly visitors
