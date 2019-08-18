@@ -13,7 +13,7 @@ Class Dojo - Class Dojo Beyond School is completely blocked behind a subscriptio
 
 Allowance and Chores Bot has a one time $2.99 fee. Based off reviews it seems the user base is satisfied with this one time fee.
 
-OurHome is completely free with no hidden costs or ad support. According to (startupdaily.net)[https://www.startupdaily.net/2014/12/melbourne-startup-ourhome-gamifies-household-chores-children/] OurHome intends to monetize eventually using typical streams of revenue. There is mention of OurHome seeking investors (seed capital) however it is unclear if the app is investor supported at this time or not. Obviously, users are very satisfied with the current model.
+OurHome is completely free with no hidden costs or ad support. According to [startupdaily.net](https://www.startupdaily.net/2014/12/melbourne-startup-ourhome-gamifies-household-chores-children/) OurHome intends to monetize eventually using typical streams of revenue. There is mention of OurHome seeking investors (seed capital) however it is unclear if the app is investor supported at this time or not. Obviously, users are very satisfied with the current model.
 
 S’mores Up is another app that I entirely free. It is unclear how S’mores Up is financially maintained but I believe it is safe to say that they are supported by seed capital. Again, this is a revenue model that users have no complaints about.
 
