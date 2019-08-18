@@ -2,14 +2,14 @@
 
 ## Tidy Chores will make money by...
 
-Tidy Chores will ad-supported and take advantage of affiliate marketing through services such as amazon. With well placed and targeted ads, and thoughtful suggestions for products geared toward the target market, users will not only benefit from the revenue stream but Tidy Chores will be able to self sustain. For those users who wish to not have ads, they will have the option to pay an annual subscription fee of $10 to use the app without any ads or distractions with unlimited household members and no restrictions on the number of chores. 
+Tidy Chores will take advantage of multiple avenues of revenue, ad support and freemium services. With well placed and targeted ads users will not only benefit from the revenue stream but Tidy Chores will be able to self sustain. For those users who wish to not have ads, they will have the option to pay an annual subscription fee of $9.99 to use the app without any ads or distractions with unlimited household members and no restrictions on the number of chores. 
 
-There will also be a freemium options where users can continue to use the application for free but if they wish to add more than 4 household members, they can pay $1.00 per member. Further they can also choose to purchase the option to add more than the limited 3 chores to each child, per day at a cost of $1.00 per 3 additional chores.
+There will also be a freemium options where users can continue to use the application for free but if they wish to add more than 4 household members, they can pay $1.00 per member. Further they can also choose to purchase the option to add more than the limited 3 chores to each child, per day at a cost of $3.00 per 8 additional chores.
 
 ## My competitors
-Cozi Family Manager - Cozi Family Manager uses a subscription model to support their application. According to reviews, many members oppose being blocked from many features unless they subscribe however claim to continue to use the app despite the indifference.
+Cozi Family Manager uses a subscription model to support their application. According to reviews, many members oppose being blocked from many features unless they subscribe however claim to continue to use the app despite the indifference.
 
-Class Dojo - Class Dojo Beyond School is completely blocked behind a subscription model with the exception of a free trial. 
+Class Dojo Beyond School is completely blocked behind a subscription model with the exception of a free trial. 
 
 Allowance and Chores Bot has a one time $2.99 fee. Based off reviews it seems the user base is satisfied with this one time fee.
 
@@ -19,22 +19,21 @@ S’mores Up is another app that I entirely free. It is unclear how S’mores Up
 
 ## Projected income
 
-###Freemium revenue
-
-According to SweetPricing.com’s article about (Freemium Mobile Apps)[https://sweetpricing.com/blog/2017/01/freemium-mobile-apps/], 0.5-2% of users are willing to take advantage of in-app purchases or subscriptions. The idea is to enhance the experience, not inhibit free users. With this in mind, Tidy Chores will take advantage of the following freemium features:
+### Freemium Revenue
+According to SweetPricing.com’s article about [Freemium Mobile Apps](https://sweetpricing.com/blog/2017/01/freemium-mobile-apps/), 0.5-2% of users are willing to take advantage of in-app purchases or subscriptions. The idea is to enhance the experience, not inhibit free users. With this in mind, Tidy Chores will take advantage of the following freemium features:
 
 Free users are limited to: 4 household members per account, 3 chores per household member.
 
 Tidy Chores freemium options will offer:
  * $1 per additional household member
- * $3 for 4 additional chores used at user discretion (i.e: one child can get 4 additional chores or these 4 chores can be spread amongst all household members.)
- * $9.99 lifetime fee for ad free use, up to 6 household members, and up to 5 chores per household member.
+ * $3 for 8 additional chores used at user discretion (i.e: one child can get 4 additional chores or these 8 chores can be spread amongst all household members.)
+ * $9.99 annual fee for ad free use, unlimited chores and household members. Subscription members will also have access to any freemium offers that may come with new features.
 
-With an assumption of 3 million users, a value determined by the median of users of our competitors, this revenue would essentially accrue annually: 
-.5% of users - $37,485 annual
-2% of users = $149,940 annual
+With an assumption of 3 million users, a value determined by the median of users of our competitors and assuming 1.25% (37,500 freemium users) purchase freemium services this revenue would essentially accrue annually: $93,712.50
 
 ### Ad Revenue - CPC & CPM
+https://goingclear.com/how-much-advertising-revenue-will-website-make/
+
 For my competitors that have a website, through the use of (siterankdata.com)[siterankdata.com] I was able to search my competitors to see what their estimated monthly visitors are. These are the results:
 
  * Cozi Family Organizer - 4,156,924 monthly visitors
@@ -42,21 +41,43 @@ For my competitors that have a website, through the use of (siterankdata.com)[si
  * Our Home - 202,603 monthly visitors
  * S’mores App - 294,290 monthly visitors
 
-Using both CPM (revenue earned per 1000 views) and CPC (revenue earned per click)
- 3mil/1000 * 1.20 = 3600 per month for CPM
+CPM (revenue earned per 1000 views)
+3mil/1000 * 1.20 = 3600 per month for CPM
+
+### Overall
+With the assumption of 3 million users in the first year, Tidy Chores projected first year revenue: $136,912.50
 
 
 # Marketing
 
 ## Elevator Pitch
+
 Parents deal with a lot of stressors and frustrations on a daily basis, chores being one of the biggest pain points. Tidy Chores simplifies chores with an easy to use tracking system for each child giving parents a simple, stress free go to source for chore management.
 
 ## Keywords
-Chores, household chores, kids chores, how to track chores, chore app, parents, chore ideas for kids, household management, 
+
+chores
+household chores
+kids chores
+how to track chores
+chore app
+Parents
+chore ideas for kids
+household management
+chore incentives for kids
+kids chore schedule ideas
+home organization
+chore schedule
+chore chart
+list of household chores for kids
+chores list
+daily chores for kids
+best chore app for kids
 
 # Change Orders
 
 ### Change Order Template
+
 Date: 
 Request Name: 
 Change Description:
