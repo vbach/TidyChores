@@ -18,10 +18,6 @@ OurHome is completely free with no hidden costs or ad support. According to [sta
 S’mores Up is another app that I entirely free. It is unclear how S’mores Up is financially maintained but I believe it is safe to say that they are supported by seed capital. Again, this is a revenue model that users have no complaints about.
 
 ## Projected income
-*Given your projected target audience (from week 1), how much are you likely to make? Think about their income level and how much they would be willing to spend. Also think about how broad the audience is if your project only reaches a smaller set of the population, you are less likely as many users a project that has broad appeal, which impacts the projected income.*
-
-*Is your projected income enough to make it worth developing the project? Is there some other reason to build the app outside of revenue? If the answer is no to both those questions, reach out to your instructor because it might be better to make something else that will keep you engaged.*
-https://headerbidding.co/calculate-cpm-cpc-cpa-ecpm-ecpc-ecpa-roi/
 
 ###Freemium revenue
 According to SweetPricing.com’s article about (Freemium Mobile Apps)[https://sweetpricing.com/blog/2017/01/freemium-mobile-apps/], 0.5-2% of users are willing to take advantage of in-app purchases or subscriptions. The idea is to enhance the experience, not inhibit free users. With this in mind, Tidy Chores will take advantage of the following freemium features:
@@ -38,8 +34,6 @@ With an assumption of 3 million users, a value determined by the median of users
 2% of users = $149,940 annual
 
 ### Ad Revenue - CPC & CPM
-https://goingclear.com/how-much-advertising-revenue-will-website-make/
-
 For my competitors that have a website, through the use of (siterankdata.com)[siterankdata.com] I was able to search my competitors to see what their estimated monthly visitors are. These are the results:
 
  * Cozi Family Organizer - 4,156,924 monthly visitors
@@ -54,12 +48,10 @@ Using both CPM (revenue earned per 1000 views) and CPC (revenue earned per click
 # Marketing
 
 ## Elevator Pitch
-
 Parents deal with a lot of stressors and frustrations on a daily basis, chores being one of the biggest pain points. Tidy Chores simplifies chores with an easy to use tracking system for each child giving parents a simple, stress free go to source for chore management.
 
 ## Keywords
-
-Chores, household chores, kids chores, how to track chores, chore app, parents, chore ideas for kids, 
+Chores, household chores, kids chores, how to track chores, chore app, parents, chore ideas for kids, household management, 
 
 # Change Orders
 
