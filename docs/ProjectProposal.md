@@ -77,9 +77,3 @@ Class Dojo originated as a behavior incentive for classrooms. They expanded to C
 4. Check off each chore as it is completed.
 5. Charts reset every week to begin a fresh new week.
 6. Optional reward/point system.
-
-## Integrations
-
-*Identify what 3rd party APIs, data sets, or external integrations are planned for use and outline how you will use them transformatively. Provide links to their respective documentation and verify that your intended use complies with their Terms of Service.*
-
-[Tidy Chores Video Proposal](https://spark.adobe.com/video/Ctf4igToqtNlH)
