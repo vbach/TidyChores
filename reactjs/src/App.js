@@ -53,7 +53,6 @@ class App extends Component {
                 component={EditReward}
               />
               <Route path="/child/:id" exact component={UserChildView} />
-              <Route component={FourOhFour} />
             </Switch>
           </Router>
         </Container>

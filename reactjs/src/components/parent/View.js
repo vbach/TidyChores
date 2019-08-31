@@ -101,14 +101,10 @@ export default View;
 View.propTypes = {
   loggedIn: PropTypes.bool,
   children: PropTypes.shape({
-    children: [
-      {
-        id: PropTypes.int,
-        name: PropTypes.string,
-        avatar: PropTypes.string,
-        chores: PropTypes.array
-      }
-    ]
+    id: PropTypes.string,
+    name: PropTypes.string,
+    avatar: PropTypes.string,
+    chores: PropTypes.array
   })
 };
 
