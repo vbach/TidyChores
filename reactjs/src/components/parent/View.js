@@ -10,79 +10,13 @@ import {
   ListGroup
 } from 'react-bootstrap';
 import styles from './app.module.css';
-import Boy_001 from '../../avatars/boy_001.png';
 import childView from './childView';
 
 class View extends Component {
-  onCheck = e => {};
-
+  constructor(props) {
+    super(props);
+  }
   render() {
-    const children = [
-      {
-        id: 1,
-        name: 'Logan',
-        avatar: '../../avatars/boy_001.png',
-        chores: [
-          {
-            id: 1,
-            name: 'Mop kitchen',
-            type: 'complete'
-          },
-          {
-            id: 2,
-            name: 'Pick up bedroom',
-            type: 'incomplete'
-          },
-          {
-            id: 3,
-            name: 'Walk dog',
-            type: 'incomplete'
-          }
-        ]
-      },
-      {
-        id: 2,
-        name: 'Abigale',
-        chores: [
-          {
-            id: 1,
-            name: 'Mop kitchen',
-            type: 'complete'
-          },
-          {
-            id: 2,
-            name: 'Pick up bedroom',
-            type: 'complete'
-          },
-          {
-            id: 3,
-            name: 'Walk dog',
-            type: 'incomplete'
-          }
-        ]
-      },
-      {
-        id: 3,
-        name: 'Audrey',
-        chores: [
-          {
-            id: 1,
-            name: 'Mop kitchen',
-            type: 'incomplete'
-          },
-          {
-            id: 2,
-            name: 'Pick up bedroom',
-            type: 'incomplete'
-          },
-          {
-            id: 3,
-            name: 'Walk dog',
-            type: 'incomplete'
-          }
-        ]
-      }
-    ];
     return (
       <Fragment>
         <Container>
@@ -98,11 +32,11 @@ class View extends Component {
           <Row className="pt-5 pb-5">
             <Col>
               <CardGroup className={styles.card__group}>
-                {children.map(child => (
+                {this.props.children.map(child => (
                   <Card key={child.id} className={styles.card}>
                     <Card.Img
                       variant="top"
-                      src={Boy_001}
+                      src={child.avatar}
                       className={styles.avatar}
                       alt="Child Avatar"
                     />
@@ -125,8 +59,9 @@ class View extends Component {
                           >
                             <input
                               type="checkbox"
-                              checked={chore.type === 'complete'}
+                              checked={chore.type === true}
                               id={chore.id}
+                              name={chore.id}
                               onChange={this.onCheck}
                               className={styles.form__check__input}
                             />{' '}
@@ -149,10 +84,87 @@ class View extends Component {
 export default View;
 
 View.propTypes = {
-  loggedIn: PropTypes.bool
+  loggedIn: PropTypes.bool,
+  children: PropTypes.shape({
+    children: [
+      {
+        id: PropTypes.int,
+        name: PropTypes.string,
+        avatar: PropTypes.string,
+        chores: PropTypes.array
+      }
+    ]
+  })
 };
 
 View.defaultProps = {
   loggedIn: true,
-  children: []
+  children: [
+    {
+      id: 1,
+      name: 'Logan',
+      avatar: '/avatars/boy_001.png',
+      chores: [
+        {
+          id: 1,
+          name: 'Mop kitchen',
+          type: true
+        },
+        {
+          id: 2,
+          name: 'Pick up bedroom',
+          type: false
+        },
+        {
+          id: 3,
+          name: 'Walk dog',
+          type: false
+        }
+      ]
+    },
+    {
+      id: 2,
+      name: 'Abigale',
+      avatar: '../../avatars/girl_002.png',
+      chores: [
+        {
+          id: 1,
+          name: 'Mop kitchen',
+          type: true
+        },
+        {
+          id: 2,
+          name: 'Pick up bedroom',
+          type: true
+        },
+        {
+          id: 3,
+          name: 'Walk dog',
+          type: false
+        }
+      ]
+    },
+    {
+      id: 3,
+      name: 'Audrey',
+      avatar: '../../avatars/girl_003.png',
+      chores: [
+        {
+          id: 1,
+          name: 'Mop kitchen',
+          type: false
+        },
+        {
+          id: 2,
+          name: 'Pick up bedroom',
+          type: false
+        },
+        {
+          id: 3,
+          name: 'Walk dog',
+          type: false
+        }
+      ]
+    }
+  ]
 };

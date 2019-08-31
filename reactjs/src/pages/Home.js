@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './app.module.css';
 import MainMast from '../main-mast.png';
-import starIcon from '../icons/clean.png';
-import brushIcon from '../icons/001-brush.png';
-import bubblesIcon from '../icons/002-bubbles.png';
-import washingMachineIcon from '../icons/003-washing-machine.png';
-import broomIcon from '../icons/005-broom.png';
-import glassIcon from '../icons/006-glass.png';
 
 class Home extends Component {
   render() {
@@ -31,7 +25,7 @@ class Home extends Component {
 
         <Row className="pt-5">
           <Col className="my-auto text-center">
-            <img src={starIcon} alt="" className={styles.icons} />
+            <img src="/icons/006-glass.png" alt="" className={styles.icons} />
             <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -40,7 +34,7 @@ class Home extends Component {
           </Col>
           <Col className="my-auto text-center">
             <img
-              src={brushIcon}
+              src="/icons/005-broom.png"
               alt="Clean stars icon"
               className={styles.icons}
             />
@@ -51,7 +45,11 @@ class Home extends Component {
             </p>
           </Col>
           <Col className="my-auto text-center">
-            <img src={washingMachineIcon} alt="" className={styles.icons} />
+            <img
+              src="/icons/003-washing-machine.png"
+              alt=""
+              className={styles.icons}
+            />
             <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -61,7 +59,7 @@ class Home extends Component {
         </Row>
         <Row className="pt-5">
           <Col className="my-auto text-center">
-            <img src={broomIcon} alt="" className={styles.icons} />
+            <img src="/icons/002-bubbles.png" alt="" className={styles.icons} />
             <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -69,7 +67,7 @@ class Home extends Component {
             </p>
           </Col>
           <Col className="my-auto text-center">
-            <img src={bubblesIcon} alt="" className={styles.icons} />
+            <img src="/icons/001-brush.png" alt="" className={styles.icons} />
             <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -77,7 +75,7 @@ class Home extends Component {
             </p>
           </Col>
           <Col className="my-auto text-center">
-            <img src={glassIcon} alt="" className={styles.icons} />
+            <img src="/icons/clean.png" alt="" className={styles.icons} />
             <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam

@@ -4,37 +4,6 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './app.module.css';
 
-const rewards = [
-  {
-    id: 1,
-    rewardDescription: '2 movie tickets',
-    claimed: true,
-    points: 50,
-    claimedBy: 'Aiden'
-  },
-  {
-    id: 2,
-    rewardDescription: 'No chore day',
-    claimed: false,
-    points: 50,
-    claimedBy: null
-  },
-  {
-    id: 3,
-    rewardDescription: 'Go to the zoo',
-    claimed: false,
-    points: 50,
-    claimedBy: null
-  },
-  {
-    id: 4,
-    rewardDescription: 'Day adventure with mom',
-    claimed: true,
-    points: 50,
-    claimedBy: 'Celeste'
-  }
-];
-
 class Rewards extends Component {
   render() {
     return (
@@ -49,7 +18,7 @@ class Rewards extends Component {
         <Row className="mt-3 pb-5">
           <Col md={6} className="mt-3 pl-5 pr-5">
             <h2 className={styles.inline__heading}>Claimed Rewards</h2>
-            {rewards.map(reward => (
+            {this.props.rewards.map(reward => (
               <div>
                 {reward.claimed && (
                   <Row className={styles.rewards__table}>
@@ -73,7 +42,7 @@ class Rewards extends Component {
                 <i className="fas fa-plus"></i> Add
               </Link>
             </span>
-            {rewards.map(reward => (
+            {this.props.rewards.map(reward => (
               <div>
                 {!reward.claimed && (
                   <Row className={styles.rewards__table}>
@@ -107,7 +76,36 @@ Rewards.propTypes = {
 
 Rewards.defaultProps = {
   loggedIn: false,
-  rewards: []
+  rewards: [
+    {
+      id: 1,
+      rewardDescription: '2 movie tickets',
+      claimed: true,
+      points: 50,
+      claimedBy: 'Logan'
+    },
+    {
+      id: 2,
+      rewardDescription: 'No chore day',
+      claimed: false,
+      points: 50,
+      claimedBy: null
+    },
+    {
+      id: 3,
+      rewardDescription: 'Go to the zoo',
+      claimed: false,
+      points: 50,
+      claimedBy: null
+    },
+    {
+      id: 4,
+      rewardDescription: 'Day adventure with mom',
+      claimed: true,
+      points: 50,
+      claimedBy: 'Abigale'
+    }
+  ]
 };
 
 export default Rewards;

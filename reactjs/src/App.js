@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import NavbarUser from './components/layout/Navbar_user';
@@ -17,37 +17,53 @@ import AddChore from './components/forms/AddChore';
 import AddReward from './components/forms/AddReward';
 import EditReward from './components/forms/EditReward';
 
-function App() {
-  return (
-    <div>
-      <Login />
-      <Container className={styles.container}>
-        <Router>
-          <div>
-            <Route path="/" component={Navbar} />
-            <Route path="/" exact component={Home} />
-            <Route path="/signup" exact component={Form} />
-          </div>
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        {!this.props.loggedIn ? <Login /> : ''}
+        <Container className={styles.container}>
+          <Router>
+            <div>
+              <Route path="/" component={Navbar} />
+              <Route path="/" exact component={Home} />
+              <Route path="/signup" exact component={Form} />
+            </div>
 
-          <Switch>
-            <Route path="/parent" exact component={ParentView} />
-            <Route path="/parent/child/:id" exact component={ChildView} />
-            <Route path="/parent/rewards" exact component={Rewards} />
-            <Route path="/parent/:id/child/new" exact component={NewChild} />
-            <Route path="/parent/:id/chore/edit" exact component={EditChore} />
-            <Route path="/parent/:id/chore/add" exact component={AddChore} />
-            <Route path="/parent/:id/rewards/add" exact component={AddReward} />
-            <Route
-              path="/parent/:id/rewards/edit"
-              exact
-              component={EditReward}
-            />
-          </Switch>
-        </Router>
-      </Container>
-      <Footer />
-    </div>
-  );
+            <Switch>
+              <Route path="/parent" exact component={ParentView} />
+              <Route path="/parent/child/:id" exact component={ChildView} />
+              <Route path="/parent/rewards" exact component={Rewards} />
+              <Route path="/parent/:id/child/new" exact component={NewChild} />
+              <Route
+                path="/parent/:id/chore/edit"
+                exact
+                component={EditChore}
+              />
+              <Route path="/parent/:id/chore/add" exact component={AddChore} />
+              <Route
+                path="/parent/:id/rewards/add"
+                exact
+                component={AddReward}
+              />
+              <Route
+                path="/parent/:id/rewards/edit"
+                exact
+                component={EditReward}
+              />
+            </Switch>
+          </Router>
+        </Container>
+        <Footer />
+      </div>
+    );
+  }
 }
 
+App.defaultProps = {
+  loggedIn: false
+};
 export default App;

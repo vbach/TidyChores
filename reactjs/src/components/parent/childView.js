@@ -14,52 +14,11 @@ import Boy_001 from '../../avatars/boy_001.png';
 
 class childView extends Component {
   render() {
-    const children = [
-      {
-        id: 1,
-        name: 'Aiden',
-        avatar: '../../avatars/boy_001.png',
-        points: 125,
-        chores: [
-          {
-            id: 1,
-            name: 'Mop kitchen',
-            type: 'complete',
-            day: 'Monday'
-          },
-          {
-            id: 2,
-            name: 'Pick up bedroom',
-            type: 'incomplete',
-            day: 'Monday'
-          },
-          {
-            id: 3,
-            name: 'Walk dog',
-            type: 'incomplete',
-            day: 'Monday'
-          },
-          {
-            id: 4,
-            name: 'Clean liter box',
-            type: 'incomplete',
-            day: 'Tuesday'
-          },
-          {
-            id: 5,
-            name: 'Pick up bedroom',
-            type: 'incomplete',
-            day: 'Tuesday'
-          }
-        ]
-      }
-    ];
-
     return (
       <Fragment>
         <Container>
           <Row>
-            {children.map(child => (
+            {this.props.children.map(child => (
               <Col xs={12} key={child.id}>
                 <Row>
                   <Col xs={1}>
@@ -126,7 +85,46 @@ childView.propTypes = {
 };
 
 childView.defaultProps = {
-  children: [],
+  children: [
+    {
+      id: 1,
+      name: 'Logan',
+      avatar: '../../avatars/boy_001.png',
+      points: 125,
+      chores: [
+        {
+          id: 1,
+          name: 'Mop kitchen',
+          type: 'complete',
+          day: 'Monday'
+        },
+        {
+          id: 2,
+          name: 'Pick up bedroom',
+          type: 'incomplete',
+          day: 'Monday'
+        },
+        {
+          id: 3,
+          name: 'Walk dog',
+          type: 'incomplete',
+          day: 'Monday'
+        },
+        {
+          id: 4,
+          name: 'Clean liter box',
+          type: 'incomplete',
+          day: 'Tuesday'
+        },
+        {
+          id: 5,
+          name: 'Pick up bedroom',
+          type: 'incomplete',
+          day: 'Tuesday'
+        }
+      ]
+    }
+  ],
   loggedIn: true
 };
 export default childView;
