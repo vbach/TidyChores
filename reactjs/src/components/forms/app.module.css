@@ -40,3 +40,27 @@
   border-radius: 10px;
   color: var(--light-text-color);
 }
+
+.add__btn {
+  background: transparent;
+  border: 0;
+  color: var(--text-color);
+  display: inline;
+  float: right;
+  outline: none;
+  outline-style: none;
+}
+
+.add__btn:hover {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  display: inline;
+  float: right;
+  outline: none;
+  outline-style: none;
+}
+
+.fas {
+  color: var(--primary-color) !important;
+}

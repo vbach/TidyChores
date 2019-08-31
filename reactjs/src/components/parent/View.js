@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment, Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
@@ -13,6 +13,24 @@ import styles from './app.module.css';
 import childView from './childView';
 
 class View extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isChecked: true
+    };
+  }
+
+  handleCheckChange = e => {
+    console.log('checkbox changed', e);
+    this.setState = { isChecked: e.target.checked };
+  };
+
+  toggleIsChecked = () => {
+    console.log('toggling is checked');
+    this.setState({ isChecked: !this.state.isChecked });
+    this.handleCheckChange();
+  };
+
   render() {
     return (
       <Fragment>
@@ -59,7 +77,8 @@ class View extends Component {
                               checked={chore.type === true}
                               id={chore.id}
                               name={chore.id}
-                              onChange={this.onCheck}
+                              value={chore.id}
+                              onChange={this.handleCheckChange}
                             />{' '}
                             {chore.name}
                           </ListGroup.Item>

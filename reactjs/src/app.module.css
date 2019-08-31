@@ -40,7 +40,15 @@ h6 {
   padding-bottom: 25px;
 }
 
+.inline__heading {
+  display: inline;
+}
+
 /* Links */
 a:hover {
   transition: ease-in 0.2s;
+}
+
+*:focus {
+  outline-style: none !important;
 }

@@ -9,6 +9,19 @@ const onSubmit = () => {
 };
 
 class EditChore extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addSteps: false
+    };
+  }
+
+  toggleShow = () => {
+    this.setState(state => ({
+      addSteps: !state.addSteps
+    }));
+  };
+
   render() {
     return (
       <Container className="mt-5">
@@ -66,19 +79,29 @@ class EditChore extends Component {
                     <option>Audrey</option>
                   </Form.Control>
                 </Form.Group>
+                <h3 className={styles.inline__heading}>
+                  Steps{' '}
+                  <Button onClick={this.toggleShow} className={styles.add__btn}>
+                    <span className={styles.fas}>
+                      <i className="fas fa-plus"></i>
+                    </span>{' '}
+                    Add Steps
+                  </Button>
+                </h3>
 
-                <Form.Group controlId="formSteps">
-                  <Form.Label>Steps</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows="3"
-                    name="step"
-                    defaultValue={
-                      this.props.chore.steps ||
-                      'Add steps to help your child complete their chore!'
-                    }
-                  />
-                </Form.Group>
+                {this.state.addSteps ? (
+                  <Form.Group controlId="formSteps">
+                    <Form.Control
+                      as="textarea"
+                      rows="3"
+                      name="step"
+                      defaultValue={
+                        this.props.chore.steps ||
+                        'Add steps to help your child complete their chore!'
+                      }
+                    />
+                  </Form.Group>
+                ) : null}
               </Col>
               <Col xs={2}></Col>
             </Row>

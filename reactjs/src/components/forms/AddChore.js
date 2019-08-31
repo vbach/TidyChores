@@ -66,7 +66,6 @@ class AddChore extends Component {
                     placeholder="Fill mop bucket with water"
                   />
                 </Form.Group>
-                {/* Add defaultProp steps. */}
               </Col>
               <Col xs={2}></Col>
             </Row>

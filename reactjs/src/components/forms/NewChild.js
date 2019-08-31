@@ -28,9 +28,72 @@ class NewChild extends Component {
                     placeholder="First Name"
                   />
                 </Form.Group>
+                <p>Select an Avatar</p>
                 <Form.Group controlId="formAvatar">
-                  <Form.Label>Select an Avatar</Form.Label>
-                  <Form.Control type="radio" name="avatar" />
+                  <Row>
+                    <Col xs={4} className="text-center">
+                      {' '}
+                      <img src="/avatars/boy_001.png" alt="Boy" />
+                      <Form.Check
+                        type="radio"
+                        name="boy_001"
+                        value="boy_001"
+                        className="text-center"
+                      />
+                    </Col>
+                    <Col xs={4} className="text-center">
+                      {' '}
+                      <img src="/avatars/boy_002.png" alt="Boy" />
+                      <Form.Check
+                        type="radio"
+                        name="boy_002"
+                        value="boy_002"
+                        className="text-center"
+                      />
+                    </Col>
+                    <Col xs={4} className="text-center">
+                      {' '}
+                      <img src="/avatars/boy_003.png" alt="Boy" />
+                      <Form.Check
+                        type="radio"
+                        name="boy_003"
+                        value="boy_003"
+                        className="text-center"
+                      />
+                    </Col>
+                  </Row>
+                  <Row className="mt-5">
+                    <Col xs={4} className="text-center">
+                      {' '}
+                      <img src="/avatars/girl_002.png" alt="Girl" />
+                      <Form.Check
+                        type="radio"
+                        name="girl_002"
+                        value="girl_002"
+                        className="text-center"
+                      />
+                    </Col>
+                    <Col xs={4} className="text-center">
+                      {' '}
+                      <img src="/avatars/girl_001.png" alt="Girl" />
+                      <Form.Check
+                        type="radio"
+                        name="girl_001"
+                        value="girl_001"
+                        className="text-center"
+                      />
+                    </Col>
+                    <Col xs={4} className="text-center">
+                      {' '}
+                      <img src="/avatars/girl_003.png" alt="Girl" />
+                      <Form.Check
+                        type="radio"
+                        name="girl_003"
+                        value="girl_003"
+                        className="text-center"
+                      />
+                    </Col>
+                  </Row>
                 </Form.Group>
               </Col>
               <Col xs={2}></Col>
