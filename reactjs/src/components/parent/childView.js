@@ -16,7 +16,7 @@ class childView extends Component {
     return (
       <Fragment>
         <Container>
-          <Row>
+          <Row className="mb-5">
             {this.props.children.map(child => (
               <Col xs={12} key={child.id}>
                 <Row>
@@ -45,23 +45,29 @@ class childView extends Component {
                           className={styles.child__view__list}
                         >
                           <ListGroup.Item className={styles.list__group__item}>
-                            <strong>{chore.day}</strong> {' - '}
-                            <input
-                              type="checkbox"
-                              checked={chore.type === 'complete'}
-                              id={chore.id}
-                              onChange={this.onCheck}
-                              className={styles.form__check__input}
-                            />{' '}
-                            {chore.name}{' '}
-                            <span
-                              className="chore__controls"
-                              style={{ float: 'right' }}
-                            >
-                              <Link to="/parent/:id/chore/edit">
-                                <i className="fas fa-edit"></i>
-                              </Link>{' '}
-                              <i className="fas fa-times"></i>
+                            <span className={styles.custom__check__container}>
+                              <input
+                                type="checkbox"
+                                checked={chore.type === 'complete'}
+                                id={chore.id}
+                                onChange={this.onCheck}
+                                className={styles.form__check__input}
+                              />{' '}
+                              <span
+                                className={styles.custom__check__mark}
+                              ></span>
+                              <strong>{chore.day}</strong> {' - '}
+                              {chore.name}
+                              <span
+                                className="chore__controls"
+                                style={{ float: 'right' }}
+                              >
+                                {' '}
+                                <Link to="/parent/:id/chore/edit">
+                                  <i className="fas fa-edit"></i>
+                                </Link>{' '}
+                                <i className="fas fa-times"></i>
+                              </span>
                             </span>
                           </ListGroup.Item>
                         </ListGroup>

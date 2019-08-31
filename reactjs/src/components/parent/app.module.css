@@ -73,3 +73,74 @@ h2 > a:hover {
 .rewards__table {
   border-bottom: 1px solid var(--primary-color);
 }
+
+/* Checkbox custom */
+/* Customize the label (the container) */
+.custom__check__container {
+  display: block;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.custom__check__container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.custom__check__mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 35px;
+  width: 35px;
+  background-color: #fff;
+  border: 1px solid var(--secondary-color);
+  border-radius: 50px;
+}
+
+/* On mouse-over, add a grey background color */
+.custom__check__container:hover input ~ .custom__check__mark {
+  background-color: #fff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.custom__check__container input:checked ~ .custom__check__mark {
+  background-color: #fff;
+}
+
+/* Create the custom__check__mark/indicator (hidden when not checked) */
+.custom__check__mark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the custom__check__mark when checked */
+.custom__check__container input:checked ~ .custom__check__mark:after {
+  display: block;
+}
+
+/* Style the custom__check__mark/indicator */
+.custom__check__container .custom__check__mark:after {
+  left: 8px;
+  top: 3px;
+  width: 15px;
+  height: 20px;
+  border: solid var(--primary-color);
+  border-width: 0 5px 5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

@@ -72,15 +72,21 @@ class View extends Component {
                             className={styles.list__group__item}
                             key={chore.id}
                           >
-                            <input
-                              type="checkbox"
-                              checked={chore.type === true}
-                              id={chore.id}
-                              name={chore.id}
-                              value={chore.id}
-                              onChange={this.handleCheckChange}
-                            />{' '}
-                            {chore.name}
+                            <span className={styles.custom__check__container}>
+                              {' '}
+                              {chore.name}
+                              <input
+                                type="checkbox"
+                                checked={chore.type === true}
+                                id={chore.id}
+                                name={chore.id}
+                                value={chore.id}
+                                onChange={this.handleCheckChange}
+                              />
+                              <span
+                                className={styles.custom__check__mark}
+                              ></span>
+                            </span>
                           </ListGroup.Item>
                         ))}
                       </ListGroup>
