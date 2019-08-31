@@ -22,14 +22,19 @@ class EditReward extends Component {
               <Col xs={8}>
                 <Form.Group controlId="formEditReward">
                   <Form.Label>Description of reward</Form.Label>
-                  <Form.Control type="text" name="rewardDesc" placeholder="" />
+                  <Form.Control
+                    type="text"
+                    name="rewardDesc"
+                    placeholder=""
+                    defaultValue={this.props.reward.name}
+                  />
                 </Form.Group>
                 <Form.Group controlId="formPointValue">
                   <Form.Label>Point Value</Form.Label>
                   <Form.Control
                     type="text"
                     name="pointValue"
-                    placeholder="10"
+                    defaultValue={this.props.reward.pointValue}
                   />
                 </Form.Group>
               </Col>
@@ -59,7 +64,11 @@ EditReward.propTypes = {
 };
 
 EditReward.defaultProps = {
-  child: {}
+  reward: {
+    id: 1,
+    name: 'Mop the kitchen',
+    pointValue: 35
+  }
 };
 
 export default EditReward;

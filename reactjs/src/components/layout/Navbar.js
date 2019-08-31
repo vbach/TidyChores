@@ -1,7 +1,7 @@
-import React, { Fragment, Component, useState } from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Button, Modal } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import styles from './app.module.css';
 import Logo from '../../logo.png';
 
@@ -14,8 +14,6 @@ class Navigation extends Component {
   }
 
   render() {
-    const { loggedIn } = this.props;
-
     return (
       <Fragment>
         <Navbar expand="md" className="pt-4">

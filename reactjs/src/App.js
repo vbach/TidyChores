@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import NavbarUser from './components/layout/Navbar_user';
 import Home from './pages/Home';
+import FourOhFour from './pages/404';
 import Container from 'react-bootstrap/Container';
 import Footer from './components/layout/Footer';
 import Login from './components/login/Login';
@@ -16,15 +16,13 @@ import EditChore from './components/forms/EditChore';
 import AddChore from './components/forms/AddChore';
 import AddReward from './components/forms/AddReward';
 import EditReward from './components/forms/EditReward';
+import UserChildView from './components/child/ChildView';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>
-        {!this.props.loggedIn ? <Login /> : ''}
+        <Login />
         <Container className={styles.container}>
           <Router>
             <div>
@@ -54,6 +52,8 @@ class App extends Component {
                 exact
                 component={EditReward}
               />
+              <Route path="/child/:id" exact component={UserChildView} />
+              <Route component={FourOhFour} />
             </Switch>
           </Router>
         </Container>

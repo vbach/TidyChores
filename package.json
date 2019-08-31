@@ -1,0 +1,29 @@
+{
+  "name": "capstone-project-vbach",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently --raw \"npm run api\" \"npm run reactjs\"",
+    "reactjs": "cd reactjs && npm run start",
+    "api": "cd api; nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fs-tech-degs/capstone-project-vbach.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fs-tech-degs/capstone-project-vbach/issues"
+  },
+  "homepage": "https://github.com/fs-tech-degs/capstone-project-vbach#readme",
+  "dependencies": {
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.19.1"
+  }
+}

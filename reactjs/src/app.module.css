@@ -39,3 +39,8 @@ h6 {
   font-family: var(--secondary-font-family);
   padding-bottom: 25px;
 }
+
+/* Links */
+a:hover {
+  transition: ease-in 0.2s;
+}

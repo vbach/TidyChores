@@ -13,9 +13,6 @@ import styles from './app.module.css';
 import childView from './childView';
 
 class View extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Fragment>
@@ -41,7 +38,7 @@ class View extends Component {
                       alt="Child Avatar"
                     />
                     <Card.Title>
-                      <h2>
+                      <h2 className={styles.h2__parentView}>
                         <Link
                           to={`/parent/child/${child.id}`}
                           component={childView}
@@ -63,7 +60,6 @@ class View extends Component {
                               id={chore.id}
                               name={chore.id}
                               onChange={this.onCheck}
-                              className={styles.form__check__input}
                             />{' '}
                             {chore.name}
                           </ListGroup.Item>

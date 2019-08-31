@@ -10,7 +10,6 @@ import {
   ListGroup
 } from 'react-bootstrap';
 import styles from './app.module.css';
-import Boy_001 from '../../avatars/boy_001.png';
 
 class childView extends Component {
   render() {
@@ -21,14 +20,14 @@ class childView extends Component {
             {this.props.children.map(child => (
               <Col xs={12} key={child.id}>
                 <Row>
-                  <Col xs={1}>
-                    <img src={Boy_001} alt="" />
+                  <Col xs={1} className="my-auto">
+                    <img src={child.avatar} alt="" />
                   </Col>
-                  <Col xs={11}>
+                  <Col xs={11} className="my-auto pl-5">
                     <h1>{child.name}</h1>
                     <br />
                     <span className={styles.date}>
-                      {child.name} has {child.points} points
+                      {child.name} has {child.points} points!
                     </span>
                   </Col>
                 </Row>

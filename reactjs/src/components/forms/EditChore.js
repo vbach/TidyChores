@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import styles from './app.module.css';
 
+const onSubmit = () => {
+  console.log('onsubmit');
+};
+
 class EditChore extends Component {
   render() {
     return (
       <Container className="mt-5">
         <div className="sign__up__form">
-          <Form>
+          <Form onSubmit={onSubmit} key={this.props.chore.id}>
             <Row className="mt-5">
               <Col xs={2}></Col>
               <Col xs={8}>
@@ -25,7 +29,7 @@ class EditChore extends Component {
                   <Form.Control
                     type="text"
                     name="editChore"
-                    placeholder="Mop Dining Room"
+                    defaultValue={this.props.chore.name || ''}
                   />
                 </Form.Group>
                 <Form.Group controlId="formPointValue">
@@ -33,12 +37,15 @@ class EditChore extends Component {
                   <Form.Control
                     type="text"
                     name="pointValue"
-                    placeholder="10"
+                    defaultValue={this.props.chore.pointValue || 0}
                   />
                 </Form.Group>
                 <Form.Group controlId="formDay">
                   <Form.Label>Select a day</Form.Label>
-                  <Form.Control as="select">
+                  <Form.Control
+                    as="select"
+                    defaultValue={this.props.chore.day || 'Sunday'}
+                  >
                     <option>Sunday</option>
                     <option>Monday</option>
                     <option>Tuesday</option>
@@ -50,8 +57,13 @@ class EditChore extends Component {
                 </Form.Group>
                 <Form.Group controlId="formChild">
                   <Form.Label>Select a child</Form.Label>
-                  <Form.Control as="select">
-                    <option>Aiden</option>
+                  <Form.Control
+                    as="select"
+                    defaultValue={this.props.chore.child || ''}
+                  >
+                    <option>Logan</option>
+                    <option>Abigale</option>
+                    <option>Audrey</option>
                   </Form.Control>
                 </Form.Group>
 
@@ -61,7 +73,10 @@ class EditChore extends Component {
                     as="textarea"
                     rows="3"
                     name="step"
-                    placeholder="Fill mop bucket with water"
+                    defaultValue={
+                      this.props.chore.steps ||
+                      'Add steps to help your child complete their chore!'
+                    }
                   />
                 </Form.Group>
               </Col>
@@ -71,7 +86,9 @@ class EditChore extends Component {
               <Col xs={2}></Col>
               <Col xs={8} className="text-center">
                 <Link to="/parent">
-                  <Button className={styles.submit__btn}>Add</Button>
+                  <Button type="submit" className={styles.submit__btn}>
+                    Add
+                  </Button>
                 </Link>
               </Col>
               <Col xs={2}></Col>
@@ -90,11 +107,17 @@ EditChore.propTypes = {
     day: PropTypes.string,
     child: PropTypes.string,
     steps: PropTypes.string
-  })
+  }),
+  onSubmit: PropTypes.func.isRequired
 };
 
 EditChore.defaultProps = {
-  chore: {}
+  chore: {
+    name: 'Mop kitchen',
+    pointValue: 30,
+    day: 'Tuesday',
+    child: 'Abigale'
+  }
 };
 
 export default EditChore;

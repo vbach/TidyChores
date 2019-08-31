@@ -51,7 +51,9 @@ class AddChore extends Component {
                 <Form.Group controlId="formChild">
                   <Form.Label>Select a child</Form.Label>
                   <Form.Control as="select">
-                    <option>Aiden</option>
+                    <option>Logan</option>
+                    <option>Abigale</option>
+                    <option>Audrey</option>
                   </Form.Control>
                 </Form.Group>
 
@@ -64,6 +66,7 @@ class AddChore extends Component {
                     placeholder="Fill mop bucket with water"
                   />
                 </Form.Group>
+                {/* Add defaultProp steps. */}
               </Col>
               <Col xs={2}></Col>
             </Row>
