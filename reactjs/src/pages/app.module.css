@@ -1,0 +1,35 @@
+.features {
+  padding-top: 25%;
+}
+
+.testimonials {
+  background-color: #eef0bb;
+}
+
+.divider {
+  background-color: #eef0bb;
+  background-image: url('../icons/Polygon1.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  height: 160px;
+}
+
+p.testimonial__text {
+  width: 300px;
+}
+
+hr {
+  height: 5px;
+  width: 100px;
+  background-color: var(--primary-color);
+}
+
+.icons {
+  margin-bottom: 25px;
+}
+
+h2 {
+  color: var(--text-color);
+  font-weight: 900;
+  text-align: center;
+}

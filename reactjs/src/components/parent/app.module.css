@@ -1,0 +1,59 @@
+h1 {
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+h2 {
+  font-weight: 900;
+}
+
+.inline__heading {
+  display: inline;
+}
+.points {
+  font-size: 24px;
+}
+.userName {
+  color: var(--active-color);
+}
+
+.avatar {
+  width: 80px;
+  margin: 0 auto;
+  padding-bottom: 1.25rem;
+}
+
+.card {
+  border: 0;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.card__group {
+  border: 0 !important;
+}
+
+.list__group__item {
+  text-align: left !important;
+  border: 1px solid #dddddd !important;
+}
+
+.form_check_input::after {
+  border-radius: 50px !important;
+  border: 1px solid var(--secondary-color) !important;
+}
+
+.child__view__list {
+  width: 35%;
+  margin: 0 auto;
+}
+
+.chore__controls {
+  margin-left: 10px;
+}
+
+.rewards__table {
+  border-bottom: 1px solid var(--primary-color);
+}

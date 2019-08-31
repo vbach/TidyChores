@@ -1,0 +1,42 @@
+.sign__up__form {
+  width: 50%;
+}
+
+.h2__signup {
+  text-align: left;
+}
+
+.align__center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.circle {
+  height: 61px;
+  width: 61px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: var(--secondary-color);
+  color: var(--light-text-color);
+  font-size: 35px;
+  font-family: var(--secondary-font-family);
+}
+
+.submit__btn {
+  background-color: var(--active-color);
+  border: 0;
+  border-radius: 10px;
+  color: var(--light-text-color) !important;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0.5rem 1.5rem;
+}
+
+.submit__btn:hover {
+  background-color: var(--secondary-color);
+  border: 0;
+  border-radius: 10px;
+  color: var(--light-text-color);
+}

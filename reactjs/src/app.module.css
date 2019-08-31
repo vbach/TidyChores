@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Rubik&display=swap');
+@import url('https://use.fontawesome.com/releases/v5.7.2/css/all.css');
+
+:root {
+  --active-color: #f97068;
+  --primary-color: #d1d646;
+  --secondary-color: #57c4e5;
+  --text-color: #212738;
+  --light-text-color: #fafafa;
+  --background-color: #fff;
+  --border-color: #57c4e5;
+  --secondary-background-color: #edf2ef;
+  --error-color: #a33252;
+  --default-font-family: 'Roboto', Helvetica, sans-serif;
+  --secondary-font-family: 'Rubik', Helvetica, sans-serif;
+  --default-font: 400 18px/1.6em var(--default-font-family);
+}
+
+/* Base */
+body {
+  font-family: var(--default-font-family);
+  background: url('background.jpg');
+}
+
+.container {
+  background-color: var(--background-color);
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--secondary-font-family);
+  padding-bottom: 25px;
+}

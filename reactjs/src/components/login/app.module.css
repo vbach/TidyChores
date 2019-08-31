@@ -1,0 +1,20 @@
+.loginBar {
+  content: ' ';
+  background-color: var(--primary-color);
+  height: 50px;
+}
+
+.login__btn {
+  color: var(--light-text-color) !important;
+  font-weight: 700;
+  background-color: var(--active-color);
+  border: 0;
+  border-radius: 10px;
+}
+
+.login__btn:hover {
+  background-color: var(--secondary-color);
+  border: 0;
+  border-radius: 10px;
+  outline: none;
+}
