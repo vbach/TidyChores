@@ -50,16 +50,11 @@ h2 > a:hover {
   border: 1px solid #dddddd !important;
 }
 
-.list__group__item:hover {
+/* .list__group__item:hover {
   background-color: var(--primary-color);
   font-weight: 900;
   transition: ease-in 0.5s;
-}
-
-.form_check_input::after {
-  border-radius: 50px !important;
-  border: 1px solid var(--secondary-color) !important;
-}
+} */
 
 .child__view__list {
   width: 35%;

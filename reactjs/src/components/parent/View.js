@@ -7,7 +7,8 @@ import {
   Col,
   Card,
   CardGroup,
-  ListGroup
+  ListGroup,
+  Form
 } from 'react-bootstrap';
 import styles from './app.module.css';
 import childView from './childView';
@@ -15,21 +16,15 @@ import childView from './childView';
 class View extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isChecked: true
-    };
+    this.state = { checked: false };
+    this.handleCheck = this.handleCheck.bind(this);
   }
 
-  handleCheckChange = e => {
-    console.log('checkbox changed', e);
-    this.setState = { isChecked: e.target.checked };
-  };
-
-  toggleIsChecked = () => {
-    console.log('toggling is checked');
-    this.setState({ isChecked: !this.state.isChecked });
-    this.handleCheckChange();
-  };
+  handleCheck(e) {
+    this.setState({
+      checked: e.target.checked
+    });
+  }
 
   render() {
     return (
@@ -66,30 +61,32 @@ class View extends Component {
                       </h2>
                     </Card.Title>
                     <Card.Text>
-                      <ListGroup variant="flush">
-                        {child.chores.map(chore => (
-                          <ListGroup.Item
-                            className={styles.list__group__item}
-                            key={chore.id}
-                          >
-                            <span className={styles.custom__check__container}>
-                              {' '}
-                              {chore.name}
-                              <input
-                                type="checkbox"
-                                checked={chore.type === true}
-                                id={chore.id}
-                                name={chore.id}
-                                value={chore.id}
-                                onChange={this.handleCheckChange}
-                              />
-                              <span
-                                className={styles.custom__check__mark}
-                              ></span>
-                            </span>
-                          </ListGroup.Item>
-                        ))}
-                      </ListGroup>
+                      <Form>
+                        <ListGroup variant="flush">
+                          {child.chores.map(chore => (
+                            <ListGroup.Item
+                              className={styles.list__group__item}
+                              key={chore.id}
+                            >
+                              <span className={styles.custom__check__container}>
+                                {' '}
+                                {chore.name}
+                                <input
+                                  type="checkbox"
+                                  checked={chore.type}
+                                  id={chore.id}
+                                  name={chore.id}
+                                  value={chore.id}
+                                  onClick={this.handleCheck}
+                                />
+                                <span
+                                  className={styles.custom__check__mark}
+                                ></span>
+                              </span>
+                            </ListGroup.Item>
+                          ))}
+                        </ListGroup>
+                      </Form>
                     </Card.Text>
                   </Card>
                 ))}
