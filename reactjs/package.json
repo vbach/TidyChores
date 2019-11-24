@@ -57,5 +57,6 @@
       "prettier — single-quote — write",
       "git add"
     ]
-  }
+  },
+  "proxy": "http://localahost:5000"
 }
