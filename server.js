@@ -1,12 +1,33 @@
-const http = require('http');
-const port = process.env.PORT || 3000;
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('<h1>Hello World</h1>');
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// API calls
+app.get('/api/hello', (req, res) => {
+  res.send({ express: 'Hello From Express' });
 });
 
-server.listen(port, () => {
-  console.log(`Server running at port ` + port);
+app.post('/api/world', (req, res) => {
+  console.log(req.body);
+  res.send(
+    `I received your POST request. This is what you sent me: ${req.body.post}`
+  );
 });
+
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'reactjs/build')));
+
+  // Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'reactjs/build', 'index.html'));
+  });
+}
+
+app.listen(port, () => console.log(`Listening on port ${port}`));
