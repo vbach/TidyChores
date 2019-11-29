@@ -16,52 +16,52 @@ class Navigation extends Component {
   render() {
     return (
       <Fragment>
-        <Navbar expand="md" className="pt-4">
+        <Navbar expand='md' className='pt-4'>
           <Navbar.Brand>
-            <Link to="/">
-              <img src={Logo} alt="Tidy Chores" className={styles.logo} />
+            <Link to='/'>
+              <img src={Logo} alt='Tidy Chores' className={styles.logo} />
             </Link>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Collapse id='basic-navbar-nav'>
             {!this.state.loggedIn && (
               <Fragment>
-                <Nav className="ml-auto">
+                <Nav className='ml-auto'>
                   <Nav.Link>
-                    <Link to="/">Home</Link>
+                    <Link to='/'>Home</Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/">About</Link>
+                    <Link to='/'>About</Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/">Features</Link>
+                    <Link to='/'>Features</Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/">Contact</Link>
+                    <Link to='/'>Contact</Link>
                   </Nav.Link>
                 </Nav>
-                <Link to="/signup">
+                <Link to='/signup'>
                   <Button className={styles.nav__btn}>Sign Up</Button>
                 </Link>
               </Fragment>
             )}
             {this.state.loggedIn && (
               <Fragment>
-                <Nav className="ml-auto">
+                <Nav className='ml-auto'>
                   <Nav.Link>
-                    <Link to="/parent">Home</Link>
+                    <Link to='/parent'>Home</Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/parent/:id/chore/add">Add Chore</Link>
+                    <Link to='/parent/chore/add'>Add Chore</Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/parent/:id/child/new">Add Child</Link>
+                    <Link to='/parent/child/new'>Add Child</Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/parent/rewards">Rewards</Link>
+                    <Link to='/parent/rewards'>Rewards</Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link to="/">Logout</Link>
+                    <Link to='/'>Logout</Link>
                   </Nav.Link>
                 </Nav>
               </Fragment>

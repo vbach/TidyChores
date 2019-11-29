@@ -1,4 +1,4 @@
-import React, { Fragment, Component, useState } from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
@@ -11,22 +11,37 @@ import {
   Form
 } from 'react-bootstrap';
 import styles from './app.module.css';
-import childView from './childView';
+import container from './container';
 
 class View extends Component {
   constructor(props) {
     super(props);
-    this.state = { checked: false };
-    this.handleCheck = this.handleCheck.bind(this);
+    this.props.fetchChildren();
+    this.props.fetchChores();
   }
 
-  handleCheck(e) {
+  handleChange = e => {
+    const { target } = e;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { name } = target;
     this.setState({
-      checked: e.target.checked
+      [name]: value
     });
-  }
+  };
 
   render() {
+    const { children, chores } = this.props;
+
+    let weekday = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    ][new Date().getDay()];
+
     return (
       <Fragment>
         <Container>
@@ -36,62 +51,64 @@ class View extends Component {
                 Welcome, <span className={styles.userName}>Monica</span>!
               </h1>
               <br />
-              <span className={styles.date}>Today is Monday</span>
+              <span className={styles.date}>Today is {weekday}</span>
             </Col>
           </Row>
-          <Row className="pt-5 pb-5">
-            <Col>
-              <CardGroup className={styles.card__group}>
-                {this.props.children.map(child => (
-                  <Card key={child.id} className={styles.card}>
-                    <Card.Img
-                      variant="top"
-                      src={child.avatar}
-                      className={styles.avatar}
-                      alt="Child Avatar"
-                    />
-                    <Card.Title>
-                      <h2 className={styles.h2__parentView}>
-                        <Link
-                          to={`/parent/child/${child.id}`}
-                          component={childView}
-                        >
-                          {child.name}
-                        </Link>
-                      </h2>
-                    </Card.Title>
-                    <Card.Text>
-                      <Form>
-                        <ListGroup variant="flush">
-                          {child.chores.map(chore => (
+          <Row className='pt-5 pb-5 justify-content-center'>
+            {children.map(child => (
+              <Col className='pt-2' xs={12} lg={6} key={child.id}>
+                <Card className={styles.card}>
+                  <Card.Img
+                    letiant='top'
+                    src={`/avatars/${child.avatar}.png`}
+                    className={styles.avatar}
+                    alt='Child Avatar'
+                  />
+                  <Card.Title>
+                    <h2 className={styles.h2__parentView}>{child.name}</h2>
+                  </Card.Title>
+                  <Card.Text>
+                    {chores
+                      .filter(chore => chore.childId === child.id)
+                      .map(chore => (
+                        <Form>
+                          <ListGroup letiant='flush'>
                             <ListGroup.Item
                               className={styles.list__group__item}
                               key={chore.id}
                             >
                               <span className={styles.custom__check__container}>
                                 {' '}
-                                {chore.name}
+                                {chore.description}
                                 <input
-                                  type="checkbox"
+                                  type='checkbox'
                                   checked={chore.type}
-                                  id={chore.id}
-                                  name={chore.id}
-                                  value={chore.id}
-                                  onClick={this.handleCheck}
+                                  key={chore.id}
+                                  name='chore'
+                                  onChange={this.handleChange}
                                 />
                                 <span
                                   className={styles.custom__check__mark}
                                 ></span>
+                                <span
+                                  className='chore__controls'
+                                  style={{ float: 'right' }}
+                                >
+                                  {' '}
+                                  <Link to={`/parent/chore/edit/${chore.id}`}>
+                                    <i className='fas fa-edit'></i>
+                                  </Link>{' '}
+                                  <i className='fas fa-times'></i>
+                                </span>
                               </span>
                             </ListGroup.Item>
-                          ))}
-                        </ListGroup>
-                      </Form>
-                    </Card.Text>
-                  </Card>
-                ))}
-              </CardGroup>
-            </Col>
+                          </ListGroup>
+                        </Form>
+                      ))}
+                  </Card.Text>
+                </Card>
+              </Col>
+            ))}
           </Row>
         </Container>
       </Fragment>
@@ -99,86 +116,29 @@ class View extends Component {
   }
 }
 
-export default View;
-
 View.propTypes = {
-  loggedIn: PropTypes.bool,
-  children: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    avatar: PropTypes.string,
-    chores: PropTypes.array
-  })
+  fetchChildren: PropTypes.func.isRequired,
+  fetchChores: PropTypes.func.isRequired,
+  deleteChore: PropTypes.func.isRequired,
+  children: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      avatar: PropTypes.string
+    })
+  ),
+  chores: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      type: PropTypes.bool,
+      childId: PropTypes.number
+    })
+  )
 };
 
 View.defaultProps = {
-  loggedIn: true,
-  children: [
-    {
-      id: 1,
-      name: 'Logan',
-      avatar: '/avatars/boy_001.png',
-      chores: [
-        {
-          id: 1,
-          name: 'Mop kitchen',
-          type: true
-        },
-        {
-          id: 2,
-          name: 'Pick up bedroom',
-          type: false
-        },
-        {
-          id: 3,
-          name: 'Walk dog',
-          type: false
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Abigale',
-      avatar: '../../avatars/girl_002.png',
-      chores: [
-        {
-          id: 1,
-          name: 'Mop kitchen',
-          type: true
-        },
-        {
-          id: 2,
-          name: 'Pick up bedroom',
-          type: true
-        },
-        {
-          id: 3,
-          name: 'Walk dog',
-          type: false
-        }
-      ]
-    },
-    {
-      id: 3,
-      name: 'Audrey',
-      avatar: '../../avatars/girl_003.png',
-      chores: [
-        {
-          id: 1,
-          name: 'Mop kitchen',
-          type: false
-        },
-        {
-          id: 2,
-          name: 'Pick up bedroom',
-          type: false
-        },
-        {
-          id: 3,
-          name: 'Walk dog',
-          type: false
-        }
-      ]
-    }
-  ]
+  children: [],
+  chores: []
 };
+export default container(View);

@@ -12,6 +12,9 @@ import {
 import styles from './app.module.css';
 
 class ChildView extends Component {
+  // onCheck = e => {
+  //   e.target.checked;
+  // };
   render() {
     return (
       <Fragment>
@@ -25,16 +28,16 @@ class ChildView extends Component {
               <span className={styles.date}>Today is Monday</span>
             </Col>
           </Row>
-          <Row className="pt-5 pb-5">
+          <Row className='pt-5 pb-5'>
             <Col>
               <CardGroup className={styles.card__group}>
                 {this.props.child.map(child => (
                   <Card key={child.id} className={styles.card}>
                     <Card.Img
-                      variant="top"
+                      variant='top'
                       src={child.avatar}
                       className={styles.avatar}
-                      alt="Child Avatar"
+                      alt='Child Avatar'
                     />
                     <Card.Title>
                       <h2 className={styles.h2__parentChildView}>
@@ -47,16 +50,16 @@ class ChildView extends Component {
                       </h2>
                     </Card.Title>
                     <Card.Text>
-                      <ListGroup variant="flush">
+                      <ListGroup variant='flush'>
                         {child.chores.map(chore => (
                           <ListGroup.Item
                             className={styles.list__group__item}
                             key={chore.id}
                           >
-                            <div className="custom__checkbox">
+                            <div className='custom__checkbox'>
                               <input
-                                type="checkbox"
-                                checked={chore.type === true}
+                                type='checkbox'
+                                checked={this.state.type}
                                 id={chore.id}
                                 name={chore.id}
                                 onChange={this.onCheck}
@@ -111,7 +114,7 @@ ChildView.defaultProps = {
       {
         id: 3,
         name: 'Walk dog',
-        type: false
+        type: true
       }
     ]
   }
