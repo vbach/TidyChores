@@ -30,11 +30,6 @@ class View extends Component {
     });
   };
 
-  onDelete = id => {
-    const { deleteChore } = this.props;
-    deleteChore({ id });
-  };
-
   render() {
     const { children, chores } = this.props;
 
@@ -104,7 +99,7 @@ class View extends Component {
                                   <Link to={`/parent/chore/edit/${chore.id}`}>
                                     <i className='fas fa-edit'></i>
                                   </Link>{' '}
-                                  <Link>
+                                  <Link to={`/parent/chore/delete/${chore.id}`}>
                                     <i className='fas fa-times'></i>
                                   </Link>
                                 </span>
