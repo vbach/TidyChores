@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchChildren } from '../../store/children/actions';
-import { fetchChores } from '../../store/chores/actions';
+import { fetchChores, deleteChore } from '../../store/chores/actions';
 
 function mapStateToProps(state) {
   const {
@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 }
 
 // set the actions we need in this component
-const mapDispatchToProps = { fetchChildren, fetchChores };
+const mapDispatchToProps = { fetchChildren, fetchChores, deleteChore };
 
 export default connect(
   mapStateToProps,

@@ -18,8 +18,6 @@ import {
   DELETE_CHORE_ERROR
 } from '../actionTypes';
 
-import { removeIdFromArray, removeIdFromObject } from '../_utils';
-
 const initialState = {
   // will hold each item with ids as keys
   choreId: {},
@@ -127,54 +125,51 @@ function addChoreError(state, action) {
   };
 }
 
-// function deleteChore(state, action) {
-//   // set loading state and clear error
-//   return {
-//     ...state,
-//     choreId: {
-//       ...state.choreId,
-//       [action.payload.id]: {
-//         ...state.choreId[action.payload.id],
-//         isLoading: true,
-//         error: null
-//       }
-//     }
-//   };
-// }
+function deleteChore(state, action) {
+  // set loading state and clear error
+  return {
+    ...state,
+    choreId: {
+      ...state.choreId,
+      [action.payload.id]: {
+        ...state.choreId[action.payload.id],
+        isLoading: true,
+        error: null
+      }
+    }
+  };
+}
 
-// function deleteChoreSuccess(state, action) {
-//   // clear loading and error, update cache time, add items
-//   const { id } = action.payload.id;
-//   return {
-//     ...state,
-//     choreId: {
-//       ...state.choreId,
-//       [action.payload.id]: {
-//         isLoading: false,
-//         error: null,
-//         loadedAt: Date.now(),
-//         data: action.data
-//       }
-//     },
-//     choreId: removeIdFromObject(id, state.choreId),
-//     allChoreIds: removeIdFromArray(id, state.allChoreIds)
-//   };
-// }
+function deleteChoreSuccess(state, action) {
+  // clear loading and error, update cache time, add items
+  return {
+    ...state,
+    choreId: {
+      ...state.choreId,
+      [action.payload.id]: {
+        isLoading: false,
+        error: null,
+        loadedAt: Date.now(),
+        data: action.data
+      }
+    }
+  };
+}
 
-// function deleteChoreError(state, action) {
-//   // clear loading and set error
-//   return {
-//     ...state,
-//     choreId: {
-//       ...state.choreId,
-//       [action.payload.id]: {
-//         ...state.choreId[action.payload.id],
-//         isLoading: false,
-//         error: action.err
-//       }
-//     }
-//   };
-// }
+function deleteChoreError(state, action) {
+  // clear loading and set error
+  return {
+    ...state,
+    choreId: {
+      ...state.choreId,
+      [action.payload.id]: {
+        ...state.choreId[action.payload.id],
+        isLoading: false,
+        error: action.err
+      }
+    }
+  };
+}
 export default createReducer(initialState, {
   [VIEW_CHORES]: viewChores,
   [VIEW_CHORES_ERROR]: choreError,
@@ -187,5 +182,8 @@ export default createReducer(initialState, {
   [SET_CURRENT_CHORE_SUCCESS]: choreSuccess,
   [UPDATE_CHORE]: addChore,
   [UPDATE_CHORE_SUCCESS]: addChoreSuccess,
-  [UPDATE_CHORE_ERROR]: addChoreError
+  [UPDATE_CHORE_ERROR]: addChoreError,
+  [DELETE_CHORE]: deleteChore,
+  [DELETE_CHORE_SUCCESS]: deleteChoreSuccess,
+  [DELETE_CHORE_ERROR]: deleteChoreError
 });

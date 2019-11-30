@@ -66,7 +66,8 @@ export const fetchChore = id => ({
 export const deleteChore = id => {
   return {
     types: [DELETE_CHORE, DELETE_CHORE_SUCCESS, DELETE_CHORE_ERROR],
-    callAPI: () => API.delete(`/chores/${id}`, { id })
+    callAPI: () => API.delete(`/chores/${id}`),
+    payload: { id }
   };
 };
 

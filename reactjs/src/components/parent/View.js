@@ -18,6 +18,7 @@ class View extends Component {
     super(props);
     this.props.fetchChildren();
     this.props.fetchChores();
+    this.props.deleteChore();
   }
 
   handleChange = e => {
@@ -27,6 +28,11 @@ class View extends Component {
     this.setState({
       [name]: value
     });
+  };
+
+  onDelete = id => {
+    const { deleteChore } = this.props;
+    deleteChore({ id });
   };
 
   render() {
@@ -98,7 +104,9 @@ class View extends Component {
                                   <Link to={`/parent/chore/edit/${chore.id}`}>
                                     <i className='fas fa-edit'></i>
                                   </Link>{' '}
-                                  <i className='fas fa-times'></i>
+                                  <Link>
+                                    <i className='fas fa-times'></i>
+                                  </Link>
                                 </span>
                               </span>
                             </ListGroup.Item>
@@ -122,17 +130,15 @@ View.propTypes = {
   deleteChore: PropTypes.func.isRequired,
   children: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
       name: PropTypes.string,
       avatar: PropTypes.string
     })
   ),
   chores: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
       name: PropTypes.string,
       type: PropTypes.bool,
-      childId: PropTypes.number
+      childId: PropTypes.string
     })
   )
 };

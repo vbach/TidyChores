@@ -32,12 +32,29 @@ class AddChore extends Component {
       [name]: value
     });
   };
+
+  loadData = async () => {
+    const {
+      match: {
+        params: { id }
+      },
+      fetchChore
+    } = this.props;
+    // if no id don't load the item
+
+    await fetchChore(id);
+    // update the state with the data from the updated item
+    const { chore } = this.props;
+    this.setState({ ...chore });
+  };
+
   save = event => {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
     const {
       createChore,
       updateChore,
+      history,
       match: {
         params: { id }
       }
@@ -48,21 +65,9 @@ class AddChore extends Component {
     } else {
       createChore({ description, points, day, childId, steps });
     }
+    history.push('/parent');
   };
-  loadData = async () => {
-    const {
-      match: {
-        params: { id }
-      },
-      fetchChore
-    } = this.props;
-    // if no id don't load the item
-    if (!id) return;
-    await fetchChore(id);
-    // update the state with the data from the updated item
-    const { chore } = this.props;
-    this.setState({ ...chore });
-  };
+
   render() {
     const { children } = this.props;
     const { description, points, day, childId, steps } = this.state;
@@ -165,20 +170,12 @@ AddChore.propTypes = {
   createChore: PropTypes.func.isRequired,
   fetchChore: PropTypes.func.isRequired,
   updateChore: PropTypes.func.isRequired,
-  chore: PropTypes.shape({
-    description: PropTypes.string,
-    points: PropTypes.string,
-    day: PropTypes.string,
-    childId: PropTypes.string,
-    steps: PropTypes.string
-  }),
-  children: PropTypes.shape({
-    name: PropTypes.string
-  })
+  chore: PropTypes.array.isRequired,
+  children: PropTypes.array.isRequired
 };
 
 AddChore.defaultProps = {
-  chore: {}
+  chore: []
 };
 
 export default container(AddChore);
