@@ -9,8 +9,9 @@ import callAPI from './helpers/callAPIMiddleware';
 // pull our reducers
 import children from './children/reducer';
 import chores from './chores/reducer';
+import rewards from './rewards/reducer';
 // combine multiple reducers into one
-const rootReducer = combineReducers({ children, chores });
+const rootReducer = combineReducers({ children, chores, rewards });
 
 // set up middleware
 const middleware = applyMiddleware(thunkMiddleware, callAPI, createLogger());

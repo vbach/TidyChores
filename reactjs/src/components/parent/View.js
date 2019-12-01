@@ -19,6 +19,9 @@ class View extends Component {
     this.props.fetchChildren();
     this.props.fetchChores();
     this.props.deleteChore();
+    this.state = {
+      type: false
+    };
   }
 
   handleChange = e => {
@@ -67,10 +70,16 @@ class View extends Component {
                   />
                   <Card.Title>
                     <h2 className={styles.h2__parentView}>{child.name}</h2>
+                    <span>
+                      {child.name} has {child.points} points!
+                    </span>
                   </Card.Title>
                   <Card.Text>
                     {chores
-                      .filter(chore => chore.childId === child.id)
+                      .filter(
+                        chore =>
+                          chore.childId === child.id && chore.day === weekday
+                      )
                       .map(chore => (
                         <Form>
                           <ListGroup letiant='flush'>
@@ -83,10 +92,10 @@ class View extends Component {
                                 {chore.description}
                                 <input
                                   type='checkbox'
-                                  checked={chore.type}
                                   key={chore.id}
-                                  name='chore'
-                                  onChange={this.handleChange}
+                                  name='type'
+                                  value={chore.type}
+                                  onClick={this.handleChange}
                                 />
                                 <span
                                   className={styles.custom__check__mark}

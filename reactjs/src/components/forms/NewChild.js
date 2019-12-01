@@ -9,7 +9,8 @@ class NewChild extends Component {
     super(props);
     this.state = {
       name: '',
-      avatar: ''
+      avatar: '',
+      points: '0'
     };
   }
   handleInputChange = event => {
@@ -29,8 +30,8 @@ class NewChild extends Component {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
     const { createChild } = this.props;
-    const { name, avatar } = this.state;
-    createChild({ name, avatar });
+    const { name, avatar, points } = this.state;
+    createChild({ name, avatar, points });
   };
 
   render() {
@@ -162,7 +163,8 @@ NewChild.propTypes = {
   createChild: PropTypes.func.isRequired,
   children: PropTypes.shape({
     name: PropTypes.string,
-    avatar: PropTypes.string
+    avatar: PropTypes.string,
+    points: PropTypes.string
   })
 };
 

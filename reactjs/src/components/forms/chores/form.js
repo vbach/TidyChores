@@ -129,6 +129,7 @@ class AddChore extends Component {
                     onChange={this.handleInputChange}
                     value={childId}
                   >
+                    <option>Select a Child</option>
                     {children.map(child => (
                       <option value={child.id} key={child.id}>
                         {child.name}

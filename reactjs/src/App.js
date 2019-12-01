@@ -12,7 +12,7 @@ import Form from './components/forms/Signup';
 import Rewards from './components/parent/Rewards';
 import NewChild from './components/forms/NewChild';
 import ChoreForm from './components/forms/chores/form';
-import AddReward from './components/forms/AddReward';
+import AddReward from './components/forms/rewards/form';
 import EditReward from './components/forms/EditReward';
 import store from './store';
 
@@ -40,11 +40,7 @@ class App extends Component {
                   component={ChoreForm}
                 />
                 <Route path='/parent/chore/add' exact component={ChoreForm} />
-                <Route
-                  path='/parent/:id/rewards/add'
-                  exact
-                  component={AddReward}
-                />
+                <Route path='/parent/rewards/add' exact component={AddReward} />
                 <Route
                   path='/parent/:id/rewards/edit'
                   exact
