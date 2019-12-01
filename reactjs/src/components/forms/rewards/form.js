@@ -8,12 +8,14 @@ import container from './container';
 class AddReward extends Component {
   constructor(props) {
     super(props);
+    this.props.fetchRewards();
     this.state = {
       description: '',
       claimed: false,
       claimedBy: '',
       value: ''
     };
+    this.loadData();
   }
 
   handleInputChange = event => {
@@ -29,17 +31,46 @@ class AddReward extends Component {
     });
   };
 
+  loadData = async () => {
+    const {
+      match: {
+        params: { id }
+      },
+      fetchRewards
+    } = this.props;
+    // if no id don't load the item
+
+    await fetchRewards(id);
+    // update the state with the data from the updated item
+    const { reward } = this.props;
+    this.setState({ ...reward });
+  };
+
   save = event => {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
-    const { createReward, history } = this.props;
+    const {
+      createReward,
+      updateReward,
+      history,
+      match: {
+        params: { id }
+      }
+    } = this.props;
     const { description, value } = this.state;
-    createReward({ description, value });
+    if (id) {
+      updateReward({ id, description, value });
+    } else {
+      createReward({ description, value });
+    }
     history.push('/parent/rewards');
   };
 
   render() {
     const { description, value } = this.state;
+    const {
+      reward: { id }
+    } = this.props;
     return (
       <Container className='mt-5'>
         <div className='sign__up__form'>
@@ -47,7 +78,7 @@ class AddReward extends Component {
             <Row className='mt-5'>
               <Col xs={2}></Col>
               <Col xs={8}>
-                <h1>Add Reward</h1>
+                <h1>{id ? 'Edit Reward' : 'Add Reward'}</h1>
               </Col>
               <Col xs={2}></Col>
             </Row>
@@ -92,6 +123,8 @@ class AddReward extends Component {
 }
 
 AddReward.propTypes = {
+  fetchRewards: PropTypes.func.isRequired,
+  updateReward: PropTypes.func.isRequired,
   reward: PropTypes.array.isRequired
 };
 

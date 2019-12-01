@@ -10,10 +10,9 @@ import ParentView from './components/parent/View';
 import styles from './app.module.css';
 import Form from './components/forms/Signup';
 import Rewards from './components/parent/Rewards';
-import NewChild from './components/forms/NewChild';
+import NewChild from './components/forms/child/form';
 import ChoreForm from './components/forms/chores/form';
-import AddReward from './components/forms/rewards/form';
-import EditReward from './components/forms/EditReward';
+import RewardForm from './components/forms/rewards/form';
 import store from './store';
 
 class App extends Component {
@@ -40,11 +39,15 @@ class App extends Component {
                   component={ChoreForm}
                 />
                 <Route path='/parent/chore/add' exact component={ChoreForm} />
-                <Route path='/parent/rewards/add' exact component={AddReward} />
                 <Route
-                  path='/parent/:id/rewards/edit'
+                  path='/parent/rewards/add'
                   exact
-                  component={EditReward}
+                  component={RewardForm}
+                />
+                <Route
+                  path='/parent/rewards/edit/:id'
+                  exact
+                  component={RewardForm}
                 />
               </Switch>
             </Router>

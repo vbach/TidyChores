@@ -55,7 +55,9 @@ class View extends Component {
                 Welcome, <span className={styles.userName}>Monica</span>!
               </h1>
               <br />
-              <span className={styles.date}>Today is {weekday}</span>
+              <span className={styles.date}>
+                Today is {weekday} - view all upcoming chores
+              </span>
             </Col>
           </Row>
           <Row className='pt-5 pb-5 justify-content-center'>

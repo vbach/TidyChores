@@ -14,8 +14,7 @@ class AddChore extends Component {
       description: '',
       points: '',
       day: 'Sunday',
-      childId: '',
-      steps: ''
+      childId: ''
     };
     this.loadData();
   }
@@ -69,7 +68,10 @@ class AddChore extends Component {
   };
 
   render() {
-    const { children } = this.props;
+    const {
+      children,
+      chore: { id }
+    } = this.props;
     const { description, points, day, childId, steps } = this.state;
     return (
       <Container className='mt-5 pb-5'>
@@ -78,7 +80,7 @@ class AddChore extends Component {
             <Row className='mt-5'>
               <Col xs={2}></Col>
               <Col xs={8}>
-                <h1>Add Chore</h1>
+                <h1>{id ? 'Edit Chore' : 'Add Chore'}</h1>
               </Col>
               <Col xs={2}></Col>
             </Row>
@@ -136,16 +138,6 @@ class AddChore extends Component {
                       </option>
                     ))}
                   </Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId='formSteps'>
-                  <Form.Label>Steps</Form.Label>
-                  <Form.Control
-                    as='textarea'
-                    rows='3'
-                    name='step'
-                    placeholder='Fill mop bucket with water'
-                  />
                 </Form.Group>
               </Col>
               <Col xs={2}></Col>

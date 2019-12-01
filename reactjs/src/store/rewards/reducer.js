@@ -6,7 +6,10 @@ import {
   VIEW_REWARD_ERROR,
   ADD_REWARD,
   ADD_REWARD_SUCCESS,
-  ADD_REWARD_ERROR
+  ADD_REWARD_ERROR,
+  UPDATE_REWARD,
+  UPDATE_REWARD_SUCCESS,
+  UPDATE_REWARD_ERROR
 } from '../actionTypes';
 
 const initialState = {
@@ -125,5 +128,8 @@ export default createReducer(initialState, {
   [VIEW_REWARD_ERROR]: rewardError,
   [ADD_REWARD]: addReward,
   [ADD_REWARD_SUCCESS]: addRewardSuccess,
-  ADD_REWARD_ERROR: addRewardError
+  [ADD_REWARD_ERROR]: addRewardError,
+  [UPDATE_REWARD]: addReward,
+  [UPDATE_REWARD_SUCCESS]: addRewardSuccess,
+  [UPDATE_REWARD_ERROR]: addRewardError
 });

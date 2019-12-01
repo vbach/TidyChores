@@ -58,7 +58,7 @@ class Rewards extends Component {
                       {reward.description}
                     </Col>
                     <Col xs={2} className='my-auto py-1'>
-                      <Link to='/parent/:id/rewards/edit'>
+                      <Link to={`/parent/rewards/edit/${reward.id}`}>
                         <i className='fas fa-edit mr-2'></i>
                       </Link>
                       <i className='fas fa-times'></i>

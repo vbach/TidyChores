@@ -6,7 +6,10 @@ import {
   VIEW_REWARD_ERROR,
   ADD_REWARD,
   ADD_REWARD_SUCCESS,
-  ADD_REWARD_ERROR
+  ADD_REWARD_ERROR,
+  UPDATE_REWARD,
+  UPDATE_REWARD_SUCCESS,
+  UPDATE_REWARD_ERROR
 } from '../actionTypes';
 // cache data for 5 minutes
 const CACHE_TIME = 1000 * 60 * 5;
@@ -34,3 +37,10 @@ export const createReward = reward => {
     payload: { id }
   };
 };
+
+// Update the reward
+export const updateReward = reward => ({
+  types: [UPDATE_REWARD, UPDATE_REWARD_SUCCESS, UPDATE_REWARD_ERROR],
+  callAPI: () => API.put(`/rewards/${reward.id}`),
+  payload: { id: reward.id }
+});
