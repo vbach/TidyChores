@@ -13,7 +13,7 @@ import {
 import styles from './app.module.css';
 import container from './container';
 
-class View extends Component {
+class ViewAll extends Component {
   constructor(props) {
     super(props);
     this.props.fetchChildren();
@@ -51,40 +51,20 @@ class View extends Component {
         <Container>
           <Row>
             <Col xs={12}>
-              <h1>
-                Welcome, <span className={styles.userName}>Monica</span>!
-              </h1>
-              <br />
-              <span className={styles.date}>
-                Today is {weekday} -{' '}
-                <Link to='/parent/viewall' url='/parent/viewwall'>
-                  view all upcoming chores
-                </Link>
-              </span>
+              <h1>Manage All Chores</h1>
             </Col>
           </Row>
           <Row className='pt-5 pb-5 justify-content-center'>
             {children.map(child => (
               <Col className='pt-2' xs={12} lg={6} key={child.id}>
                 <Card className={styles.card}>
-                  <Card.Img
-                    letiant='top'
-                    src={`/avatars/${child.avatar}.png`}
-                    className={styles.avatar}
-                    alt='Child Avatar'
-                  />
                   <Card.Title>
-                    <h2 className={styles.h2__parentView}>{child.name}</h2>
-                    <span>
-                      {child.name} has {child.points} points!
-                    </span>
+                    <h2 className={styles.h2__parentViewAll}>{child.name}</h2>
+                    <span></span>
                   </Card.Title>
                   <Card.Text>
                     {chores
-                      .filter(
-                        chore =>
-                          chore.childId === child.id && chore.day === weekday
-                      )
+                      .filter(chore => chore.childId === child.id)
                       .map(chore => (
                         <Form>
                           <ListGroup letiant='flush'>
@@ -92,31 +72,19 @@ class View extends Component {
                               className={styles.list__group__item}
                               key={chore.id}
                             >
-                              <span className={styles.custom__check__container}>
+                              {' '}
+                              {chore.day} - {chore.description}
+                              <span
+                                className='chore__controls'
+                                style={{ float: 'right' }}
+                              >
                                 {' '}
-                                {chore.description}
-                                <input
-                                  type='checkbox'
-                                  key={chore.id}
-                                  name='type'
-                                  value={chore.type}
-                                  onClick={this.handleChange}
-                                />
-                                <span
-                                  className={styles.custom__check__mark}
-                                ></span>
-                                <span
-                                  className='chore__controls'
-                                  style={{ float: 'right' }}
-                                >
-                                  {' '}
-                                  <Link to={`/parent/chore/edit/${chore.id}`}>
-                                    <i className='fas fa-edit'></i>
-                                  </Link>{' '}
-                                  <Link to={`/parent/chore/delete/${chore.id}`}>
-                                    <i className='fas fa-times'></i>
-                                  </Link>
-                                </span>
+                                <Link to={`/parent/chore/edit/${chore.id}`}>
+                                  <i className='fas fa-edit'></i>
+                                </Link>{' '}
+                                <Link to={`/parent/chore/delete/${chore.id}`}>
+                                  <i className='fas fa-times'></i>
+                                </Link>
                               </span>
                             </ListGroup.Item>
                           </ListGroup>
@@ -133,7 +101,7 @@ class View extends Component {
   }
 }
 
-View.propTypes = {
+ViewAll.propTypes = {
   fetchChildren: PropTypes.func.isRequired,
   fetchChores: PropTypes.func.isRequired,
   deleteChore: PropTypes.func.isRequired,
@@ -152,8 +120,8 @@ View.propTypes = {
   )
 };
 
-View.defaultProps = {
+ViewAll.defaultProps = {
   children: [],
   chores: []
 };
-export default container(View);
+export default container(ViewAll);

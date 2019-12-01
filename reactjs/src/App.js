@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Footer from './components/layout/Footer';
 import Login from './components/login/Login';
 import ParentView from './components/parent/View';
+import ViewAllChores from './components/parent/ViewAll';
 import styles from './app.module.css';
 import Form from './components/forms/Signup';
 import Rewards from './components/parent/Rewards';
@@ -31,6 +32,7 @@ class App extends Component {
 
               <Switch>
                 <Route path='/parent/' exact component={ParentView} />
+                <Route path='/parent/viewall' exact component={ViewAllChores} />
                 <Route path='/parent/rewards' exact component={Rewards} />
                 <Route path='/parent/child/new' exact component={NewChild} />
                 <Route

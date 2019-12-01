@@ -19,6 +19,12 @@ h2 > a:hover {
   transition: ease-in 0.2s;
 }
 
+span > a,
+span > a:hover {
+  font-weight: 700;
+  text-transform: none;
+}
+
 .inline__heading {
   display: inline;
 }
