@@ -40,7 +40,7 @@ class AddChore extends Component {
       fetchChore
     } = this.props;
     // if no id don't load the item
-
+    if (!id) return;
     await fetchChore(id);
     // update the state with the data from the updated item
     const { chore } = this.props;
@@ -58,13 +58,13 @@ class AddChore extends Component {
         params: { id }
       }
     } = this.props;
-    const { description, points, day, childId, steps } = this.state;
+    const { description, points, day, childId } = this.state;
     if (id) {
-      updateChore({ id, description, points, day, childId, steps });
+      updateChore({ id, description, points, day, childId });
     } else {
-      createChore({ description, points, day, childId, steps });
+      createChore({ description, points, day, childId });
     }
-    history.push('/parent');
+    // history.push('/parent');
   };
 
   render() {
@@ -72,7 +72,7 @@ class AddChore extends Component {
       children,
       chore: { id }
     } = this.props;
-    const { description, points, day, childId, steps } = this.state;
+    const { description, points, day, childId } = this.state;
     return (
       <Container className='mt-5 pb-5'>
         <div className='sign__up__form '>

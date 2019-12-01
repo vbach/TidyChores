@@ -18,7 +18,6 @@ class ViewAll extends Component {
     super(props);
     this.props.fetchChildren();
     this.props.fetchChores();
-    this.props.deleteChore();
     this.state = {
       type: false
     };
@@ -104,7 +103,6 @@ class ViewAll extends Component {
 ViewAll.propTypes = {
   fetchChildren: PropTypes.func.isRequired,
   fetchChores: PropTypes.func.isRequired,
-  deleteChore: PropTypes.func.isRequired,
   children: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

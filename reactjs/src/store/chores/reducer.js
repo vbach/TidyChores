@@ -12,10 +12,7 @@ import {
   SET_CURRENT_CHORE_SUCCESS,
   UPDATE_CHORE,
   UPDATE_CHORE_SUCCESS,
-  UPDATE_CHORE_ERROR,
-  DELETE_CHORE,
-  DELETE_CHORE_SUCCESS,
-  DELETE_CHORE_ERROR
+  UPDATE_CHORE_ERROR
 } from '../actionTypes';
 
 const initialState = {
@@ -125,51 +122,6 @@ function addChoreError(state, action) {
   };
 }
 
-function deleteChore(state, action) {
-  // set loading state and clear error
-  return {
-    ...state,
-    choreId: {
-      ...state.choreId,
-      [action.payload.id]: {
-        ...state.choreId[action.payload.id],
-        isLoading: true,
-        error: null
-      }
-    }
-  };
-}
-
-function deleteChoreSuccess(state, action) {
-  // clear loading and error, update cache time, add items
-  return {
-    ...state,
-    choreId: {
-      ...state.choreId,
-      [action.payload.id]: {
-        isLoading: false,
-        error: null,
-        loadedAt: Date.now(),
-        data: action.data
-      }
-    }
-  };
-}
-
-function deleteChoreError(state, action) {
-  // clear loading and set error
-  return {
-    ...state,
-    choreId: {
-      ...state.choreId,
-      [action.payload.id]: {
-        ...state.choreId[action.payload.id],
-        isLoading: false,
-        error: action.err
-      }
-    }
-  };
-}
 export default createReducer(initialState, {
   [VIEW_CHORES]: viewChores,
   [VIEW_CHORES_ERROR]: choreError,
@@ -182,8 +134,5 @@ export default createReducer(initialState, {
   [SET_CURRENT_CHORE_SUCCESS]: choreSuccess,
   [UPDATE_CHORE]: addChore,
   [UPDATE_CHORE_SUCCESS]: addChoreSuccess,
-  [UPDATE_CHORE_ERROR]: addChoreError,
-  [DELETE_CHORE]: deleteChore,
-  [DELETE_CHORE_SUCCESS]: deleteChoreSuccess,
-  [DELETE_CHORE_ERROR]: deleteChoreError
+  [UPDATE_CHORE_ERROR]: addChoreError
 });
