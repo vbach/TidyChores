@@ -7,6 +7,9 @@ import {
   ADD_REWARD,
   ADD_REWARD_SUCCESS,
   ADD_REWARD_ERROR,
+  SET_CURRENT_REWARDS,
+  SET_CURRENT_REWARDS_SUCCESS,
+  SET_CURRENT_REWARDS_ERROR,
   UPDATE_REWARD,
   UPDATE_REWARD_SUCCESS,
   UPDATE_REWARD_ERROR
@@ -26,6 +29,23 @@ export const fetchRewards = () => ({
     // if we don't have a child or it's beyond the cache timeout make the api call
     return !loadedAt || !isCached;
   }
+});
+
+export const fetchReward = id => ({
+  types: [
+    SET_CURRENT_REWARDS,
+    SET_CURRENT_REWARDS_SUCCESS,
+    SET_CURRENT_REWARDS_ERROR
+  ],
+  callAPI: () => API.get(`/rewards/${id}`),
+  shouldCallAPI: state => {
+    const reward = state.rewards.rewardId[id] || {};
+    const { loadedAt, isLoading } = reward;
+    if (!reward || isLoading) return false;
+    const isCached = Date.now() - loadedAt < CACHE_TIME;
+    return !loadedAt || !isCached;
+  },
+  payload: { id }
 });
 
 export const createReward = reward => {

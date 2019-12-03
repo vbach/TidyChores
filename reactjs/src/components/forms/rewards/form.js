@@ -8,8 +8,9 @@ import container from './container';
 class AddReward extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchRewards();
+    this.props.fetchReward();
     this.state = {
+      id: '',
       description: '',
       claimed: false,
       claimedBy: '',
@@ -36,11 +37,11 @@ class AddReward extends Component {
       match: {
         params: { id }
       },
-      fetchRewards
+      fetchReward
     } = this.props;
     // if no id don't load the item
-
-    await fetchRewards(id);
+    if (!id) return;
+    await fetchReward(id);
     // update the state with the data from the updated item
     const { reward } = this.props;
     this.setState({ ...reward });
@@ -123,7 +124,7 @@ class AddReward extends Component {
 }
 
 AddReward.propTypes = {
-  fetchRewards: PropTypes.func.isRequired,
+  fetchReward: PropTypes.func.isRequired,
   updateReward: PropTypes.func.isRequired,
   reward: PropTypes.array.isRequired
 };

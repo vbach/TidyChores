@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import {
   createReward,
   updateReward,
-  fetchRewards
+  fetchReward
 } from '../../../store/rewards/actions';
 
 function mapStateToProps(state, props) {
@@ -23,7 +23,7 @@ function mapStateToProps(state, props) {
 const mapDispatchToProps = {
   createReward,
   updateReward,
-  fetchRewards
+  fetchReward
 };
 
 export default connect(
