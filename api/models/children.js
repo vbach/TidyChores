@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: '0'
       },
-      parentId: DataTypes.STRING
+      parentId: DataTypes.STRING // Change to UUID
     },
     {}
   );

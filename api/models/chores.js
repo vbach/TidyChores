@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           len: {
-            args: [3, 500],
+            args: [1, 6],
             msg: 'A chore must have a point value.'
           }
         }
@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
         'friday',
         'saturday'
       ),
-      type: DataTypes.ENUM('true', 'false'),
-      childId: DataTypes.INTEGER
+      type: { type: DataTypes.ENUM('true', 'false'), defaultValue: 'false' },
+      childId: DataTypes.INTEGER // change to UUID
     },
     {}
   );

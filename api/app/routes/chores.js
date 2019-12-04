@@ -2,6 +2,8 @@
 const router = require('express').Router();
 // import the chore controller
 const choresCtrl = require('../controllers/chores');
+// GET /chores
+router.get('/', choresCtrl.getChores);
 // GET /chores?childId=___
 router.get('/', choresCtrl.getChildChores);
 // GET /chores/:id
