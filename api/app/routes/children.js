@@ -6,6 +6,9 @@ const childrenCtrl = require('../controllers/children');
 // GET /children
 router.get('/', childrenCtrl.getChildren);
 
+// GET /children?parentId=___
+router.get('/', childrenCtrl.getUserChild);
+
 // GET /children/:id
 router.get('/:id', childrenCtrl.getOneById);
 

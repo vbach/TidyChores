@@ -6,6 +6,7 @@ const morganDebug = require('morgan-debug');
 // routes
 const childrenRouter = require('./routes/children');
 const choresRouter = require('./routes/chores');
+const rewardsRouter = require('./routes/rewards');
 // create an express app
 const app = express();
 // checks to see if the content-type is json and parses it into req.body
@@ -16,6 +17,8 @@ app.use(morganDebug('api:request', 'dev'));
 app.use('/children', childrenRouter);
 // setup to use router at /chores
 app.use('/chores', choresRouter);
+// setup to use router at /rewards
+app.use('/rewards', rewardsRouter);
 // four params are required to mark this as a error handling middleware
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

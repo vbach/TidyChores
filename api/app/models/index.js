@@ -1,6 +1,7 @@
 const uuid = require('uuid/v1');
 const children = require('./children');
 const chores = require('./chores');
+const rewards = require('./rewards');
 class Model {
   constructor(data) {
     this.values = data;
@@ -46,5 +47,6 @@ class Model {
 
 module.exports = {
   Children: new Model(children),
-  Chores: new Model(chores)
+  Chores: new Model(chores),
+  Rewards: new Model(rewards)
 };

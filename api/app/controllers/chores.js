@@ -1,14 +1,14 @@
-// load in the option model
+// load in the chore model
 const { Chores } = require('../models');
-// get all the options that belong to one decision
+// get all the chores that belong to one child
 exports.getChildChores = (req, res) => {
-  // get the decision id from the query
+  // get the child id from the query
   const { childId } = req.query;
   // run the find all function on the model
   const chores = Chores.findAll();
-  // filter the options to only chores for this child
+  // filter the chores to only chores for this child
   const childChores = chores.filter(chore => chore.childId === childId);
-  // respond with json of the decision's option array
+  // respond with json of the child's chore array
   res.json(childChores);
 };
 
@@ -16,19 +16,19 @@ exports.getChildChores = (req, res) => {
 exports.getOneById = (req, res) => {
   // get the id from the route params
   const { id } = req.params;
-  // search our option model for the option
+  // search our chore model for the chore
   const chore = Chores.findByPk(id);
-  // if no option is found
+  // if no chore is found
   if (!chore) {
     // return a 404 (not found) code
     res.sendStatus(404);
     return;
   }
-  // if the option is found send it back.
+  // if the chore is found send it back.
   res.json(chore);
 };
 
-// add a new option
+// add a new chore
 exports.createChore = (req, res) => {
   // get the title and type values from the request body
   const { value, childId } = req.body;
@@ -38,21 +38,21 @@ exports.createChore = (req, res) => {
   res.json({ id });
 };
 
-// update an existing Option
+// update an existing chore
 exports.updateChore = (req, res) => {
   // get the id from the route params
   const { id } = req.params;
-  // update the option with any data from the req.body and the id
+  // update the chore with any data from the req.body and the id
   const updateChore = Chores.update(req.body, id);
-  // respond with the updated option
+  // respond with the updated chore
   res.json(updateChore);
 };
 
-// delete a Option
+// delete a chore
 exports.removeChore = (req, res) => {
   // get the id from the route
   const { id } = req.params;
-  // remove the option
+  // remove the chore
   Chores.destroy(id);
   // send a good status code
   res.sendStatus(200);

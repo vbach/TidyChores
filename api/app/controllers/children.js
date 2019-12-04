@@ -8,6 +8,18 @@ exports.getChildren = (req, res) => {
   res.json(children);
 };
 
+// get all children that belong to one user
+exports.getUserChild = (req, res) => {
+  // get the decision id from the query
+  const { parentId } = req.query;
+  // run the find all function on the model
+  const children = Children.findAll();
+  // filter the chores to only chores for this child
+  const parentChildren = children.filter(child => child.parentId === parentId);
+  // respond with json of the decision's chore array
+  res.json(parentChildren);
+};
+
 // find one child
 exports.getOneById = (req, res) => {
   // get id from params
