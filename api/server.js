@@ -1,21 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+// const express = require('express');
+// const bodyParser = require('body-parser');
 
-const app = express();
+// const app = express();
+// const port = process.env.PORT || 4000;
+
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+// app.listen(port, () => log(`Listening on port ${port}`));
+
+// setting up a logger
+const log = require('debug')('api:logging');
+// get the express application
+const app = require('./app');
+// set the port to either the one passed from the environment variables or 4000
 const port = process.env.PORT || 4000;
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get('/', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
-
-app.post('/api/world', (req, res) => {
-  console.log(req.body);
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`
-  );
-});
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// spin up the server and log what port it is running on
+app.listen(port, () => log(`API listening on port ${port}!`));
