@@ -4,9 +4,9 @@ module.exports = {
     return queryInterface.createTable('Chores', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4
       },
       description: {
         type: Sequelize.STRING
@@ -29,7 +29,7 @@ module.exports = {
         type: Sequelize.ENUM('true', 'false')
       },
       childId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         onDelete: 'CASCADE',
         references: {
           model: 'Children',

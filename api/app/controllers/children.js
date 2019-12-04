@@ -1,31 +1,29 @@
-const { Children } = require('../models');
+const { Children } = require('../../models');
 
 // get all children
-exports.getChildren = (req, res) => {
+exports.getChildren = async (req, res) => {
   // run find all function
-  const children = Children.findAll();
+  const children = await Children.findAll();
 
   res.json(children);
 };
 
 // get all children that belong to one user
-exports.getUserChild = (req, res) => {
+exports.getUserChild = async (req, res) => {
   // get the decision id from the query
   const { parentId } = req.query;
-  // run the find all function on the model
-  const children = Children.findAll();
-  // filter the chores to only chores for this child
-  const parentChildren = children.filter(child => child.parentId === parentId);
-  // respond with json of the decision's chore array
+  // filter to retrieve child for parent
+  const parentChildren = await Children.findAll({ where: { parentId } });
+  // respond with json of the parents's children array
   res.json(parentChildren);
 };
 
 // find one child
-exports.getOneById = (req, res) => {
+exports.getOneById = async (req, res) => {
   // get id from params
   const { id } = req.params;
-  // search children for id
-  const children = Children.findByPk(id);
+  // search children by id
+  const children = await Children.findByPk(id);
   // if no id is found
   if (!children) {
     // return a 404
@@ -38,26 +36,40 @@ exports.getOneById = (req, res) => {
 };
 
 // create a new child
-exports.createChild = (req, res) => {
+exports.createChild = async (req, res) => {
   const { name, avatar } = req.body;
 
-  const id = Children.create({ name, avatar });
-
-  res.json({ id });
+  try {
+    const newChild = await Children.create({ name, avatar });
+    // return to add parentId from url once user is setup
+    res.json({ id: newChild.id });
+  } catch (e) {
+    const errors = e.errors.map(err => err.message);
+    res.status(400).json({ errors });
+  }
 };
 
 // update existing child
-exports.updateChild = (req, res) => {
+exports.updateChild = async (req, res) => {
   const { id } = req.params;
-  const updatedChild = Children.update(req.body, id);
-  res.json(updatedChild);
+  try {
+    const [, [updatedChild]] = await Children.update(req.body, {
+      where: { id },
+      returning: true
+    });
+
+    res.json(updatedChild);
+  } catch (e) {
+    const errors = e.errors.map(err => err.message);
+    res.status(400).json({ errors });
+  }
 };
 
 // delete child
-exports.removeChild = (req, res) => {
+exports.removeChild = async (req, res) => {
   // get id
   const { id } = req.params;
   // remove child
-  Children.destroy(id);
+  await Children.destroy({ where: { id } });
   res.sendStatus(200);
 };

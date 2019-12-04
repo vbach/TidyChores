@@ -3,8 +3,32 @@ module.exports = (sequelize, DataTypes) => {
   const Chores = sequelize.define(
     'Chores',
     {
-      description: DataTypes.STRING,
-      points: DataTypes.STRING,
+      id: {
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+        type: DataTypes.UUID,
+        validate: {
+          isUUID: { args: 4, msg: 'Id not valid, please try again' }
+        }
+      },
+      description: {
+        type: DataTypes.STRING,
+        validate: {
+          len: {
+            args: [3, 500],
+            msg: 'A chore description is required.'
+          }
+        }
+      },
+      points: {
+        type: DataTypes.STRING,
+        validate: {
+          len: {
+            args: [3, 500],
+            msg: 'A chore must have a point value.'
+          }
+        }
+      },
       day: DataTypes.ENUM(
         'sunday',
         'monday',

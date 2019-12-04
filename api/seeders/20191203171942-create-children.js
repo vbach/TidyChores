@@ -4,6 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Children', [
       {
+        id: 'c426fde0-3155-4c8b-aaaf-a3b7177b7f16',
         name: 'Logan',
         avatar: 'boy_001',
         points: '150',
