@@ -33,10 +33,12 @@ export default function callAPIMiddleware({ dispatch, getState }) {
     // break out types in order by request, success and failure
     const [requestType, successType, failureType] = types;
     // dispatch the request action (`REQ_ITEM`)
+
     dispatch({
       ...props,
       type: requestType
     });
+
     try {
       const resp = await callAPI();
       // success, dispatch `REQ_ITEM_SUCCESS`

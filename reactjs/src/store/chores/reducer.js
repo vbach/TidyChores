@@ -1,18 +1,21 @@
 import createReducer from '../helpers/createReducer';
 
 import {
-  VIEW_CHORES,
-  VIEW_CHORES_ERROR,
-  VIEW_CHORES_SUCCESS,
-  ADD_CHORE,
+  REQ_CHORES_PENDING,
+  REQ_CHORES_SUCCESS,
+  REQ_CHORES_ERROR,
+  REQ_CHORE_PENDING,
+  REQ_CHORE_SUCCESS,
+  REQ_CHORE_ERROR,
+  ADD_CHORE_PENDING,
   ADD_CHORE_SUCCESS,
   ADD_CHORE_ERROR,
-  SET_CURRENT_CHORE,
-  SET_CURRENT_CHORE_ERROR,
-  SET_CURRENT_CHORE_SUCCESS,
-  UPDATE_CHORE,
+  UPDATE_CHORE_PENDING,
   UPDATE_CHORE_SUCCESS,
-  UPDATE_CHORE_ERROR
+  UPDATE_CHORE_ERROR,
+  DELETE_CHORE_PENDING,
+  DELETE_CHORE_SUCCESS,
+  DELETE_CHORE_ERROR
 } from '../actionTypes';
 
 const initialState = {
@@ -28,7 +31,7 @@ const initialState = {
   error: null
 };
 
-function viewChores(state, action) {
+function choresPending(state, action) {
   // set loading state and clear error
   return {
     ...state,
@@ -37,7 +40,7 @@ function viewChores(state, action) {
   };
 }
 
-function choreSuccess(state, action) {
+function choresSuccess(state, action) {
   // clear loading and error, update cache time, add items
   return {
     ...state,
@@ -67,7 +70,7 @@ function choreSuccess(state, action) {
   };
 }
 
-function choreError(state, action) {
+function choresError(state, action) {
   return {
     ...state,
     isLoading: false,
@@ -75,7 +78,9 @@ function choreError(state, action) {
   };
 }
 
-function addChore(state, action) {
+////////////////////
+
+function chorePending(state, action) {
   // set loading state and clear error
   return {
     ...state,
@@ -90,7 +95,7 @@ function addChore(state, action) {
   };
 }
 
-function addChoreSuccess(state, action) {
+function choreSuccess(state, action) {
   // clear loading and error, update cache time, add items
   return {
     ...state,
@@ -107,7 +112,7 @@ function addChoreSuccess(state, action) {
   };
 }
 
-function addChoreError(state, action) {
+function choreError(state, action) {
   // clear loading and set error
   return {
     ...state,
@@ -123,16 +128,19 @@ function addChoreError(state, action) {
 }
 
 export default createReducer(initialState, {
-  [VIEW_CHORES]: viewChores,
-  [VIEW_CHORES_ERROR]: choreError,
-  [VIEW_CHORES_SUCCESS]: choreSuccess,
-  [ADD_CHORE]: addChore,
-  [ADD_CHORE_SUCCESS]: addChoreSuccess,
-  [ADD_CHORE_ERROR]: addChoreError,
-  [SET_CURRENT_CHORE]: viewChores,
-  [SET_CURRENT_CHORE_ERROR]: choreError,
-  [SET_CURRENT_CHORE_SUCCESS]: choreSuccess,
-  [UPDATE_CHORE]: addChore,
-  [UPDATE_CHORE_SUCCESS]: addChoreSuccess,
-  [UPDATE_CHORE_ERROR]: addChoreError
+  [REQ_CHORES_PENDING]: choresPending,
+  [REQ_CHORES_SUCCESS]: choresSuccess,
+  [REQ_CHORES_ERROR]: choresError,
+  [REQ_CHORE_PENDING]: chorePending,
+  [REQ_CHORE_SUCCESS]: choreSuccess,
+  [REQ_CHORE_ERROR]: choreError,
+  [ADD_CHORE_PENDING]: chorePending,
+  [ADD_CHORE_SUCCESS]: choreSuccess,
+  [ADD_CHORE_ERROR]: choreError,
+  [UPDATE_CHORE_PENDING]: chorePending,
+  [UPDATE_CHORE_SUCCESS]: choreSuccess,
+  [UPDATE_CHORE_ERROR]: choreError,
+  [DELETE_CHORE_PENDING]: chorePending,
+  [DELETE_CHORE_SUCCESS]: choreSuccess,
+  [DELETE_CHORE_ERROR]: choreError
 });

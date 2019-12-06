@@ -30,16 +30,16 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       day: DataTypes.ENUM(
-        'sunday',
-        'monday',
-        'tuesday',
-        'wednesday',
-        'thursday',
-        'friday',
-        'saturday'
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
       ),
       type: { type: DataTypes.ENUM('true', 'false'), defaultValue: 'false' },
-      childId: DataTypes.INTEGER // change to UUID
+      childId: DataTypes.UUID
     },
     {}
   );

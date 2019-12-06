@@ -6,8 +6,8 @@ module.exports = {
       {
         id: '9c99c103-66f0-448d-b909-4fa66ce3eee3',
         description: 'Movie Tickets',
-        claimed: 'false',
-        claimedBy: null,
+        claimed: false,
+        claimedBy: 'Audrey',
         value: 15,
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')
@@ -15,7 +15,7 @@ module.exports = {
       {
         id: 'f8006345-05c7-4f98-b8f8-dc5f041c54f2',
         description: 'Zoo Trip',
-        claimed: 'true',
+        claimed: false,
         claimedBy: null,
         value: 20,
         createdAt: Sequelize.literal('NOW()'),
@@ -24,8 +24,8 @@ module.exports = {
       {
         id: '309c0904-519c-4cf9-850c-9be849df7db9',
         description: 'Candy Bar',
-        claimed: 'false',
-        claimedBy: 'c426fde0-3155-4c8b-aaaf-a3b7177b7f16',
+        claimed: true,
+        claimedBy: 'Abby',
         value: 5,
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')

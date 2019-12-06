@@ -36,18 +36,18 @@ class App extends Component {
                 <Route path='/parent/rewards' exact component={Rewards} />
                 <Route path='/parent/child/new' exact component={NewChild} />
                 <Route
-                  path='/parent/chore/edit/:id'
+                  path='/parent/chores/edit/:id'
                   exact
                   component={ChoreForm}
                 />
-                <Route path='/parent/chore/add' exact component={ChoreForm} />
+                <Route path='/parent/chores/add' exact component={ChoreForm} />
                 <Route
-                  path='/parent/rewards/add'
+                  path='/parent/rewards/edit/:id'
                   exact
                   component={RewardForm}
                 />
                 <Route
-                  path='/parent/rewards/edit/:id'
+                  path='/parent/rewards/add/'
                   exact
                   component={RewardForm}
                 />
@@ -61,7 +61,5 @@ class App extends Component {
   }
 }
 
-App.defaultProps = {
-  loggedIn: false
-};
+App.defaultProps = {};
 export default App;

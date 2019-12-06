@@ -3,16 +3,20 @@ const error = require('debug')('api:error');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morganDebug = require('morgan-debug');
+const cors = require('cors');
 // routes
 const childrenRouter = require('./routes/children');
 const choresRouter = require('./routes/chores');
 const rewardsRouter = require('./routes/rewards');
 // create an express app
 const app = express();
+app.use(cors());
 // checks to see if the content-type is json and parses it into req.body
 app.use(bodyParser.json());
 // log all requests
 app.use(morganDebug('api:request', 'dev'));
+// setup to use router at /user
+// setup to use router at /auth
 // setup to use router at /children
 app.use('/children', childrenRouter);
 // setup to use router at /chores

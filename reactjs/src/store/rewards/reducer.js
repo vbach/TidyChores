@@ -1,18 +1,21 @@
 import createReducer from '../helpers/createReducer';
 
 import {
-  VIEW_REWARD,
-  VIEW_REWARD_SUCCESS,
-  VIEW_REWARD_ERROR,
-  SET_CURRENT_REWARDS,
-  SET_CURRENT_REWARDS_SUCCESS,
-  SET_CURRENT_REWARDS_ERROR,
-  ADD_REWARD,
+  REQ_REWARDS_PENDING,
+  REQ_REWARDS_SUCCESS,
+  REQ_REWARDS_ERROR,
+  REQ_REWARD_PENDING,
+  REQ_REWARD_SUCCESS,
+  REQ_REWARD_ERROR,
+  ADD_REWARD_PENDING,
   ADD_REWARD_SUCCESS,
   ADD_REWARD_ERROR,
-  UPDATE_REWARD,
+  UPDATE_REWARD_PENDING,
   UPDATE_REWARD_SUCCESS,
-  UPDATE_REWARD_ERROR
+  UPDATE_REWARD_ERROR,
+  DELETE_REWARD_PENDING,
+  DELETE_REWARD_SUCCESS,
+  DELETE_REWARD_ERROR
 } from '../actionTypes';
 
 const initialState = {
@@ -28,7 +31,7 @@ const initialState = {
   error: null
 };
 
-function viewRewards(state, action) {
+function rewardsPending(state, action) {
   // set loading state and clear error
   return {
     ...state,
@@ -37,7 +40,7 @@ function viewRewards(state, action) {
   };
 }
 
-function rewardSuccess(state, action) {
+function rewardsSuccess(state, action) {
   // clear loading and error, update cache time, add items
   return {
     ...state,
@@ -70,7 +73,7 @@ function rewardSuccess(state, action) {
   };
 }
 
-function rewardError(state, action) {
+function rewardsError(state, action) {
   return {
     ...state,
     isLoading: false,
@@ -78,7 +81,9 @@ function rewardError(state, action) {
   };
 }
 
-function addReward(state, action) {
+////////////////////
+
+function rewardPending(state, action) {
   // set loading state and clear error
   return {
     ...state,
@@ -93,14 +98,14 @@ function addReward(state, action) {
   };
 }
 
-function addRewardSuccess(state, action) {
-  // clear loading and error, update cache time, add items
+function rewardSuccess(state, action) {
+  // clear loading and error, update cache time, add rewards
   return {
     ...state,
     rewardId: {
       ...state.rewardId,
       [action.payload.id]: {
-        isLoading: false,
+        isLoading: true,
         error: null,
         loadedAt: Date.now(),
         data: action.data
@@ -110,7 +115,7 @@ function addRewardSuccess(state, action) {
   };
 }
 
-function addRewardError(state, action) {
+function rewardError(state, action) {
   // clear loading and set error
   return {
     ...state,
@@ -126,16 +131,19 @@ function addRewardError(state, action) {
 }
 
 export default createReducer(initialState, {
-  [VIEW_REWARD]: viewRewards,
-  [VIEW_REWARD_SUCCESS]: rewardSuccess,
-  [VIEW_REWARD_ERROR]: rewardError,
-  [ADD_REWARD]: addReward,
-  [ADD_REWARD_SUCCESS]: addRewardSuccess,
-  [ADD_REWARD_ERROR]: addRewardError,
-  [SET_CURRENT_REWARDS]: addReward,
-  [SET_CURRENT_REWARDS_SUCCESS]: addRewardSuccess,
-  [SET_CURRENT_REWARDS_ERROR]: addRewardError,
-  [UPDATE_REWARD]: addReward,
-  [UPDATE_REWARD_SUCCESS]: addRewardSuccess,
-  [UPDATE_REWARD_ERROR]: addRewardError
+  [REQ_REWARDS_PENDING]: rewardsPending,
+  [REQ_REWARDS_SUCCESS]: rewardsSuccess,
+  [REQ_REWARDS_ERROR]: rewardsError,
+  [REQ_REWARD_PENDING]: rewardPending,
+  [REQ_REWARD_SUCCESS]: rewardSuccess,
+  [REQ_REWARD_ERROR]: rewardError,
+  [ADD_REWARD_PENDING]: rewardPending,
+  [ADD_REWARD_SUCCESS]: rewardSuccess,
+  [ADD_REWARD_ERROR]: rewardError,
+  [UPDATE_REWARD_PENDING]: rewardPending,
+  [UPDATE_REWARD_SUCCESS]: rewardSuccess,
+  [UPDATE_REWARD_ERROR]: rewardError,
+  [DELETE_REWARD_PENDING]: rewardPending,
+  [DELETE_REWARD_SUCCESS]: rewardSuccess,
+  [DELETE_REWARD_ERROR]: rewardError
 });

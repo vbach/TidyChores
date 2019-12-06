@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchChildren } from '../../store/children/actions';
 import { fetchChores, deleteChore } from '../../store/chores/actions';
-import { fetchRewards } from '../../store/rewards/actions';
+import { fetchRewards, deleteReward } from '../../store/rewards/actions';
 
 function mapStateToProps(state) {
   const {
@@ -9,6 +9,7 @@ function mapStateToProps(state) {
     chores: { choreId, allChoreIds },
     rewards: { rewardId, allRewardsIds }
   } = state;
+
   // turn the array of ids into an array of objects
   return {
     children: allIds.map(id => byId[id].data),
@@ -21,8 +22,9 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   fetchChildren,
   fetchChores,
-  deleteChore,
-  fetchRewards
+  fetchRewards,
+  deleteReward,
+  deleteChore
 };
 
 export default connect(

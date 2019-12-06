@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from '../app.module.css';
 import container from './container';
 
@@ -8,9 +8,7 @@ class NewChild extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      avatar: '',
-      points: '0'
+      // children: [{ name: '', avatar: 'boy_001' }]
     };
   }
   handleInputChange = event => {
@@ -31,8 +29,15 @@ class NewChild extends Component {
     event.preventDefault();
     const { createChild, history } = this.props;
     const { name, avatar, points } = this.state;
-    createChild({ name, avatar, points });
-    history.push('/parent');
+    if (name === '' || avatar === '') {
+      return (
+        <Alert variant='danger'>
+          <p>Name and avatar cannot be left blank.</p>
+        </Alert>
+      );
+    } else {
+      createChild({ name, avatar, points });
+    }
   };
 
   render() {
@@ -164,8 +169,7 @@ NewChild.propTypes = {
   createChild: PropTypes.func.isRequired,
   children: PropTypes.shape({
     name: PropTypes.string,
-    avatar: PropTypes.string,
-    points: PropTypes.string
+    avatar: PropTypes.string
   })
 };
 

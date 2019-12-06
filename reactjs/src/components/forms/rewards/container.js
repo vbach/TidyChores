@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import {
+  fetchReward,
   createReward,
-  updateReward,
-  fetchReward
+  updateReward
 } from '../../../store/rewards/actions';
 
 function mapStateToProps(state, props) {
@@ -21,9 +21,9 @@ function mapStateToProps(state, props) {
 
 // set the actions we need in this component
 const mapDispatchToProps = {
+  fetchReward,
   createReward,
-  updateReward,
-  fetchReward
+  updateReward
 };
 
 export default connect(

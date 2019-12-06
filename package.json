@@ -5,7 +5,7 @@
     "reactjs": "cd reactjs && npm start",
     "api": "cd api; nodemon server.js",
     "server": "nodemon server.js",
-    "dev": "concurrently --raw \"npm run server\" \"npm run reactjs\"",
+    "dev": "concurrently --raw \"npm run api\" \"npm run reactjs\"",
     "start": "node server.js",
     "heroku-postbuild": "cd reactjs && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },

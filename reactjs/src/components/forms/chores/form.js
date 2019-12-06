@@ -9,11 +9,12 @@ class AddChore extends Component {
   constructor(props) {
     super(props);
     this.props.fetchChildren();
-    this.props.fetchChore();
     this.state = {
+      id: '',
       description: '',
       points: '',
-      day: 'Sunday',
+      day: '',
+      type: 'false',
       childId: ''
     };
     this.loadData();
@@ -58,35 +59,36 @@ class AddChore extends Component {
         params: { id }
       }
     } = this.props;
-    const { description, points, day, childId } = this.state;
+
+    const { description, points, day, type, childId } = this.state;
     if (id) {
-      updateChore({ id, description, points, day, childId });
+      updateChore({ id, description, points, day, type, childId });
     } else {
       createChore({ description, points, day, childId });
     }
-    // history.push('/parent');
+    history.push('/parent');
   };
 
   render() {
+    const { description, points, day, childId } = this.state;
     const {
       children,
       chore: { id }
     } = this.props;
-    const { description, points, day, childId } = this.state;
     return (
       <Container className='mt-5 pb-5'>
         <div className='sign__up__form '>
-          <Form onSubmit={this.save}>
-            <Row className='mt-5'>
-              <Col xs={2}></Col>
-              <Col xs={8}>
-                <h1>{id ? 'Edit Chore' : 'Add Chore'}</h1>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-            <Row className='mt-5 '>
-              <Col xs={2}></Col>
-              <Col xs={8}>
+          <Row className='mt-5'>
+            <Col xs={2}></Col>
+            <Col xs={8}>
+              <h1>{id ? 'Edit Chore' : 'Add Chore'}</h1>
+            </Col>
+            <Col xs={2}></Col>
+          </Row>
+          <Row className='mt-5 '>
+            <Col xs={2}></Col>
+            <Col xs={8}>
+              <Form onSubmit={this.save}>
                 <Form.Group controlId='formAddChore'>
                   <Form.Label>Description</Form.Label>
                   <Form.Control
@@ -113,13 +115,13 @@ class AddChore extends Component {
                     onChange={this.handleInputChange}
                     value={day}
                   >
-                    <option>Sunday</option>
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
+                    <option value='sunday'>Sunday</option>
+                    <option value='monday'>Monday</option>
+                    <option value='tuesday'>Tuesday</option>
+                    <option value='wednesday'>Wednesday</option>
+                    <option value='thursday'>Thursday</option>
+                    <option value='friday'>Friday</option>
+                    <option value='saturday'>Saturday</option>
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId='formChild'>
@@ -139,19 +141,18 @@ class AddChore extends Component {
                     ))}
                   </Form.Control>
                 </Form.Group>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-            <Row className='mb-5'>
-              <Col xs={2}></Col>
-              <Col xs={8} className='text-center'>
                 <Button className={styles.submit__btn} type='submit'>
                   Submit
                 </Button>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-          </Form>
+              </Form>
+            </Col>
+            <Col xs={2}></Col>
+          </Row>
+          <Row className='mb-5'>
+            <Col xs={2}></Col>
+            <Col xs={8} className='text-center'></Col>
+            <Col xs={2}></Col>
+          </Row>
         </div>
       </Container>
     );
@@ -159,16 +160,32 @@ class AddChore extends Component {
 }
 
 AddChore.propTypes = {
-  fetchChildren: PropTypes.func.isRequired,
   createChore: PropTypes.func.isRequired,
-  fetchChore: PropTypes.func.isRequired,
   updateChore: PropTypes.func.isRequired,
-  chore: PropTypes.array.isRequired,
+  fetchChildren: PropTypes.func.isRequired,
+  fetchChore: PropTypes.func.isRequired,
+  // chore: PropTypes.array.isRequired,
+  chore: PropTypes.shape({
+    description: PropTypes.string,
+    points: PropTypes.string,
+    day: PropTypes.oneOf([
+      'sunday',
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday'
+    ]),
+    type: PropTypes.string,
+    childId: PropTypes.string
+  }),
   children: PropTypes.array.isRequired
 };
 
 AddChore.defaultProps = {
-  chore: []
+  chore: [],
+  children: []
 };
 
 export default container(AddChore);

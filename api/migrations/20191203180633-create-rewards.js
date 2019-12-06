@@ -12,15 +12,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       claimed: {
-        type: Sequelize.ENUM('true', 'false')
+        type: Sequelize.BOOLEAN
       },
       claimedBy: {
-        type: Sequelize.UUID,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Children',
-          key: 'id'
-        }
+        type: Sequelize.STRING
       },
       value: {
         type: Sequelize.STRING

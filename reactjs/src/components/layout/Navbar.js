@@ -8,9 +8,6 @@ import Logo from '../../logo.png';
 class Navigation extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loggedIn: true
-    };
   }
 
   render() {
@@ -24,48 +21,53 @@ class Navigation extends Component {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            {!this.state.loggedIn && (
-              <Fragment>
-                <Nav className='ml-auto'>
-                  <Nav.Link>
-                    <Link to='/'>Home</Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to='/'>About</Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to='/'>Features</Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to='/'>Contact</Link>
-                  </Nav.Link>
-                </Nav>
-                <Link to='/signup'>
-                  <Button className={styles.nav__btn}>Sign Up</Button>
-                </Link>
-              </Fragment>
-            )}
-            {this.state.loggedIn && (
-              <Fragment>
-                <Nav className='ml-auto'>
-                  <Nav.Link>
-                    <Link to='/parent'>Home</Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to='/parent/chore/add'>Add Chore</Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to='/parent/child/new'>Add Child</Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to='/parent/rewards'>Rewards</Link>
-                  </Nav.Link>
-                  <Nav.Link>
-                    <Link to='/'>Logout</Link>
-                  </Nav.Link>
-                </Nav>
-              </Fragment>
-            )}
+            {/* <Fragment>
+              <Nav className='ml-auto'>
+                <Nav.Link>
+                  <Link to='/' url='/'>
+                    Home
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to='/' url='/'>
+                    About
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to='/' url='/'>
+                    Features
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to='/' url='/'>
+                    Contact
+                  </Link>
+                </Nav.Link>
+              </Nav>
+              <Link to='/signup'>
+                <Button className={styles.nav__btn}>Sign Up</Button>
+              </Link>
+            </Fragment> */}
+
+            <Fragment>
+              <Nav className='ml-auto'>
+                <Nav.Link>
+                  <Link to='/parent'>Home</Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to='/parent/chores/add'>Add Chore</Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to='/parent/child/new'>Add Child</Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to='/parent/rewards'>Rewards</Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link to='/'>Logout</Link>
+                </Nav.Link>
+              </Nav>
+            </Fragment>
           </Navbar.Collapse>
         </Navbar>
       </Fragment>
@@ -73,12 +75,8 @@ class Navigation extends Component {
   }
 }
 
-Navigation.propTypes = {
-  loggedIn: PropTypes.string
-};
+Navigation.propTypes = {};
 
-Navigation.defaultProps = {
-  loggedIn: false
-};
+Navigation.defaultProps = {};
 
 export default Navigation;

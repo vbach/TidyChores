@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           len: {
             args: [1, 500],
@@ -22,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       avatar: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           len: { args: [1], msg: 'An avatar must be selected.' }
         }
@@ -36,7 +38,6 @@ module.exports = (sequelize, DataTypes) => {
   );
   Children.associate = function(models) {
     Children.hasMany(models.Chores, { foreignKey: 'childId' });
-    Children.hasMany(models.Rewards, { foreignKey: 'claimedBy' });
   };
   return Children;
 };

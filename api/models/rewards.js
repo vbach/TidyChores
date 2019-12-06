@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      claimed: DataTypes.ENUM('true', 'false'),
-      claimedBy: DataTypes.INTEGER,
+      claimed: { type: DataTypes.BOOLEAN, defaultValue: false },
+      claimedBy: { type: DataTypes.STRING, defaultValue: '' },
       value: {
         type: DataTypes.STRING,
         validate: {
@@ -34,8 +34,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Rewards.associate = function(models) {
-    Rewards.belongsTo(models.Children, { foreignKey: 'claimedBy' });
-  };
+  Rewards.associate = function(models) {};
   return Rewards;
 };

@@ -9,9 +9,11 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       avatar: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       points: {

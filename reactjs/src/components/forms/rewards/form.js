@@ -8,12 +8,8 @@ import container from './container';
 class AddReward extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchReward();
     this.state = {
-      id: '',
       description: '',
-      claimed: false,
-      claimedBy: '',
       value: ''
     };
     this.loadData();
@@ -75,17 +71,17 @@ class AddReward extends Component {
     return (
       <Container className='mt-5'>
         <div className='sign__up__form'>
-          <Form onSubmit={this.save}>
-            <Row className='mt-5'>
-              <Col xs={2}></Col>
-              <Col xs={8}>
-                <h1>{id ? 'Edit Reward' : 'Add Reward'}</h1>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-            <Row className='mt-5 '>
-              <Col xs={2}></Col>
-              <Col xs={8}>
+          <Row className='mt-5'>
+            <Col xs={2}></Col>
+            <Col xs={8}>
+              <h1>{id ? 'Edit Reward' : 'Add Reward'}</h1>
+            </Col>
+            <Col xs={2}></Col>
+          </Row>
+          <Row className='mt-5 '>
+            <Col xs={2}></Col>
+            <Col xs={8}>
+              <Form onSubmit={this.save}>
                 <Form.Group controlId='formAddReward'>
                   <Form.Label>Description of reward</Form.Label>
                   <Form.Control
@@ -104,19 +100,18 @@ class AddReward extends Component {
                     value={value}
                   />
                 </Form.Group>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-            <Row className='mb-5'>
-              <Col xs={2}></Col>
-              <Col xs={8} className='text-center'>
                 <Button className={styles.submit__btn} type='submit'>
                   Add
                 </Button>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-          </Form>
+              </Form>
+            </Col>
+            <Col xs={2}></Col>
+          </Row>
+          <Row className='mb-5'>
+            <Col xs={2}></Col>
+            <Col xs={8} className='text-center'></Col>
+            <Col xs={2}></Col>
+          </Row>
         </div>
       </Container>
     );
@@ -124,13 +119,20 @@ class AddReward extends Component {
 }
 
 AddReward.propTypes = {
-  fetchReward: PropTypes.func.isRequired,
+  createReward: PropTypes.func.isRequired,
   updateReward: PropTypes.func.isRequired,
-  reward: PropTypes.array.isRequired
+  fetchReward: PropTypes.func.isRequired,
+
+  reward: PropTypes.shape({
+    description: PropTypes.string,
+    claimed: PropTypes.bool,
+    claimedBy: PropTypes.string,
+    value: PropTypes.string
+  })
 };
 
 AddReward.defaultProps = {
-  reward: []
+  reward: {}
 };
 
 export default container(AddReward);

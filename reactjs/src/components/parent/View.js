@@ -18,9 +18,19 @@ class View extends Component {
     super(props);
     this.props.fetchChildren();
     this.props.fetchChores();
-    this.props.deleteChore();
     this.state = {
-      type: false
+      type: false,
+      children: [
+        {
+          name: '',
+          avatar: ''
+        }
+      ],
+      chores: [
+        {
+          description: ''
+        }
+      ]
     };
   }
 
@@ -32,7 +42,10 @@ class View extends Component {
       [name]: value
     });
   };
-
+  delete = id => {
+    const { deleteChore } = this.props;
+    deleteChore(id);
+  };
   render() {
     const { children, chores } = this.props;
 
@@ -83,7 +96,8 @@ class View extends Component {
                     {chores
                       .filter(
                         chore =>
-                          chore.childId === child.id && chore.day === weekday
+                          chore.childId === child.id &&
+                          chore.day === weekday.toLowerCase()
                       )
                       .map(chore => (
                         <Form>
@@ -110,12 +124,14 @@ class View extends Component {
                                   style={{ float: 'right' }}
                                 >
                                   {' '}
-                                  <Link to={`/parent/chore/edit/${chore.id}`}>
+                                  <Link to={`/parent/chores/edit/${chore.id}`}>
                                     <i className='fas fa-edit'></i>
                                   </Link>{' '}
-                                  <Link to={`/parent/chore/delete/${chore.id}`}>
-                                    <i className='fas fa-times'></i>
-                                  </Link>
+                                  <span onClick={() => this.delete(chore.id)}>
+                                    <Link to='/parent'>
+                                      <i className='fas fa-times'></i>
+                                    </Link>
+                                  </span>
                                 </span>
                               </span>
                             </ListGroup.Item>
@@ -136,7 +152,6 @@ class View extends Component {
 View.propTypes = {
   fetchChildren: PropTypes.func.isRequired,
   fetchChores: PropTypes.func.isRequired,
-  deleteChore: PropTypes.func.isRequired,
   children: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -146,7 +161,7 @@ View.propTypes = {
   chores: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      type: PropTypes.bool,
+      type: PropTypes.string,
       childId: PropTypes.string
     })
   )
