@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import styles from '../app.module.css';
@@ -14,7 +13,10 @@ class ClaimReward extends Component {
       description: '',
       claimed: true,
       claimedBy: '',
-      name: ''
+      name: '',
+      points: '',
+      value: '',
+      childId: ''
     };
     this.loadData();
   }
@@ -52,23 +54,32 @@ class ClaimReward extends Component {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
     event.target.className += ' was-validated';
+
     const {
       updateReward,
-      history,
+      updateChild,
+      children,
       match: {
         params: { id }
       }
     } = this.props;
-    const { claimedBy } = this.state;
+
+    // Need to set up foreign key restraint to children.
+    // Need to pull child points and deduct reward value.
+    const { claimedBy, points, value } = this.state;
+    let newPoints;
+    newPoints = children.points - value;
+
     let claimed = true;
     if (id) {
       updateReward({ id, claimedBy, claimed });
+      updateChild({ id: claimedBy, points: newPoints });
     }
   };
 
   render() {
     const { description, claimedBy } = this.state;
-    const { children, reward } = this.props;
+    const { children } = this.props;
     return (
       <Container className='mt-5 min-vh-100'>
         <div className='sign__up__form'>
@@ -96,7 +107,7 @@ class ClaimReward extends Component {
                   >
                     <option value=''></option>
                     {children.map(child => (
-                      <option value={child.name} key={child.id}>
+                      <option key={child.id} value={child.id}>
                         {child.name}
                       </option>
                     ))}
@@ -127,6 +138,7 @@ ClaimReward.propTypes = {
   fetchReward: PropTypes.func.isRequired,
   updateReward: PropTypes.func.isRequired,
   fetchChildren: PropTypes.func.isRequired,
+  updateChild: PropTypes.func.isRequired,
   reward: PropTypes.array.isRequired,
   children: PropTypes.array.isRequired
 };

@@ -6,7 +6,10 @@ import {
   VIEW_CHILD_SUCCESS,
   ADD_CHILD,
   ADD_CHILD_SUCCESS,
-  ADD_CHILD_ERROR
+  ADD_CHILD_ERROR,
+  UPDATE_CHILD_PENDING,
+  UPDATE_CHILD_SUCCESS,
+  UPDATE_CHILD_ERROR
 } from '../actionTypes';
 // cache data for 5 minutes
 const CACHE_TIME = 1000 * 60 * 5;
@@ -34,3 +37,10 @@ export const createChild = child => {
     payload: { id }
   };
 };
+
+// Update child
+export const updateChild = child => ({
+  types: [UPDATE_CHILD_PENDING, UPDATE_CHILD_SUCCESS, UPDATE_CHILD_ERROR],
+  callAPI: () => API.put(`/children/${child.id}`, child),
+  payload: { child: { ...child } }
+});

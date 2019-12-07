@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import styles from '../app.module.css';
@@ -52,7 +51,6 @@ class AddReward extends Component {
     const {
       createReward,
       updateReward,
-      history,
       match: {
         params: { id }
       }

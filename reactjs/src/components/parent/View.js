@@ -19,7 +19,6 @@ class View extends Component {
     this.props.fetchChildren();
     this.props.fetchChores();
     this.state = {
-      type: false,
       children: [
         {
           name: '',
@@ -28,16 +27,28 @@ class View extends Component {
       ],
       chores: [
         {
-          description: ''
+          description: '',
+          type: ''
         }
       ]
     };
   }
 
-  handleChange = e => {
-    const { target } = e;
+  componentDidMount() {
+    this.props.fetchChildren();
+    this.props.fetchChores();
+  }
+
+  handleChange = event => {
+    let { chores } = this.props;
+    // get the input from the event
+    const { target } = event;
+    // find the value of the input
+    target.type = false;
     const value = target.type === 'checkbox' ? target.checked : target.value;
+    // get the name of the input from it's attribute
     const { name } = target;
+    // set state to the name and the value. For example, { description: 'hi'}
     this.setState({
       [name]: value
     });
@@ -111,6 +122,7 @@ class View extends Component {
                                 {chore.description}
                                 <input
                                   type='checkbox'
+                                  checked={chore.type ? 'checked' : ''}
                                   key={chore.id}
                                   name='type'
                                   value={chore.type}

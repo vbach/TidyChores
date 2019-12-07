@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchReward, updateReward } from '../../../store/rewards/actions';
-import { fetchChildren } from '../../../store/children/actions';
+import { fetchChildren, updateChild } from '../../../store/children/actions';
 
 function mapStateToProps(state, props) {
   const {
@@ -21,7 +21,8 @@ function mapStateToProps(state, props) {
 const mapDispatchToProps = {
   fetchReward,
   updateReward,
-  fetchChildren
+  fetchChildren,
+  updateChild
 };
 
 export default connect(

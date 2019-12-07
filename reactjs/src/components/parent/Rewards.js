@@ -33,26 +33,25 @@ class Rewards extends Component {
           <Col md={6} className='mt-3 pl-5 pr-5'>
             <h2 className={styles.inline__heading}>Claimed Rewards</h2>
             <ListGroup variant='flush' horizontal='lg'>
-              {rewards.map(
-                reward =>
-                  reward.claimed && (
-                    <ListGroup.Item
-                      className={styles.list__group__item__rewards}
-                      key={reward.id}
+              {rewards
+                .filter(reward => reward.claimed)
+                .map(reward => (
+                  <ListGroup.Item
+                    key={reward.id}
+                    className={styles.list__group__item__rewards}
+                  >
+                    <span className={styles.points}></span>
+                    {reward.description}
+                    <span
+                      style={{
+                        float: 'right',
+                        marginTop: '10px'
+                      }}
                     >
-                      <span className={styles.points}></span>
-                      {reward.description}
-                      <span
-                        style={{
-                          float: 'right',
-                          marginTop: '10px'
-                        }}
-                      >
-                        Claimed by {reward.claimedBy}
-                      </span>
-                    </ListGroup.Item>
-                  )
-              )}
+                      Claimed by {reward.claimedBy}
+                    </span>
+                  </ListGroup.Item>
+                ))}
             </ListGroup>
           </Col>
           <Col md={6} className='mt-3 pr-5 pl-5'>
@@ -63,34 +62,33 @@ class Rewards extends Component {
               </Link>
             </span>
             <ListGroup variant='flush' horizontal='lg'>
-              {rewards.map(
-                reward =>
-                  !reward.claimed && (
-                    <ListGroup.Item
-                      key={reward.id}
-                      className={styles.list__group__item__rewards}
+              {rewards
+                .filter(reward => reward.claimed === false)
+                .map(reward => (
+                  <ListGroup.Item
+                    key={reward.id}
+                    className={styles.list__group__item__rewards}
+                  >
+                    <span className={styles.points}>{reward.value}</span>{' '}
+                    {reward.description}
+                    <span
+                      className='chore__controls'
+                      style={{ float: 'right', marginTop: '10px' }}
                     >
-                      <span className={styles.points}>{reward.value}</span>{' '}
-                      {reward.description}
-                      <span
-                        className='chore__controls'
-                        style={{ float: 'right', marginTop: '10px' }}
-                      >
-                        <Link to={`/parent/rewards/claim/${reward.id}`}>
-                          <i className='fas fa-award mr-2'></i>
+                      <Link to={`/parent/rewards/claim/${reward.id}`}>
+                        <i className='fas fa-award mr-2'></i>
+                      </Link>
+                      <Link to={`/parent/rewards/edit/${reward.id}`}>
+                        <i className='fas fa-edit mr-2'></i>
+                      </Link>
+                      <span onClick={() => this.delete(reward.id)}>
+                        <Link to='/parent/rewards/'>
+                          <i className='fas fa-times'></i>
                         </Link>
-                        <Link to={`/parent/rewards/edit/${reward.id}`}>
-                          <i className='fas fa-edit mr-2'></i>
-                        </Link>
-                        <span onClick={() => this.delete(reward.id)}>
-                          <Link to='/parent/rewards/'>
-                            <i className='fas fa-times'></i>
-                          </Link>
-                        </span>
                       </span>
-                    </ListGroup.Item>
-                  )
-              )}
+                    </span>
+                  </ListGroup.Item>
+                ))}
             </ListGroup>
           </Col>
         </Row>

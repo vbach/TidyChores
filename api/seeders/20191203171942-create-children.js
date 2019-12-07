@@ -11,6 +11,15 @@ module.exports = {
         parentId: '1',
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')
+      },
+      {
+        id: '486cd5a3-01d2-4952-8609-a29fe2f8a6e6',
+        name: 'Abigale',
+        avatar: 'boy_002',
+        points: '125',
+        parentId: '1',
+        createdAt: Sequelize.literal('NOW()'),
+        updatedAt: Sequelize.literal('NOW()')
       }
     ]);
     /*

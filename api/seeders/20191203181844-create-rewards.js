@@ -6,8 +6,8 @@ module.exports = {
       {
         id: '9c99c103-66f0-448d-b909-4fa66ce3eee3',
         description: 'Movie Tickets',
-        claimed: false,
-        claimedBy: 'Audrey',
+        claimed: true,
+        claimedBy: 'Logan',
         value: 15,
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')
