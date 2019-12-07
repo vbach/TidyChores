@@ -1,6 +1,9 @@
 {
   "name": "capstone-project-vbach",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.0"
+  },
   "scripts": {
     "reactjs": "cd reactjs && npm start",
     "api": "cd api; nodemon server.js",
