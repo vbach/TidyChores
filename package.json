@@ -9,11 +9,11 @@
     "api": "cd api; nodemon server.js",
     "server": "nodemon server.js",
     "dev": "concurrently --raw \"npm run api\" \"npm run reactjs\"",
-    "start": "npm start --prefix api",
-    "install-reactjs": "npm install --prefix reactjs",
-    "install-api": "npm install --prefix api",
-    "build-reactjs": "npm run build --prefix reactjs",
-    "build-api": "npm run db-update --prefix api",
+    "start": "cd api; npm start",
+    "install-reactjs": "cd reactjs; npm install",
+    "install-api": "cd api; npm install",
+    "build-reactjs": "cd reactjs; npm run build",
+    "build-api": "cd api; npm run db-update",
     "heroku-postbuild": "concurrently \"npm:install-*\"; concurrently \"npm:build-*\"; "
   },
   "dependencies": {
