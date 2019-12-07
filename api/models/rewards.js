@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       claimedBy: { type: DataTypes.STRING, defaultValue: '' },
       value: {
         type: DataTypes.STRING,
+        defaultValue: '0',
         validate: {
           len: {
             args: [1, 6],

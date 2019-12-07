@@ -14,7 +14,7 @@ module.exports = {
         updatedAt: Sequelize.literal('NOW()')
       },
       {
-        id: 'fe9eb2ba-a3f9-47c8-9984-a6858b4fd741',
+        id: 'b2fcac11-ac38-4094-9c7a-b6c76610082d',
         description: 'Walk Dog',
         points: '5',
         day: 'sunday',
@@ -34,7 +34,7 @@ module.exports = {
         updatedAt: Sequelize.literal('NOW()')
       },
       {
-        id: 'd5979219-c86d-4aa0-b224-a8a9b94e96e2',
+        id: '07eb0341-f47d-4b43-8296-e3ef6ab92627',
         description: 'Walk Dog',
         points: '10',
         day: 'monday',
@@ -54,7 +54,7 @@ module.exports = {
         updatedAt: Sequelize.literal('NOW()')
       },
       {
-        id: '5f15f730-4cfc-48a2-a7a5-855914449eb8',
+        id: '7a75a69b-fdb2-42c0-8366-254cc1466668',
         description: 'Empty Dishwasher',
         points: '5',
         day: 'tuesday',
@@ -74,7 +74,7 @@ module.exports = {
         updatedAt: Sequelize.literal('NOW()')
       },
       {
-        id: '05416217-e193-4864-8437-9df84dcb1eb6',
+        id: '3da901a2-0e29-40c0-b5d0-d1372feab8db',
         description: 'Clean bedroom',
         points: '5',
         day: 'wednesday',
@@ -94,7 +94,7 @@ module.exports = {
         updatedAt: Sequelize.literal('NOW()')
       },
       {
-        id: '8a3a9045-6660-47f1-adda-0813aa8e64e7',
+        id: '98cbd496-893c-4c4c-bc1d-34c07108f555',
         description: 'Vacuum living room',
         points: '5',
         day: 'thursday',
@@ -114,7 +114,7 @@ module.exports = {
         updatedAt: Sequelize.literal('NOW()')
       },
       {
-        id: '24545cfa-550c-4d87-8950-9fec47838d5e',
+        id: '32967999-4697-469e-bfaa-baa270d8ceec',
         description: 'Take out trash',
         points: '0',
         day: 'friday',
@@ -134,7 +134,7 @@ module.exports = {
         updatedAt: Sequelize.literal('NOW()')
       },
       {
-        id: '940f8e5b-a179-417c-a00c-1ebfe9c13fae',
+        id: '8c911d54-db90-4a97-9244-90cd63a7053a',
         description: 'Pick up toy room.',
         points: '10',
         day: 'saturday',
