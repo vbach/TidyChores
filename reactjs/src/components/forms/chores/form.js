@@ -51,6 +51,7 @@ class AddChore extends Component {
   save = event => {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
+    event.target.className += ' was-validated';
     const {
       createChore,
       updateChore,
@@ -66,7 +67,6 @@ class AddChore extends Component {
     } else {
       createChore({ description, points, day, childId });
     }
-    history.push('/parent');
   };
 
   render() {
@@ -88,7 +88,7 @@ class AddChore extends Component {
           <Row className='mt-5 '>
             <Col xs={2}></Col>
             <Col xs={8}>
-              <Form onSubmit={this.save}>
+              <Form onSubmit={this.save} noValidate>
                 <Form.Group controlId='formAddChore'>
                   <Form.Label>Description</Form.Label>
                   <Form.Control
@@ -96,7 +96,11 @@ class AddChore extends Component {
                     name='description'
                     onChange={this.handleInputChange}
                     value={description}
+                    required
                   />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a description.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId='formPointValue'>
                   <Form.Label>Point Value</Form.Label>
@@ -105,7 +109,11 @@ class AddChore extends Component {
                     name='points'
                     onChange={this.handleInputChange}
                     value={points}
+                    required
                   />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a point value.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId='formDay'>
                   <Form.Label>Select a day</Form.Label>
@@ -114,7 +122,9 @@ class AddChore extends Component {
                     name='day'
                     onChange={this.handleInputChange}
                     value={day}
+                    required
                   >
+                    <option value=''></option>
                     <option value='sunday'>Sunday</option>
                     <option value='monday'>Monday</option>
                     <option value='tuesday'>Tuesday</option>
@@ -123,6 +133,9 @@ class AddChore extends Component {
                     <option value='friday'>Friday</option>
                     <option value='saturday'>Saturday</option>
                   </Form.Control>
+                  <Form.Control.Feedback type='invalid'>
+                    Please choose a day.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId='formChild'>
                   <Form.Label>Select a child</Form.Label>
@@ -132,17 +145,21 @@ class AddChore extends Component {
                     name='childId'
                     onChange={this.handleInputChange}
                     value={childId}
+                    required
                   >
-                    <option>Select a Child</option>
+                    <option value=''>Select a child</option>
                     {children.map(child => (
                       <option value={child.id} key={child.id}>
                         {child.name}
                       </option>
                     ))}
                   </Form.Control>
+                  <Form.Control.Feedback type='invalid'>
+                    Please select a child
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Button className={styles.submit__btn} type='submit'>
-                  Submit
+                  {id ? 'Edit' : 'Add'}
                 </Button>
               </Form>
             </Col>

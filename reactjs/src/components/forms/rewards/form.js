@@ -9,8 +9,10 @@ class AddReward extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      claimedBy: '',
       description: '',
-      value: ''
+      value: '',
+      claimed: ''
     };
     this.loadData();
   }
@@ -46,6 +48,7 @@ class AddReward extends Component {
   save = event => {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
+    event.target.className += ' was-validated';
     const {
       createReward,
       updateReward,
@@ -54,13 +57,12 @@ class AddReward extends Component {
         params: { id }
       }
     } = this.props;
-    const { description, value } = this.state;
+    const { description, value, claimedBy, claimed } = this.state;
     if (id) {
-      updateReward({ id, description, value });
+      updateReward({ id, description, value, claimedBy, claimed });
     } else {
       createReward({ description, value });
     }
-    history.push('/parent/rewards');
   };
 
   render() {
@@ -69,7 +71,7 @@ class AddReward extends Component {
       reward: { id }
     } = this.props;
     return (
-      <Container className='mt-5'>
+      <Container className='mt-5 min-vh-100'>
         <div className='sign__up__form'>
           <Row className='mt-5'>
             <Col xs={2}></Col>
@@ -81,7 +83,7 @@ class AddReward extends Component {
           <Row className='mt-5 '>
             <Col xs={2}></Col>
             <Col xs={8}>
-              <Form onSubmit={this.save}>
+              <Form onSubmit={this.save} noValidate>
                 <Form.Group controlId='formAddReward'>
                   <Form.Label>Description of reward</Form.Label>
                   <Form.Control
@@ -89,7 +91,11 @@ class AddReward extends Component {
                     name='description'
                     onChange={this.handleInputChange}
                     value={description}
+                    required
                   />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a description.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId='formPointValue'>
                   <Form.Label>Point Value</Form.Label>
@@ -98,10 +104,14 @@ class AddReward extends Component {
                     name='value'
                     onChange={this.handleInputChange}
                     value={value}
+                    required
                   />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a point value.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Button className={styles.submit__btn} type='submit'>
-                  Add
+                  {id ? 'Edit' : 'Add'}
                 </Button>
               </Form>
             </Col>

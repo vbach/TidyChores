@@ -100,8 +100,8 @@ class View extends Component {
                           chore.day === weekday.toLowerCase()
                       )
                       .map(chore => (
-                        <Form>
-                          <ListGroup letiant='flush'>
+                        <Form onClick={this.handleChange}>
+                          <ListGroup variant='flush'>
                             <ListGroup.Item
                               className={styles.list__group__item}
                               key={chore.id}

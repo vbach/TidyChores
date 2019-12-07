@@ -60,8 +60,8 @@ export const fetchReward = id => ({
 // Update the reward
 export const updateReward = reward => ({
   types: [UPDATE_REWARD_PENDING, UPDATE_REWARD_SUCCESS, UPDATE_REWARD_ERROR],
-  callAPI: () => API.put(`/rewards/${reward.id}`),
-  payload: { id: reward.id }
+  callAPI: () => API.put(`/rewards/${reward.id}`, reward),
+  payload: { reward: { ...reward } }
 });
 
 export const deleteReward = id => ({

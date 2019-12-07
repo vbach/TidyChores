@@ -26,18 +26,13 @@ class NewChild extends Component {
 
   save = event => {
     // make sure the form doesn't submit with the browser
+
     event.preventDefault();
+    event.target.className += ' was-validated';
     const { createChild, history } = this.props;
     const { name, avatar, points } = this.state;
-    if (name === '' || avatar === '') {
-      return (
-        <Alert variant='danger'>
-          <p>Name and avatar cannot be left blank.</p>
-        </Alert>
-      );
-    } else {
-      createChild({ name, avatar, points });
-    }
+
+    createChild({ name, avatar, points });
   };
 
   render() {
@@ -46,7 +41,7 @@ class NewChild extends Component {
     return (
       <Container className='mt-5 pb-5'>
         <div className='sign__up__form'>
-          <Form onSubmit={this.save}>
+          <Form onSubmit={this.save} noValidate>
             <Row className='mt-5'>
               <Col xs={2}></Col>
               <Col xs={8}>
@@ -65,8 +60,13 @@ class NewChild extends Component {
                     id='name'
                     onChange={this.handleInputChange}
                     value={name}
+                    required
                   />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a name.
+                  </Form.Control.Feedback>
                 </Form.Group>
+
                 <p>Select an Avatar</p>
                 <Form.Group controlId='formAvatar'>
                   <Row>

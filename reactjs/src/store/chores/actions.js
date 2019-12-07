@@ -68,6 +68,6 @@ export const deleteChore = id => ({
 // Update the chore
 export const updateChore = chore => ({
   types: [UPDATE_CHORE_PENDING, UPDATE_CHORE_SUCCESS, UPDATE_CHORE_ERROR],
-  callAPI: () => API.put(`/chores/${chore.id}`),
-  payload: { id: chore.id }
+  callAPI: () => API.put(`/chores/${chore.id}`, chore),
+  payload: { chore: { ...chore } }
 });

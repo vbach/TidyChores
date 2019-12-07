@@ -8,13 +8,13 @@ import container from './container';
 class ClaimReward extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchRewards();
-    // this.props.fetchChildren();
+    this.props.fetchReward();
+    this.props.fetchChildren();
     this.state = {
       description: '',
-      claimed: false,
+      claimed: true,
       claimedBy: '',
-      value: ''
+      name: ''
     };
     this.loadData();
   }
@@ -23,7 +23,8 @@ class ClaimReward extends Component {
     // get the input from the event
     const { target } = event;
     // // find the value of the input
-    const input = target.type === 'checkbox' ? target.checked : target.value;
+    const input =
+      target.claimedBy === 'checkbox' ? target.checked : target.value;
     // get the name of the input from it's attribute
     const { name } = target;
     // set state to the name and the value. For example, { description: 'hi'}
@@ -37,11 +38,11 @@ class ClaimReward extends Component {
       match: {
         params: { id }
       },
-      fetchRewards
+      fetchReward
     } = this.props;
     // if no id don't load the item
 
-    await fetchRewards(id);
+    await fetchReward(id);
     // update the state with the data from the updated item
     const { reward } = this.props;
     this.setState({ ...reward });
@@ -50,6 +51,7 @@ class ClaimReward extends Component {
   save = event => {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
+    event.target.className += ' was-validated';
     const {
       updateReward,
       history,
@@ -57,85 +59,79 @@ class ClaimReward extends Component {
         params: { id }
       }
     } = this.props;
-    const { claimedBy, points } = this.state;
+    const { claimedBy } = this.state;
+    let claimed = true;
     if (id) {
-      updateReward({ id, claimedBy, value });
-    } 
-    history.push('/parent/rewards');
+      updateReward({ id, claimedBy, claimed });
+    }
   };
 
   render() {
-    const { description, value, claimedBy } = this.state;
-    const {
-      reward: { id }
-    } = this.props;
+    const { description, claimedBy } = this.state;
+    const { children, reward } = this.props;
     return (
-      <Container className='mt-5'>
+      <Container className='mt-5 min-vh-100'>
         <div className='sign__up__form'>
-          <Form onSubmit={this.save}>
-            <Row className='mt-5'>
-              <Col xs={2}></Col>
-              <Col xs={8}>
-                <h1>Claim Reward</h1>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-            <Row className='mt-5 '>
-              <Col xs={2}></Col>
-              <Col xs={8}>
-                <Form.Group controlId='formAddReward'>
-                  <Form.Label>Description of reward</Form.Label>
-                  <Form.Control
-                    type='text'
-                    name='description'
-                    onChange={this.handleInputChange}
-                    value={description}
-                  />
-                </Form.Group>
+          <Row className='mt-5'>
+            <Col xs={2}></Col>
+            <Col xs={8}>
+              <h1>Claim Reward</h1>
+            </Col>
+            <Col xs={2}></Col>
+          </Row>
+          <Row className='mt-5 '>
+            <Col xs={2}></Col>
+            <Col xs={8}>
+              <Form onSubmit={this.save} noValidate>
+                Claiming reward: {description}
                 <Form.Group controlId='formChild'>
                   <Form.Label>Select a child</Form.Label>
 
                   <Form.Control
                     as='select'
-                    name='childId'
+                    name='claimedBy'
                     onChange={this.handleInputChange}
-                    value={childId}
+                    value={claimedBy}
+                    required
                   >
-                    <option>Select a Child</option>
+                    <option value=''></option>
                     {children.map(child => (
-                      <option value={child.id} key={child.id}>
+                      <option value={child.name} key={child.id}>
                         {child.name}
                       </option>
                     ))}
                   </Form.Control>
+                  <Form.Control.Feedback type='invalid'>
+                    Please select a child.
+                  </Form.Control.Feedback>
                 </Form.Group>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-            <Row className='mb-5'>
-              <Col xs={2}></Col>
-              <Col xs={8} className='text-center'>
                 <Button className={styles.submit__btn} type='submit'>
                   Claim
                 </Button>
-              </Col>
-              <Col xs={2}></Col>
-            </Row>
-          </Form>
+              </Form>
+            </Col>
+            <Col xs={2}></Col>
+          </Row>
+          <Row className='mb-5'>
+            <Col xs={2}></Col>
+            <Col xs={8} className='text-center'></Col>
+            <Col xs={2}></Col>
+          </Row>
         </div>
       </Container>
     );
   }
 }
 
-AddReward.propTypes = {
-  fetchRewards: PropTypes.func.isRequired,
+ClaimReward.propTypes = {
+  fetchReward: PropTypes.func.isRequired,
   updateReward: PropTypes.func.isRequired,
+  fetchChildren: PropTypes.func.isRequired,
   reward: PropTypes.array.isRequired,
-  children: PropTypes.array.isRequired,
+  children: PropTypes.array.isRequired
 };
 
-AddReward.defaultProps = {
+ClaimReward.defaultProps = {
   reward: [],
   children: []
 };

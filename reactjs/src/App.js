@@ -14,6 +14,7 @@ import Rewards from './components/parent/Rewards';
 import NewChild from './components/forms/child/form';
 import ChoreForm from './components/forms/chores/form';
 import RewardForm from './components/forms/rewards/form';
+import ClaimForm from './components/forms/claimrewards/form';
 import store from './store';
 
 class App extends Component {
@@ -50,6 +51,11 @@ class App extends Component {
                   path='/parent/rewards/add/'
                   exact
                   component={RewardForm}
+                />
+                <Route
+                  path='/parent/rewards/claim/:id'
+                  exact
+                  component={ClaimForm}
                 />
               </Switch>
             </Router>

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, ListGroup } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
 
 class Rewards extends Component {
   constructor(props) {
     super(props);
+    this.props.fetchRewards();
+  }
+  componentDidMount() {
     this.props.fetchRewards();
   }
 
@@ -29,22 +32,28 @@ class Rewards extends Component {
         <Row className='mt-3 pb-5'>
           <Col md={6} className='mt-3 pl-5 pr-5'>
             <h2 className={styles.inline__heading}>Claimed Rewards</h2>
-            {rewards.map(reward => (
-              <div key={reward.id}>
-                {reward.claimed && (
-                  <Row className={styles.rewards__table}>
-                    <Col xs={8} className='py-2'>
+            <ListGroup variant='flush' horizontal='lg'>
+              {rewards.map(
+                reward =>
+                  reward.claimed && (
+                    <ListGroup.Item
+                      className={styles.list__group__item__rewards}
+                      key={reward.id}
+                    >
                       <span className={styles.points}></span>
-                      {'  '}
                       {reward.description}
-                    </Col>
-                    <Col xs={4} className='my-auto'>
-                      Claimed by {reward.claimedBy}
-                    </Col>
-                  </Row>
-                )}
-              </div>
-            ))}
+                      <span
+                        style={{
+                          float: 'right',
+                          marginTop: '10px'
+                        }}
+                      >
+                        Claimed by {reward.claimedBy}
+                      </span>
+                    </ListGroup.Item>
+                  )
+              )}
+            </ListGroup>
           </Col>
           <Col md={6} className='mt-3 pr-5 pl-5'>
             <h2 className={styles.inline__heading}>Available Rewards</h2>{' '}
@@ -53,30 +62,36 @@ class Rewards extends Component {
                 <i className='fas fa-plus'></i> Add
               </Link>
             </span>
-            {rewards.map(reward => (
-              <div key={reward.id}>
-                {!reward.claimed && (
-                  <Row className={styles.rewards__table}>
-                    <Col xs={1} className='py-2'>
-                      <span className={styles.points}>{reward.value}</span>
-                    </Col>
-                    <Col xs={9} className='my-auto py-1'>
+            <ListGroup variant='flush' horizontal='lg'>
+              {rewards.map(
+                reward =>
+                  !reward.claimed && (
+                    <ListGroup.Item
+                      key={reward.id}
+                      className={styles.list__group__item__rewards}
+                    >
+                      <span className={styles.points}>{reward.value}</span>{' '}
                       {reward.description}
-                    </Col>
-                    <Col xs={2} className='my-auto py-1'>
-                      <Link to={`/parent/rewards/edit/${reward.id}`}>
-                        <i className='fas fa-edit mr-2'></i>
-                      </Link>
-                      <span onClick={() => this.delete(reward.id)}>
-                        <Link to='/parent/rewards/'>
-                          <i className='fas fa-times'></i>
+                      <span
+                        className='chore__controls'
+                        style={{ float: 'right', marginTop: '10px' }}
+                      >
+                        <Link to={`/parent/rewards/claim/${reward.id}`}>
+                          <i className='fas fa-award mr-2'></i>
                         </Link>
+                        <Link to={`/parent/rewards/edit/${reward.id}`}>
+                          <i className='fas fa-edit mr-2'></i>
+                        </Link>
+                        <span onClick={() => this.delete(reward.id)}>
+                          <Link to='/parent/rewards/'>
+                            <i className='fas fa-times'></i>
+                          </Link>
+                        </span>
                       </span>
-                    </Col>
-                  </Row>
-                )}
-              </div>
-            ))}
+                    </ListGroup.Item>
+                  )
+              )}
+            </ListGroup>
           </Col>
         </Row>
       </Container>

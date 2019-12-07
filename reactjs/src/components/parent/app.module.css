@@ -56,6 +56,13 @@ span > a:hover {
   border: 1px solid #dddddd !important;
 }
 
+.list__group__item__rewards {
+  width: 100% !important;
+  text-align: left !important;
+  border-bottom: 2px solid var(--primary-color) !important;
+  border-top: 0;
+}
+
 /* .list__group__item:hover {
   background-color: var(--primary-color);
   font-weight: 900;
