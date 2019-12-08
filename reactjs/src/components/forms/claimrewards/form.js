@@ -66,13 +66,19 @@ class ClaimReward extends Component {
 
     // Need to set up foreign key restraint to children.
     // Need to pull child points and deduct reward value.
-    const { claimedBy, points, value } = this.state;
+    const { claimedBy, value } = this.state;
     let newPoints;
-    newPoints = children.points - value;
+    let claimedByName;
+    for (let i = 0; i < children.length; i++) {
+      if (claimedBy === children[i].id) {
+        newPoints = children[i].points - value;
+        claimedByName = children[i].name;
+      }
+    }
 
     let claimed = true;
     if (id) {
-      updateReward({ id, claimedBy, claimed });
+      updateReward({ id, claimedBy: claimedByName, claimed });
       updateChild({ id: claimedBy, points: newPoints });
     }
   };

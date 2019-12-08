@@ -152,3 +152,49 @@ span > a:hover {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+/* Checkbox */
+input[type='checkbox'] {
+  display: none;
+}
+input[type='checkbox'] + span {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  width: 30px;
+  height: 30px;
+  margin: -1px 0px 0 0;
+  vertical-align: middle;
+  background: white left top no-repeat;
+  border: 1px solid var(--primary-color);
+  border-radius: 50px;
+  cursor: pointer;
+}
+input[type='checkbox']:checked + span {
+  display: inline-block;
+  position: relative;
+
+  top: 3px;
+  width: 15px;
+  height: 20px;
+  margin-right: 5px;
+  padding: 15px 0 10px 0;
+  border: solid var(--primary-color);
+  border-width: 0 5px 5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+input[type='checkbox'] + span {
+  margin-right: 4px;
+}
+
+.update__button__home {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--text-color);
+  border: 0;
+}

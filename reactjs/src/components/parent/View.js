@@ -8,7 +8,8 @@ import {
   Card,
   CardGroup,
   ListGroup,
-  Form
+  Form,
+  Button
 } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
@@ -19,18 +20,7 @@ class View extends Component {
     this.props.fetchChildren();
     this.props.fetchChores();
     this.state = {
-      children: [
-        {
-          name: '',
-          avatar: ''
-        }
-      ],
-      chores: [
-        {
-          description: '',
-          type: ''
-        }
-      ]
+      checked: false
     };
   }
 
@@ -40,19 +30,14 @@ class View extends Component {
   }
 
   handleChange = event => {
-    let { chores } = this.props;
-    // get the input from the event
-    const { target } = event;
-    // find the value of the input
-    target.type = false;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    // get the name of the input from it's attribute
-    const { name } = target;
-    // set state to the name and the value. For example, { description: 'hi'}
-    this.setState({
-      [name]: value
-    });
+    this.setState({ checked: !this.state.checked });
   };
+
+  save = event => {
+    // make sure the form doesn't submit with the browser
+    event.preventDefault();
+  };
+
   delete = id => {
     const { deleteChore } = this.props;
     deleteChore(id);
@@ -69,6 +54,18 @@ class View extends Component {
       'Friday',
       'Saturday'
     ][new Date().getDay()];
+
+    const submitBtn = this.state.checked ? (
+      <div>
+        <Button
+          type='submit'
+          style={{ float: 'right' }}
+          className={styles.update__button__home}
+        >
+          Update
+        </Button>
+      </div>
+    ) : null;
 
     return (
       <Fragment>
@@ -104,52 +101,49 @@ class View extends Component {
                     </span>
                   </Card.Title>
                   <Card.Text>
-                    {chores
-                      .filter(
-                        chore =>
-                          chore.childId === child.id &&
-                          chore.day === weekday.toLowerCase()
-                      )
-                      .map(chore => (
-                        <Form onClick={this.handleChange}>
-                          <ListGroup variant='flush'>
-                            <ListGroup.Item
-                              className={styles.list__group__item}
-                              key={chore.id}
-                            >
-                              <span className={styles.custom__check__container}>
-                                {' '}
-                                {chore.description}
+                    <ListGroup variant='flush'>
+                      {chores
+                        .filter(
+                          chore =>
+                            chore.childId === child.id &&
+                            chore.day === weekday.toLowerCase()
+                        )
+                        .map(chore => (
+                          <ListGroup.Item
+                            className={styles.list__group__item}
+                            key={chore.id}
+                          >
+                            <Form onClick={this.save}>
+                              <span onClick={this.handleChange}>
                                 <input
                                   type='checkbox'
-                                  checked={chore.type ? 'checked' : ''}
-                                  key={chore.id}
-                                  name='type'
-                                  value={chore.type}
-                                  onClick={this.handleChange}
+                                  checked={this.state.checked}
+                                  onChange={this.handleChange}
                                 />
-                                <span
-                                  className={styles.custom__check__mark}
-                                ></span>
-                                <span
-                                  className='chore__controls'
-                                  style={{ float: 'right' }}
-                                >
-                                  {' '}
-                                  <Link to={`/parent/chores/edit/${chore.id}`}>
-                                    <i className='fas fa-edit'></i>
-                                  </Link>{' '}
-                                  <span onClick={() => this.delete(chore.id)}>
-                                    <Link to='/parent'>
-                                      <i className='fas fa-times'></i>
-                                    </Link>
-                                  </span>
+                                <span></span>
+                              </span>{' '}
+                              {chore.description}
+                              <span
+                                className='chore__controls'
+                                style={{ float: 'right' }}
+                              >
+                                {' '}
+                                <Link to={`/parent/chores/edit/${chore.id}`}>
+                                  <i className='fas fa-edit'></i>
+                                </Link>{' '}
+                                <span onClick={() => this.delete(chore.id)}>
+                                  <Link to='/parent'>
+                                    <i className='fas fa-times'></i>
+                                  </Link>
                                 </span>
+                                {/* {submitBtn} */}
                               </span>
-                            </ListGroup.Item>
-                          </ListGroup>
-                        </Form>
-                      ))}
+                              {/* </span> */}
+                            </Form>{' '}
+                            {/* </span> */}
+                          </ListGroup.Item>
+                        ))}
+                    </ListGroup>
                   </Card.Text>
                 </Card>
               </Col>
