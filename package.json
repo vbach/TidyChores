@@ -13,8 +13,7 @@
     "install-reactjs": "npm install --prefix reactjs",
     "install-api": "npm install --prefix api",
     "build-reactjs": "npm run build --prefix reactjs",
-    
-    "heroku-postbuild": "npm install-* && npm build-*"
+    "heroku-postbuild": "npm:install-* && npm:build-*"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
