@@ -9,7 +9,7 @@
     "api": "cd api; nodemon server.js",
     "server": "npm start --prefix api",
     "dev": "concurrently --raw \"npm run api\" \"npm run reactjs\"",
-    "start": "npm start --prefix api",
+    "start": "concurrently \"npm start --prefix api\" \"npm start --prefix reactjs\"",
     "install-reactjs": "npm install --prefix reactjs",
     "install-api": "npm install --prefix api",
     "build-reactjs": "npm run build --prefix reactjs",
