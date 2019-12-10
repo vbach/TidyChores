@@ -18,15 +18,15 @@ app.use(bodyParser.json());
 app.use(morganDebug('api:request', 'dev'));
 
 // serve static assets
-if (process.env.NODE_ENV === 'production' || 'staging') {
-  app.use(express.static('../reactjs/build'));
+// if (process.env.NODE_ENV === 'production' || 'staging') {
+//   app.use(express.static('../reactjs/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, '..', 'reactjs', 'build', 'index.html')
-    );
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(
+//       path.resolve(__dirname, '..', 'reactjs', 'build', 'index.html')
+//     );
+//   });
+// }
 
 // setup to use router at /user
 // setup to use router at /auth
