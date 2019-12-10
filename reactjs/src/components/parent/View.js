@@ -20,7 +20,15 @@ class View extends Component {
     this.props.fetchChildren();
     this.props.fetchChores();
     this.state = {
-      checked: false
+      // checked: false,
+      chores: [
+        {
+          name: '',
+          type: false,
+          description: '',
+          childId: ''
+        }
+      ]
     };
   }
 
@@ -30,7 +38,15 @@ class View extends Component {
   }
 
   handleChange = event => {
-    this.setState({ checked: !this.state.checked });
+    let chores = this.state.chores;
+
+    chores.forEach(chore => {
+      if (chore.id === event.target.value) {
+        chore.type = event.target.checked;
+      }
+    });
+    this.setState = { chores: chores };
+    // this.setState({ checked: !this.state.checked });
   };
 
   save = event => {
@@ -108,7 +124,7 @@ class View extends Component {
                             chore.childId === child.id &&
                             chore.day === weekday.toLowerCase()
                         )
-                        .map(chore => (
+                        .map((chore, i) => (
                           <ListGroup.Item
                             className={styles.list__group__item}
                             key={chore.id}
@@ -117,8 +133,9 @@ class View extends Component {
                               <span onClick={this.handleChange}>
                                 <input
                                   type='checkbox'
-                                  checked={this.state.checked}
+                                  checked={this.state.chores.type}
                                   onChange={this.handleChange}
+                                  value={chore.id}
                                 />
                                 <span></span>
                               </span>{' '}
@@ -168,6 +185,7 @@ View.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       type: PropTypes.string,
+      description: PropTypes.string,
       childId: PropTypes.string
     })
   )

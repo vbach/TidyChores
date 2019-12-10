@@ -1,11 +1,9 @@
 // load in the imports
-// const error = require('debug')('api:error');
 const express = require('express');
-// const port = process.env.PORT || 4000;
-// const log = require('debug')('api:logging');
 const bodyParser = require('body-parser');
 const morganDebug = require('morgan-debug');
 const cors = require('cors');
+const path = require('path');
 
 // routes
 const childrenRouter = require('./routes/children');
@@ -18,6 +16,18 @@ app.use(cors());
 app.use(bodyParser.json());
 // log all requests
 app.use(morganDebug('api:request', 'dev'));
+
+// serve static assets
+if (process.env.NODE_ENV === 'production' || 'staging') {
+  app.use(express.static('../reactjs/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, '..', 'reactjs', 'build', 'index.html')
+    );
+  });
+}
+
 // setup to use router at /user
 // setup to use router at /auth
 // setup to use router at /children
@@ -32,9 +42,6 @@ app.use((err, req, res, next) => {
   error('ERROR FOUND:', err);
   res.sendStatus(500);
 });
-
-// // spin up the server and log what port it is running on
-// app.listen(port, () => log(`API listening on port ${port}!`));
 
 // export the express app
 module.exports = app;
