@@ -8,22 +8,28 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "db-update": "sequelize db:migrate; sequelize db:seed:all;"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.17.1",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
     "kill-port": "^1.6.0",
     "morgan": "^1.9.1",
     "morgan-debug": "^2.0.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "pg": "^7.14.0",
     "sequelize": "^5.21.2",
     "sequelize-cli": "^5.5.1",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "validator": "^12.1.0"
   }
 }

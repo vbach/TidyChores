@@ -4,7 +4,11 @@
 }
 
 /* Links */
-
+.navbar-nav .nav-item a {
+  color: var(--text-color) !important;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
 a,
 a:visited {
   color: var(--text-color);

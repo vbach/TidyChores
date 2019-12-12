@@ -9,6 +9,7 @@ const path = require('path');
 const childrenRouter = require('./routes/children');
 const choresRouter = require('./routes/chores');
 const rewardsRouter = require('./routes/rewards');
+const usersRouter = require('./routes/users');
 // create an express app
 const app = express();
 app.use(cors());
@@ -17,25 +18,15 @@ app.use(bodyParser.json());
 // log all requests
 app.use(morganDebug('api:request', 'dev'));
 
-// serve static assets
-// if (process.env.NODE_ENV === 'production' || 'staging') {
-//   app.use(express.static('../reactjs/build'));
-
-//   app.get('*', (req, res) => {
-//     res.sendFile(
-//       path.resolve(__dirname, '..', 'reactjs', 'build', 'index.html')
-//     );
-//   });
-// }
-
 // setup to use router at /user
-// setup to use router at /auth
+app.use('/users', usersRouter);
 // setup to use router at /children
 app.use('/children', childrenRouter);
 // setup to use router at /chores
 app.use('/chores', choresRouter);
 // setup to use router at /rewards
 app.use('/rewards', rewardsRouter);
+
 // four params are required to mark this as a error handling middleware
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

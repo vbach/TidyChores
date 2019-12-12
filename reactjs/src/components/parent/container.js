@@ -7,14 +7,16 @@ function mapStateToProps(state) {
   const {
     children: { byId, allIds },
     chores: { choreId, allChoreIds },
-    rewards: { rewardId, allRewardsIds }
+    rewards: { rewardId, allRewardsIds },
+    auth
   } = state;
 
   // turn the array of ids into an array of objects
   return {
     children: allIds.map(id => byId[id].data),
     chores: allChoreIds.map(id => choreId[id].data),
-    rewards: allRewardsIds.map(id => rewardId[id].data)
+    rewards: allRewardsIds.map(id => rewardId[id].data),
+    auth
   };
 }
 

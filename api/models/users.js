@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Children = sequelize.define(
-    'Children',
+  const Users = sequelize.define(
+    'Users',
     {
       id: {
         defaultValue: DataTypes.UUIDV4,
@@ -16,29 +16,34 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: {
-            args: [1, 500],
-            msg: 'Child name should be at least 3 characters.'
+            args: [3, 120],
+            msg: 'Name should be at least 3 characters.'
           }
         }
       },
-      avatar: {
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: { args: true, msg: 'Email is already in use' },
+        validate: {
+          isEmail: true
+        }
+      },
+      password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: { args: [1], msg: 'An avatar must be selected.' }
+          len: {
+            args: [6, 120],
+            msg: 'Passwords must be at least 6 characters.'
+          }
         }
-      },
-      points: {
-        type: DataTypes.STRING,
-        defaultValue: '0'
-      },
-      parentId: DataTypes.UUID
+      }
     },
     {}
   );
-  Children.associate = function(models) {
-    Children.belongsTo(models.Users, { foreignKey: 'parentId' });
-    Children.hasMany(models.Chores, { foreignKey: 'childId' });
+  Users.associate = function(models) {
+    Users.hasMany(models.Children, { foreignKey: 'parentId' });
   };
-  return Children;
+  return Users;
 };

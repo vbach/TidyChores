@@ -1,6 +1,7 @@
 {
   "env": {
-    "DEBUG": "api:*"
+    "DEBUG": "api:*",
+    "SECRET": "881UiY2FAF1OPzkNTdohjDgGa2BQD80hGyEDf8fxRvpbotWcDkm6nw8zDKbHqa9CwxlH9iUfqXqG9E5W2LdhsPyUY12Qrot3PIqDr6vrok0miPolWqBtKgeMoBXWN5aLfnqWM4qNriaw5s33LINR8WgYbKiVxzp2Y5Qr7urlGcOh9HdUZYLuyjSGiYnpXX3KCx3mlxCW3TGIuQHaqhkRHfqdATwjykzxjUeApOxwd5McJpz0bIcffn8Cpo"
   },
   "delay": "1500ms"
 }
