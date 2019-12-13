@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import styles from './app.module.css';
@@ -10,7 +11,8 @@ class SignUp extends Component {
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      zipcode: ''
     };
   }
 
@@ -20,7 +22,6 @@ class SignUp extends Component {
       this.props.history.push('/parent');
     }
   }
-
   handleInputChange = event => {
     // get the input from the event
     const { target } = event;
@@ -39,13 +40,14 @@ class SignUp extends Component {
     const newUser = {
       name: this.state.name,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      zipcode: this.state.zipcode
     };
-    this.props.signUpUser(newUser, this.props.history);
+    this.props.signUpUser(newUser);
   };
 
   render() {
-    const { name, email, password } = this.state;
+    const { name, email, password, zipcode } = this.state;
     return (
       <Container className='mt-5'>
         <div className='sign__up__form'>
@@ -62,6 +64,16 @@ class SignUp extends Component {
                     name='name'
                     onChange={this.handleInputChange}
                     value={name}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Zipcode</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='zipcode'
+                    onChange={this.handleInputChange}
+                    value={zipcode}
                     required
                   />
                 </Form.Group>

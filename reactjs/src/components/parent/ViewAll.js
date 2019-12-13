@@ -12,6 +12,7 @@ import {
 } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
+import { userInfo } from 'os';
 
 class ViewAll extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class ViewAll extends Component {
   };
 
   render() {
-    const { children, chores } = this.props;
+    const { children, chores, auth } = this.props;
 
     let weekday = [
       'Sunday',
@@ -54,45 +55,47 @@ class ViewAll extends Component {
             </Col>
           </Row>
           <Row className='pt-5 pb-5 justify-content-center'>
-            {children.map(child => (
-              <Col className='pt-2' xs={12} lg={6} key={child.id}>
-                <Card className={styles.card}>
-                  <Card.Title>
-                    <h2 className={styles.h2__parentViewAll}>{child.name}</h2>
-                    <span></span>
-                  </Card.Title>
-                  <Card.Text>
-                    {chores
-                      .filter(chore => chore.childId === child.id)
-                      .map(chore => (
-                        <Form>
-                          <ListGroup letiant='flush'>
-                            <ListGroup.Item
-                              className={styles.list__group__item}
-                              key={chore.id}
-                            >
-                              {' '}
-                              {chore.day} - {chore.description}
-                              <span
-                                className='chore__controls'
-                                style={{ float: 'right' }}
+            {children
+              .filter(child => child.parentId === auth.user.id)
+              .map(child => (
+                <Col className='pt-2' xs={12} lg={6} key={child.id}>
+                  <Card className={styles.card}>
+                    <Card.Title>
+                      <h2 className={styles.h2__parentViewAll}>{child.name}</h2>
+                      <span></span>
+                    </Card.Title>
+                    <Card.Text>
+                      {chores
+                        .filter(chore => chore.childId === child.id)
+                        .map(chore => (
+                          <Form>
+                            <ListGroup letiant='flush'>
+                              <ListGroup.Item
+                                className={styles.list__group__item}
+                                key={chore.id}
                               >
                                 {' '}
-                                <Link to={`/parent/chore/edit/${chore.id}`}>
-                                  <i className='fas fa-edit'></i>
-                                </Link>{' '}
-                                <Link to={`/parent/chore/delete/${chore.id}`}>
-                                  <i className='fas fa-times'></i>
-                                </Link>
-                              </span>
-                            </ListGroup.Item>
-                          </ListGroup>
-                        </Form>
-                      ))}
-                  </Card.Text>
-                </Card>
-              </Col>
-            ))}
+                                {chore.day} - {chore.description}
+                                <span
+                                  className='chore__controls'
+                                  style={{ float: 'right' }}
+                                >
+                                  {' '}
+                                  <Link to={`/parent/chore/edit/${chore.id}`}>
+                                    <i className='fas fa-edit'></i>
+                                  </Link>{' '}
+                                  <Link to={`/parent/chore/delete/${chore.id}`}>
+                                    <i className='fas fa-times'></i>
+                                  </Link>
+                                </span>
+                              </ListGroup.Item>
+                            </ListGroup>
+                          </Form>
+                        ))}
+                    </Card.Text>
+                  </Card>
+                </Col>
+              ))}
           </Row>
         </Container>
       </Fragment>
@@ -115,7 +118,8 @@ ViewAll.propTypes = {
       type: PropTypes.bool,
       childId: PropTypes.string
     })
-  )
+  ),
+  auth: PropTypes.object.isRequired
 };
 
 ViewAll.defaultProps = {

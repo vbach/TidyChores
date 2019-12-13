@@ -29,10 +29,11 @@ class NewChild extends Component {
 
     event.preventDefault();
     event.target.className += ' was-validated';
+    const parentId = this.props.auth.user.id;
     const { createChild, history } = this.props;
     const { name, avatar, points } = this.state;
 
-    createChild({ name, avatar, points });
+    createChild({ parentId, name, avatar, points });
   };
 
   render() {
@@ -169,8 +170,10 @@ NewChild.propTypes = {
   createChild: PropTypes.func.isRequired,
   children: PropTypes.shape({
     name: PropTypes.string,
-    avatar: PropTypes.string
-  })
+    avatar: PropTypes.string,
+    parentId: PropTypes.string
+  }),
+  auth: PropTypes.object.isRequired
 };
 
 NewChild.defaultProps = {

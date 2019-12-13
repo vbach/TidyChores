@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const morganDebug = require('morgan-debug');
 const cors = require('cors');
 const path = require('path');
+const nodemailer = require('nodemailer');
 
 // routes
 const childrenRouter = require('./routes/children');

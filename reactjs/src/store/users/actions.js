@@ -1,7 +1,6 @@
 import API from '../../API';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../helpers/setAuthToken';
-import uuid from 'uuid';
 import {
   SIGNUP_USER_PENDING,
   SIGNUP_USER_SUCCESS,
@@ -17,7 +16,18 @@ export const signUpUser = (userData, history) => {
     API.post('/users/signup', userData)
       .then(res => {
         dispatch({ type: SIGNUP_USER_SUCCESS });
-        history.push('/');
+      })
+      .then(res => {
+        let email = userData.email;
+        let password = userData.password;
+        let credentials = { email, password };
+        API.post('/users/login', credentials).then(res => {
+          const { token } = res.data;
+          localStorage.setItem('jwtToken', token);
+          setAuthToken(token);
+          const decoded = jwtDecode(token);
+          dispatch({ type: LOGIN_SUCCESS }, setCurrentUser(decoded));
+        });
       })
       .catch(err =>
         dispatch({

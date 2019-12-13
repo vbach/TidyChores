@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const protectedRoute = require('../utils/protectedRoute');
 // import controller
 const childrenCtrl = require('../controllers/children');
 
@@ -10,15 +9,15 @@ router.get('/', childrenCtrl.getChildren);
 router.get('/', childrenCtrl.getUserChild);
 
 // GET /children/:id
-router.get('/:id', protectedRoute, childrenCtrl.getOneById);
+router.get('/:id', childrenCtrl.getOneById);
 
 // POST /children
-router.post('/', protectedRoute, childrenCtrl.createChild);
+router.post('/', childrenCtrl.createChild);
 
 // PUT /children
-router.put('/:id', protectedRoute, childrenCtrl.updateChild);
+router.put('/:id', childrenCtrl.updateChild);
 
 // DELETE /children
-router.delete('/:id', protectedRoute, childrenCtrl.removeChild);
+router.delete('/:id', childrenCtrl.removeChild);
 
 module.exports = router;

@@ -44,15 +44,20 @@ class Navigation extends Component {
                     <Nav.Link href='/parent/rewards'>Rewards</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Button onClick={this.onLogoutClick}>Logout</Button>
+                    <Button
+                      onClick={this.onLogoutClick}
+                      className={styles.nav__btn}
+                    >
+                      Logout
+                    </Button>
                   </Nav.Item>
                 </Nav>
               </Fragment>
             ) : (
               <Fragment>
                 <Nav className='ml-auto pb-3'>
-                  <Nav.Link to='/signup'>
-                    <Button className={styles.nav__btn}>Sign Up</Button>
+                  <Nav.Link href='/signup' className={styles.nav__btn}>
+                    Sign Up
                   </Nav.Link>
                 </Nav>
               </Fragment>

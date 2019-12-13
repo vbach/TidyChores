@@ -9,6 +9,7 @@ module.exports = {
         email: 'monica@gmail.com',
         password:
           '$2a$11$aRSWkl1JB2NzsDlyMRwke.RkpWn/uymxqBP6Aj0enb8CtPPxN5/Tu',
+        zipcode: '46203',
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')
       }

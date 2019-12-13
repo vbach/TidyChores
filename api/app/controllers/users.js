@@ -18,7 +18,8 @@ exports.registerUsers = async (req, res) => {
     // eslint-disable-next-line prefer-const
     name,
     email,
-    password
+    password,
+    zipcode
   } = req.body;
   try {
     // Error response handling
@@ -47,7 +48,8 @@ exports.registerUsers = async (req, res) => {
     const user = await Users.create({
       name,
       email,
-      password
+      password,
+      zipcode
     });
     const token = jwt.sign({ id: user.id }, process.env.SECRET);
     res.json({ token, loggedIn: true });
@@ -77,7 +79,7 @@ exports.loginUsers = async (req, res) => {
     }
   });
   const token = jwt.sign(
-    { id: user.id, name: user.name, email: user.email },
+    { id: user.id, name: user.name, zipcode: user.zipcode },
     process.env.SECRET
   );
   res.json({ token, loggedIn: true });
@@ -113,3 +115,5 @@ exports.loginUsers = async (req, res) => {
   //   // res.json({ token, loggedIn: true });
   // });
 };
+
+// forgot password

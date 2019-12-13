@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, matchPath } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -28,14 +28,53 @@ class View extends Component {
           description: '',
           childId: ''
         }
-      ]
+      ],
+      weather: '',
+      auth: {}
     };
   }
 
   componentDidMount() {
     this.props.fetchChildren();
     this.props.fetchChores();
+    let zipcode = this.props.auth.user.zipcode;
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&APPID=e038624658d3122cd8d6d465b87695c5`
+    )
+      .then(results => {
+        return results.json();
+      })
+      .then(data => {
+        let temp = data.main.temp;
+        let farTemp = Math.trunc((temp - 273.15) * 1.8 + 32);
+        this.setState({ weather: farTemp });
+      })
+      .catch(console.log);
   }
+
+  randomEvent = temp => {
+    const niceWeather = [
+      'go to the zoo.',
+      'go to the park.',
+      'go swimming.',
+      'have a dance party.'
+    ];
+
+    const badWeather = [
+      'watch a movie.',
+      'bake cookies.',
+      'take a nap.',
+      'play a board game.'
+    ];
+
+    if (temp > 65) {
+      let random = Math.floor(Math.random() * niceWeather.length);
+      return niceWeather[random].toString();
+    } else {
+      let random = Math.floor(Math.random() * badWeather.length);
+      return badWeather[random].toString();
+    }
+  };
 
   handleChange = event => {
     let chores = this.state.chores;
@@ -98,6 +137,10 @@ class View extends Component {
                 <Link to='/parent/viewall' url='/parent/viewwall'>
                   view all upcoming chores
                 </Link>
+                <p>
+                  It is currently {this.state.weather} degrees outside. Today is
+                  a good day to {this.randomEvent(this.state.weather)}
+                </p>
               </span>
             </Col>
           </Row>

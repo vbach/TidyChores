@@ -13,13 +13,15 @@ function mapStateToProps(state, props) {
       choreId,
       choreId: { [id]: { data: chore } = {} },
       allChoreIds
-    }
+    },
+    auth
   } = state;
   // turn the array of ids into an array of objects
   return {
     children: allIds.map(id => byId[id].data),
     chores: allChoreIds.map(id => choreId[id].data),
-    chore
+    chore,
+    auth
   };
 }
 

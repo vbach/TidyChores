@@ -38,10 +38,10 @@ exports.getOneById = async (req, res) => {
 
 // create a new child
 exports.createChild = async (req, res) => {
-  const { name, avatar } = req.body;
+  const { name, avatar, parentId } = req.body;
 
   try {
-    const newChild = await Children.create({ name, avatar });
+    const newChild = await Children.create({ name, avatar, parentId });
     // return to add parentId from url once user is setup
     res.json({ id: newChild.id });
   } catch (e) {

@@ -38,6 +38,16 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Passwords must be at least 6 characters.'
           }
         }
+      },
+      zipcode: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: {
+            args: [5, 5],
+            msg: 'Zipcodes may only consist of 5 characters.'
+          }
+        }
       }
     },
     {}
