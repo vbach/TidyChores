@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { signUpUser, loginUser } from '../../store/users/actions';
 
 function mapStateToProps(state, props) {
-  const { auth } = state;
+  const { auth, error } = state;
 
-  return { auth };
+  return { auth, error };
 }
 
 // set the actions we need in this component

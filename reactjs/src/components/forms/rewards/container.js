@@ -14,9 +14,10 @@ function mapStateToProps(state, props) {
   const {
     rewards: {
       rewardId: { [id]: { data: reward } = {} }
-    }
+    },
+    auth
   } = state;
-  return { reward };
+  return { reward, auth };
 }
 
 // set the actions we need in this component

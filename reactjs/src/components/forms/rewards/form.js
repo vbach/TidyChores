@@ -11,7 +11,8 @@ class AddReward extends Component {
       claimedBy: '',
       description: '',
       value: '',
-      claimed: ''
+      claimed: '',
+      parentId: ''
     };
     this.loadData();
   }
@@ -48,6 +49,7 @@ class AddReward extends Component {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
     event.target.className += ' was-validated';
+
     const {
       createReward,
       updateReward,
@@ -55,11 +57,12 @@ class AddReward extends Component {
         params: { id }
       }
     } = this.props;
+    const parentId = this.props.auth.user.id;
     const { description, value, claimedBy, claimed } = this.state;
     if (id) {
       updateReward({ id, description, value, claimedBy, claimed });
     } else {
-      createReward({ description, value });
+      createReward({ parentId, description, value });
     }
   };
 
@@ -130,12 +133,14 @@ AddReward.propTypes = {
   createReward: PropTypes.func.isRequired,
   updateReward: PropTypes.func.isRequired,
   fetchReward: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 
   reward: PropTypes.shape({
     description: PropTypes.string,
     claimed: PropTypes.bool,
     claimedBy: PropTypes.string,
-    value: PropTypes.string
+    value: PropTypes.string,
+    parentId: PropTypes.string
   })
 };
 

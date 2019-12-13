@@ -16,7 +16,8 @@ class ClaimReward extends Component {
       name: '',
       points: '',
       value: '',
-      childId: ''
+      childId: '',
+      error: ''
     };
     this.loadData();
   }
@@ -69,7 +70,15 @@ class ClaimReward extends Component {
     const { claimedBy, value } = this.state;
     let newPoints;
     let claimedByName;
+
     for (let i = 0; i < children.length; i++) {
+      if (children[i].points < value) {
+        let message = 'Child does not have enough points.';
+        this.setState({ error: message });
+        event.target.className += ' invalid';
+        return;
+      }
+
       if (claimedBy === children[i].id) {
         newPoints = children[i].points - value;
         claimedByName = children[i].name;
@@ -85,7 +94,7 @@ class ClaimReward extends Component {
 
   render() {
     const { description, claimedBy } = this.state;
-    const { children } = this.props;
+    const { children, error } = this.props;
     return (
       <Container className='mt-5 min-vh-100'>
         <div className='sign__up__form'>
@@ -103,7 +112,6 @@ class ClaimReward extends Component {
                 Claiming reward: {description}
                 <Form.Group controlId='formChild'>
                   <Form.Label>Select a child</Form.Label>
-
                   <Form.Control
                     as='select'
                     name='claimedBy'
@@ -120,6 +128,9 @@ class ClaimReward extends Component {
                   </Form.Control>
                   <Form.Control.Feedback type='invalid'>
                     Please select a child.
+                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid'>
+                    {error}
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Button className={styles.submit__btn} type='submit'>

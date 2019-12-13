@@ -7,7 +7,7 @@ const API = axios.create({
 // for each api request going out
 API.interceptors.request.use(async config => {
   // pull the token out of local storage
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('jwtToken');
   // if there is no token do nothing
   if (!token) return config;
   // if there is a token, set a header for any request that contains the token

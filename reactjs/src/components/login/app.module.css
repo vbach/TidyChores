@@ -1,20 +1,34 @@
 .loginBar {
   content: ' ';
   background-color: var(--primary-color);
-  height: 50px;
+  height: auto;
 }
 
 .login__btn {
-  color: var(--light-text-color) !important;
-  font-weight: 700;
-  background-color: var(--active-color);
-  border: 0;
-  border-radius: 10px;
-}
-
-.login__btn:hover {
   background-color: var(--secondary-color);
   border: 0;
   border-radius: 10px;
+  color: var(--light-text-color) !important;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 10px 20px 10px 20px;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+
+.login__btn:hover {
+  background-color: var(--active-color);
+  border: 0;
+  border-radius: 10px;
   outline: none;
+}
+
+.invalid-feedback {
+  width: 25% !important;
+}
+
+.align__center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }

@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Home from './pages/Home';
 import Container from 'react-bootstrap/Container';
 import Footer from './components/layout/Footer';
+import Header from './components/layout/Header';
 import Login from './components/login/Login';
 import SignUp from './components/login/Signup';
 import ParentView from './components/parent/View';
@@ -45,12 +46,13 @@ class App extends Component {
     return (
       <div>
         <Provider store={store}>
-          <Login />
+          <Header />
           <Container className={styles.container}>
             <Router>
               <div>
                 <Route path='/' component={Navbar} />
                 <Route path='/' exact component={Home} />
+                <Route path='/login' exact component={Login} />
                 <Route path='/signup' exact component={SignUp} />
               </div>
 

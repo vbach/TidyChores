@@ -1,15 +1,19 @@
 import API from '../../API';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../helpers/setAuthToken';
+import { push } from 'react-router-redux';
 import {
   SIGNUP_USER_PENDING,
   SIGNUP_USER_SUCCESS,
   SIGNUP_USER_ERROR,
   LOGIN_SUCCESS,
   LOGIN_PENDING,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  USER_INFO_PENDING,
+  USER_INFO_ERROR,
+  USER_INFO_SUCCESS
 } from '../actionTypes';
-
+const CACHE_TIME = 1000 * 60 * 5;
 export const signUpUser = (userData, history) => {
   return dispatch => {
     dispatch({ type: SIGNUP_USER_PENDING });
@@ -37,7 +41,7 @@ export const signUpUser = (userData, history) => {
   };
 };
 
-export const loginUser = credentials => {
+export const loginUser = (credentials, history) => {
   return dispatch => {
     dispatch({ type: LOGIN_PENDING });
 
@@ -46,6 +50,7 @@ export const loginUser = credentials => {
       localStorage.setItem('jwtToken', token);
       setAuthToken(token);
       const decoded = jwtDecode(token);
+
       dispatch({ type: LOGIN_SUCCESS }, setCurrentUser(decoded));
     });
   };
@@ -57,6 +62,21 @@ export const setCurrentUser = decoded => {
     payload: decoded
   };
 };
+
+export const fetchUserInfo = () => ({
+  types: [USER_INFO_PENDING, USER_INFO_SUCCESS, USER_INFO_ERROR],
+  // function used to call api
+  callAPI: () => API.get('/users'),
+  // receives the current app state and returns true if we should call the api
+  shouldCallAPI: state => {
+    const { loadedAt, isLoading } = state.users;
+    // if user is currently loading don't call again
+    if (isLoading) return false;
+    const isCached = Date.now() - loadedAt < CACHE_TIME;
+    // if we don't have a child or it's beyond the cache timeout make the api call
+    return !loadedAt || !isCached;
+  }
+});
 
 // Log user out
 export const logoutUser = () => dispatch => {

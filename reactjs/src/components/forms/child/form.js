@@ -7,9 +7,7 @@ import container from './container';
 class NewChild extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // children: [{ name: '', avatar: 'boy_001' }]
-    };
+    this.state = {};
   }
   handleInputChange = event => {
     // get the input from the event

@@ -59,6 +59,9 @@ class Navigation extends Component {
                   <Nav.Link href='/signup' className={styles.nav__btn}>
                     Sign Up
                   </Nav.Link>
+                  <Nav.Link href='/login' className={styles.nav__btn}>
+                    Login
+                  </Nav.Link>
                 </Nav>
               </Fragment>
             )}

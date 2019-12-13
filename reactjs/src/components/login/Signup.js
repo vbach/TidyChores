@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import styles from './app.module.css';
@@ -37,6 +37,7 @@ class SignUp extends Component {
 
   save = event => {
     event.preventDefault();
+    event.target.className += ' was-validated';
     const newUser = {
       name: this.state.name,
       email: this.state.email,
@@ -49,14 +50,16 @@ class SignUp extends Component {
   render() {
     const { name, email, password, zipcode } = this.state;
     return (
-      <Container className='mt-5'>
+      <Container className='mt-5 pb-5'>
         <div className='sign__up__form'>
-          <Form onSubmit={this.save}>
+          <Form onSubmit={this.save} noValidate>
             <Row className='mt-5'>
               <Col xs={2}></Col>
-              <Col xs={1} className={styles.align__center}></Col>
-              <Col xs={7}>
+              <Col xs={6} className={styles.align__center}>
                 <h1>Sign Up for Tidy Chores</h1>
+                <p>
+                  Already have an acccount? <Link to='/login'>Login!</Link>
+                </p>
                 <Form.Group>
                   <Form.Label>Name</Form.Label>
                   <Form.Control
@@ -66,6 +69,9 @@ class SignUp extends Component {
                     value={name}
                     required
                   />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a name.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Zipcode</Form.Label>
@@ -76,6 +82,9 @@ class SignUp extends Component {
                     value={zipcode}
                     required
                   />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a zipcode.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Email address</Form.Label>
@@ -89,6 +98,9 @@ class SignUp extends Component {
                   <Form.Text className='text-muted'>
                     We'll never share your email with anyone else.
                   </Form.Text>
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a email.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Password</Form.Label>
@@ -99,8 +111,11 @@ class SignUp extends Component {
                     onChange={this.handleInputChange}
                     required
                   />
+                  <Form.Control.Feedback type='invalid'>
+                    Please enter a password.
+                  </Form.Control.Feedback>
                 </Form.Group>
-                <Button className={styles.submit__btn} type='submit'>
+                <Button className={styles.login__btn} type='submit'>
                   Sign Up
                 </Button>
               </Col>

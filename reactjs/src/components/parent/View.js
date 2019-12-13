@@ -145,72 +145,70 @@ class View extends Component {
             </Col>
           </Row>
           <Row className='pt-5 pb-5 justify-content-center'>
-            {children
-              .filter(child => child.parentId === auth.user.id)
-              .map(child => (
-                <Col className='pt-2' xs={12} lg={6} key={child.id}>
-                  <Card className={styles.card}>
-                    <Card.Img
-                      letiant='top'
-                      src={`/avatars/${child.avatar}.png`}
-                      className={styles.avatar}
-                      alt='Child Avatar'
-                    />
-                    <Card.Title>
-                      <h2 className={styles.h2__parentView}>{child.name}</h2>
-                      <span>
-                        {child.name} has {child.points} points!
-                      </span>
-                    </Card.Title>
-                    <Card.Text>
-                      <ListGroup variant='flush'>
-                        {chores
-                          .filter(
-                            chore =>
-                              chore.childId === child.id &&
-                              chore.day === weekday.toLowerCase()
-                          )
-                          .map((chore, i) => (
-                            <ListGroup.Item
-                              className={styles.list__group__item}
-                              key={chore.id}
-                            >
-                              <Form onClick={this.save}>
-                                <span onClick={this.handleChange}>
-                                  <input
-                                    type='checkbox'
-                                    checked={this.state.chores.type}
-                                    onChange={this.handleChange}
-                                    value={chore.id}
-                                  />
-                                  <span></span>
-                                </span>{' '}
-                                {chore.description}
-                                <span
-                                  className='chore__controls'
-                                  style={{ float: 'right' }}
-                                >
-                                  {' '}
-                                  <Link to={`/parent/chores/edit/${chore.id}`}>
-                                    <i className='fas fa-edit'></i>
-                                  </Link>{' '}
-                                  <span onClick={() => this.delete(chore.id)}>
-                                    <Link to='/parent'>
-                                      <i className='fas fa-times'></i>
-                                    </Link>
-                                  </span>
-                                  {/* {submitBtn} */}
+            {children.map(child => (
+              <Col className='pt-2' xs={12} lg={6} key={child.id}>
+                <Card className={styles.card}>
+                  <Card.Img
+                    letiant='top'
+                    src={`/avatars/${child.avatar}.png`}
+                    className={styles.avatar}
+                    alt='Child Avatar'
+                  />
+                  <Card.Title>
+                    <h2 className={styles.h2__parentView}>{child.name}</h2>
+                    <span>
+                      {child.name} has {child.points} points!
+                    </span>
+                  </Card.Title>
+                  <Card.Text>
+                    <ListGroup variant='flush'>
+                      {chores
+                        .filter(
+                          chore =>
+                            chore.childId === child.id &&
+                            chore.day === weekday.toLowerCase()
+                        )
+                        .map((chore, i) => (
+                          <ListGroup.Item
+                            className={styles.list__group__item}
+                            key={chore.id}
+                          >
+                            <Form onClick={this.save}>
+                              <span onClick={this.handleChange}>
+                                <input
+                                  type='checkbox'
+                                  checked={this.state.chores.type}
+                                  onChange={this.handleChange}
+                                  value={chore.id}
+                                />
+                                <span></span>
+                              </span>{' '}
+                              {chore.description}
+                              <span
+                                className='chore__controls'
+                                style={{ float: 'right' }}
+                              >
+                                {' '}
+                                <Link to={`/parent/chores/edit/${chore.id}`}>
+                                  <i className='fas fa-edit'></i>
+                                </Link>{' '}
+                                <span onClick={() => this.delete(chore.id)}>
+                                  <Link to='/parent'>
+                                    <i className='fas fa-times'></i>
+                                  </Link>
                                 </span>
-                                {/* </span> */}
-                              </Form>{' '}
+                                {/* {submitBtn} */}
+                              </span>
                               {/* </span> */}
-                            </ListGroup.Item>
-                          ))}
-                      </ListGroup>
-                    </Card.Text>
-                  </Card>
-                </Col>
-              ))}
+                            </Form>{' '}
+                            {/* </span> */}
+                          </ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                  </Card.Text>
+                </Card>
+              </Col>
+            ))}
           </Row>
         </Container>
       </Fragment>
