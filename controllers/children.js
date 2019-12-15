@@ -1,11 +1,13 @@
-const { Children } = require('../../models');
+const { Children } = require('../models');
 
 // get all children
 exports.getChildren = async (req, res) => {
   // get the parent id from the query
 
   // run find all function
-  const children = await Children.findAll();
+  const children = await Children.findAll({
+    where: { parentId: req.user }
+  });
 
   res.json(children);
 };
@@ -14,7 +16,9 @@ exports.getChildren = async (req, res) => {
 exports.getUserChild = async (req, res) => {
   // get the parent id from the query
   // filter to retrieve child for parent
-  const parentChildren = await Children.findAll();
+  const parentChildren = await Children.findAll({
+    where: { parentId: req.user.id }
+  });
   // respond with json of the parents's children array
   res.json(parentChildren);
 };

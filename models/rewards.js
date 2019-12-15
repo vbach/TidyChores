@@ -31,10 +31,13 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'A reward must have a total cash out value.'
           }
         }
-      }
+      },
+      parentId: DataTypes.UUID
     },
     {}
   );
-  Rewards.associate = function(models) {};
+  Rewards.associate = function(models) {
+    Rewards.belongsTo(models.Users, { foreignKey: 'parentId' });
+  };
   return Rewards;
 };

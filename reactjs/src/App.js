@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Navbar from './components/layout/Navbar';
@@ -17,6 +17,7 @@ import ChoreForm from './components/forms/chores/form';
 import RewardForm from './components/forms/rewards/form';
 import ClaimForm from './components/forms/claimrewards/form';
 import PrivateRoute from './components/privateRoute';
+import ForgotPassword from './components/login/ForgotPassword';
 import store from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './store/helpers/setAuthToken';
@@ -47,17 +48,17 @@ class App extends Component {
       <div>
         <Provider store={store}>
           <Header />
+
           <Container className={styles.container}>
             <Router>
-              <div>
-                <Route path='/' component={Navbar} />
-                <Route path='/' exact component={Home} />
-                <Route path='/login' exact component={Login} />
-                <Route path='/signup' exact component={SignUp} />
-              </div>
-
+              <Navbar history={this.props.history} />
+              <Route path='/' exact component={Home} />
+              <Route path='/login' exact component={Login} />
+              <Route path='/signup' exact component={SignUp} />
+              <Route path='/forgotpassword' exact component={ForgotPassword} />
               <Switch>
                 <PrivateRoute exact path='/parent/' component={ParentView} />
+
                 <PrivateRoute
                   path='/parent/viewall'
                   exact

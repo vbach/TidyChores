@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import RRPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
@@ -35,20 +35,18 @@ class Login extends Component {
     });
   };
 
-  save = event => {
+  save = async event => {
     event.preventDefault();
     event.target.className += ' was-validated';
-    const { history } = this.props;
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
-    this.props.loginUser(userData);
-    history.push(`/parent`);
+    await this.props.loginUser(userData);
   };
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, password } = this.state;
     return (
       <Container className='mt-5 pb-5'>
         <div className='sign__up__form'>
@@ -92,6 +90,9 @@ class Login extends Component {
                 <Button className={styles.login__btn} type='submit'>
                   Login
                 </Button>
+                <p>
+                  <Link to='/forgotpassword'>Forgot your password?</Link>
+                </p>
               </Col>
               <Col xs={2}></Col>
             </Row>
@@ -105,7 +106,6 @@ class Login extends Component {
 Login.propTypes = {
   auth: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
-  error: PropTypes.object.isRequired,
   history: RRPropTypes.history.isRequired
 };
 

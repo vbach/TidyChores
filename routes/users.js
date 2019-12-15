@@ -2,16 +2,16 @@ const router = require('express').Router();
 
 // import controller
 const usersCtrl = require('../controllers/users');
+const passCtrl = require('../controllers/forgotPassword');
+const auth = require('../middleware/auth');
+// GET /users
+router.get('/', auth, usersCtrl.getUser);
 
 // POST /users
 router.post('/signup', usersCtrl.registerUsers);
 
 // POST /users/login
 router.post('/login', usersCtrl.loginUsers);
-
-// GET POST /users/forgotpassword
-//forgot password
-// app.get('users/forgot_password', userHandlers.render_forgot_password_template);
-// app.post('/users/forgot_password', userHandlers.forgot_password);
+router.post('/forgotPassword', passCtrl.forgotPassword);
 
 module.exports = router;

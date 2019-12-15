@@ -1,8 +1,8 @@
-const { Rewards } = require('../../models');
+const { Rewards } = require('../models');
 // get all rewards
 exports.getRewards = async (req, res) => {
   // run find all function
-  const rewards = await Rewards.findAll();
+  const rewards = await Rewards.findAll({ where: { parentId: req.user } });
 
   res.json(rewards);
 };
@@ -26,12 +26,13 @@ exports.getOneById = async (req, res) => {
 
 // add a reward
 exports.createRewards = async (req, res) => {
-  const { description, value } = req.body;
+  const { description, value, parentId } = req.body;
 
   try {
     const newReward = await Rewards.create({
       description,
-      value
+      value,
+      parentId
     });
     res.json({ id: newReward.id });
   } catch (e) {

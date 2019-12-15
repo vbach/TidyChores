@@ -1,15 +1,15 @@
-const { Users } = require('../../models');
+const { Users } = require('../models');
 const error = require('debug')('api:error');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 // FOR TESTING ONLY
-// exports.getUsers = async (req, res) => {
-//   // run find all function
-//   const users = await Users.findAll();
+exports.getUser = async (req, res) => {
+  // run find all function
+  const users = await Users.findAll({ where: { id: req.user } });
 
-//   res.json(users);
-// };
+  res.json(users);
+};
 
 // register users
 exports.registerUsers = async (req, res) => {
@@ -51,7 +51,15 @@ exports.registerUsers = async (req, res) => {
       password,
       zipcode
     });
-    const token = jwt.sign({ id: user.id }, process.env.SECRET);
+
+    const payload = {
+      id: user.id,
+      name: user.name,
+      zipcode: user.zipcode
+    };
+    const token = jwt.sign(payload, process.env.SECRET, {
+      expiresIn: 360000
+    });
     res.json({ token, loggedIn: true });
   } catch (e) {
     // log the error
@@ -78,10 +86,15 @@ exports.loginUsers = async (req, res) => {
       res.status(403).json({ loggedIn: false });
     }
   });
-  const token = jwt.sign(
-    { id: user.id, name: user.name, zipcode: user.zipcode },
-    process.env.SECRET
-  );
+
+  const payload = {
+    id: user.id,
+    name: user.name,
+    zipcode: user.zipcode
+  };
+  const token = jwt.sign(payload, process.env.SECRET, {
+    expiresIn: 360000
+  });
   res.json({ token, loggedIn: true });
 
   // check password

@@ -48,12 +48,15 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Zipcodes may only consist of 5 characters.'
           }
         }
-      }
+      },
+      resetPasswordToken: DataTypes.STRING,
+      resetPasswordExpires: DataTypes.DATE
     },
     {}
   );
   Users.associate = function(models) {
     Users.hasMany(models.Children, { foreignKey: 'parentId' });
+    Users.hasMany(models.Rewards, { foreignKey: 'parentId' });
   };
   return Users;
 };

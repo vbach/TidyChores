@@ -38,8 +38,9 @@ class View extends Component {
     this.props.fetchChildren();
     this.props.fetchChores();
     let zipcode = this.props.auth.user.zipcode;
+    let api = 'e038624658d3122cd8d6d465b87695c5';
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&APPID=e038624658d3122cd8d6d465b87695c5`
+      `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&APPID=${api}`
     )
       .then(results => {
         return results.json();

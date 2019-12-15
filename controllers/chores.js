@@ -1,4 +1,4 @@
-const { Chores } = require('../../models');
+const { Chores } = require('../models');
 
 // get all chores
 exports.getChores = async (req, res) => {
