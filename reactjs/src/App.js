@@ -18,6 +18,7 @@ import RewardForm from './components/forms/rewards/form';
 import ClaimForm from './components/forms/claimrewards/form';
 import PrivateRoute from './components/privateRoute';
 import ForgotPassword from './components/login/ForgotPassword';
+import ResetPassword from './components/login/ResetPassword';
 import store from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './store/helpers/setAuthToken';
@@ -56,6 +57,7 @@ class App extends Component {
               <Route path='/login' exact component={Login} />
               <Route path='/signup' exact component={SignUp} />
               <Route path='/forgotpassword' exact component={ForgotPassword} />
+              <Route path='/resetpassword/' exact component={ResetPassword} />
               <Switch>
                 <PrivateRoute exact path='/parent/' component={ParentView} />
 

@@ -69,7 +69,7 @@ class ForgotPassword extends Component {
             <Row className='mt-5'>
               <Col xs={2}></Col>
               <Col xs={6} className={styles.align__center}>
-                <h1>ForgotPassword</h1>
+                <h1>Forgot Password</h1>
                 <Form.Group>
                   <Form.Label>Email</Form.Label>
                   <Form.Control
