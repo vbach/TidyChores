@@ -51,7 +51,10 @@ export const loginUser = (credentials, history) => {
       setAuthToken(token);
       const decoded = jwtDecode(token);
 
-      dispatch({ type: LOGIN_SUCCESS }, setCurrentUser(decoded));
+      dispatch(
+        { type: LOGIN_SUCCESS, SET_CURRENT_USER },
+        setCurrentUser({ decoded })
+      );
     });
   };
 };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import RRPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
@@ -14,7 +14,11 @@ class Login extends Component {
       password: ''
     };
   }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/parent'); // push user to dashboard when they login
+    }
+  }
   componentDidMount() {
     // If logged in and user navigates to Register page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
@@ -109,4 +113,4 @@ Login.propTypes = {
   history: RRPropTypes.history.isRequired
 };
 
-export default container(Login);
+export default withRouter(container(Login));

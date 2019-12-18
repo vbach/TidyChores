@@ -1,3 +1,6 @@
+// Loading
+export const SET_LOADING = 'SET_LOADING';
+
 // Children
 export const VIEW_CHILD = 'VIEW_CHILD';
 export const VIEW_CHILD_SUCCESS = 'VIEW_CHILD_SUCCESS';

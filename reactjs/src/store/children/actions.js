@@ -9,12 +9,14 @@ import {
   ADD_CHILD_ERROR,
   UPDATE_CHILD_PENDING,
   UPDATE_CHILD_SUCCESS,
-  UPDATE_CHILD_ERROR
+  UPDATE_CHILD_ERROR,
+  SET_LOADING
 } from '../actionTypes';
 // cache data for 5 minutes
 const CACHE_TIME = 1000 * 60 * 5;
 export const fetchChildren = () => ({
   types: [VIEW_CHILD, VIEW_CHILD_SUCCESS, VIEW_CHILD_ERROR],
+
   // function used to call api
   callAPI: () => API.get('/children'),
   // receives the current app state and returns true if we should call the api
@@ -44,3 +46,11 @@ export const updateChild = child => ({
   callAPI: () => API.put(`/children/${child.id}`, child),
   payload: { child: { ...child } }
 });
+
+// Set Loading
+// set loading to true
+export const setLoading = () => {
+  return {
+    type: SET_LOADING
+  };
+};

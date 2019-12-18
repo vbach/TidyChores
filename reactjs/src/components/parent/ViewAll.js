@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Loader from '../layout/Loader';
 import {
   Container,
   Row,
@@ -12,7 +13,6 @@ import {
 } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
-import { userInfo } from 'os';
 
 class ViewAll extends Component {
   constructor(props) {
@@ -20,8 +20,17 @@ class ViewAll extends Component {
     this.props.fetchChildren();
     this.props.fetchChores();
     this.state = {
-      type: false
+      type: false,
+      isLoading: true
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      isLoading: false
+    });
+    this.props.fetchChildren();
+    this.props.fetchChores();
   }
 
   handleChange = e => {
@@ -46,60 +55,68 @@ class ViewAll extends Component {
       'Saturday'
     ][new Date().getDay()];
 
-    return (
-      <Fragment>
-        <Container>
-          <Row>
-            <Col xs={12}>
-              <h1>Manage All Chores</h1>
-            </Col>
-          </Row>
-          <Row className='pt-5 pb-5 justify-content-center'>
-            {children
-              .filter(child => child.parentId === auth.user.id)
-              .map(child => (
-                <Col className='pt-2' xs={12} lg={6} key={child.id}>
-                  <Card className={styles.card}>
-                    <Card.Title>
-                      <h2 className={styles.h2__parentViewAll}>{child.name}</h2>
-                      <span></span>
-                    </Card.Title>
-                    <Card.Text>
-                      {chores
-                        .filter(chore => chore.childId === child.id)
-                        .map(chore => (
-                          <Form>
-                            <ListGroup letiant='flush'>
-                              <ListGroup.Item
-                                className={styles.list__group__item}
-                                key={chore.id}
-                              >
-                                {' '}
-                                {chore.day} - {chore.description}
-                                <span
-                                  className='chore__controls'
-                                  style={{ float: 'right' }}
+    if (this.state.isLoading) {
+      return <Loader />;
+    } else {
+      return (
+        <Fragment>
+          <Container>
+            <Row>
+              <Col xs={12}>
+                <h1>Manage All Chores</h1>
+              </Col>
+            </Row>
+            <Row className='pt-5 pb-5 justify-content-center'>
+              {children
+                .filter(child => child.parentId === auth.user.id)
+                .map(child => (
+                  <Col className='pt-2' xs={12} lg={6} key={child.id}>
+                    <Card className={styles.card}>
+                      <Card.Title>
+                        <h2 className={styles.h2__parentViewAll}>
+                          {child.name}
+                        </h2>
+                        <span></span>
+                      </Card.Title>
+                      <Card.Text>
+                        {chores
+                          .filter(chore => chore.childId === child.id)
+                          .map(chore => (
+                            <Form>
+                              <ListGroup letiant='flush'>
+                                <ListGroup.Item
+                                  className={styles.list__group__item}
+                                  key={chore.id}
                                 >
                                   {' '}
-                                  <Link to={`/parent/chore/edit/${chore.id}`}>
-                                    <i className='fas fa-edit'></i>
-                                  </Link>{' '}
-                                  <Link to={`/parent/chore/delete/${chore.id}`}>
-                                    <i className='fas fa-times'></i>
-                                  </Link>
-                                </span>
-                              </ListGroup.Item>
-                            </ListGroup>
-                          </Form>
-                        ))}
-                    </Card.Text>
-                  </Card>
-                </Col>
-              ))}
-          </Row>
-        </Container>
-      </Fragment>
-    );
+                                  {chore.day} - {chore.description}
+                                  <span
+                                    className='chore__controls'
+                                    style={{ float: 'right' }}
+                                  >
+                                    {' '}
+                                    <Link to={`/parent/chore/edit/${chore.id}`}>
+                                      <i className='fas fa-edit'></i>
+                                    </Link>{' '}
+                                    <Link
+                                      to={`/parent/chore/delete/${chore.id}`}
+                                    >
+                                      <i className='fas fa-times'></i>
+                                    </Link>
+                                  </span>
+                                </ListGroup.Item>
+                              </ListGroup>
+                            </Form>
+                          ))}
+                      </Card.Text>
+                    </Card>
+                  </Col>
+                ))}
+            </Row>
+          </Container>
+        </Fragment>
+      );
+    }
   }
 }
 

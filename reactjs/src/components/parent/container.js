@@ -6,7 +6,7 @@ import { fetchUserInfo } from '../../store/users/actions';
 
 function mapStateToProps(state) {
   const {
-    children: { byId, allIds },
+    children: { byId, allIds, isLoading },
     chores: { choreId, allChoreIds },
     rewards: { rewardId, allRewardsIds },
     auth
@@ -15,6 +15,7 @@ function mapStateToProps(state) {
   // turn the array of ids into an array of objects
   return {
     children: allIds.map(id => byId[id].data),
+    isLoading,
     chores: allChoreIds.map(id => choreId[id].data),
     rewards: allRewardsIds.map(id => rewardId[id].data),
     auth

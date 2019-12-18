@@ -72,13 +72,6 @@ class ClaimReward extends Component {
     let claimedByName;
 
     for (let i = 0; i < children.length; i++) {
-      if (children[i].points < value) {
-        let message = 'Child does not have enough points.';
-        this.setState({ error: message });
-        event.target.className += ' invalid';
-        return;
-      }
-
       if (claimedBy === children[i].id) {
         newPoints = children[i].points - value;
         claimedByName = children[i].name;

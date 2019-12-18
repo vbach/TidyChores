@@ -8,10 +8,6 @@ import Logo from '../../logo.png';
 import { logoutUser } from '../../store/users/actions';
 
 class Navigation extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
