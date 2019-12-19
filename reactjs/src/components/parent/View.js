@@ -140,7 +140,6 @@ class View extends Component {
                 </span>
               </Col>
             </Row>
-
             {!isLoading && children.length === 0 ? (
               <Row className='pt-5 pb-5 justify-content-center'>
                 <Col xs={12}>

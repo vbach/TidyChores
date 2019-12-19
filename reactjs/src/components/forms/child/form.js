@@ -8,9 +8,14 @@ class NewChild extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      success: ''
+      success: null,
+      name: '',
+      avatar: ''
     };
   }
+
+  componentDidUpdate() {}
+
   handleInputChange = event => {
     // get the input from the event
     const { target } = event;
@@ -30,11 +35,13 @@ class NewChild extends Component {
     event.preventDefault();
     event.target.className += ' was-validated';
     const parentId = this.props.auth.user.id;
-    const { createChild, history } = this.props;
+    const { createChild } = this.props;
     const { name, avatar, points } = this.state;
 
-    createChild({ parentId, name, avatar, points });
-    this.setState({ success: 'Success! Child added.' });
+    if (name !== '' && avatar !== '') {
+      createChild({ parentId, name, avatar, points });
+      this.setState({ success: 'Success! Child added.' });
+    }
   };
 
   render() {

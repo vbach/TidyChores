@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from '../app.module.css';
 import container from './container';
 
@@ -15,7 +15,8 @@ class AddChore extends Component {
       points: '',
       day: '',
       type: 'false',
-      childId: ''
+      childId: '',
+      success: ''
     };
     this.loadData();
   }
@@ -64,13 +65,17 @@ class AddChore extends Component {
     const { description, points, day, type, childId } = this.state;
     if (id) {
       updateChore({ id, description, points, day, type, childId });
+      this.setState({ success: 'Success! Chore updated!' });
     } else {
-      createChore({ description, points, day, childId });
+      if (description !== '' && points !== '' && day !== '' && childId !== '') {
+        createChore({ description, points, day, childId });
+        this.setState({ success: 'Success! Chore created!' });
+      }
     }
   };
 
   render() {
-    const { description, points, day, childId } = this.state;
+    const { description, points, day, childId, success } = this.state;
     const {
       children,
       chore: { id }
@@ -82,6 +87,7 @@ class AddChore extends Component {
             <Col xs={2}></Col>
             <Col xs={8}>
               <h1>{id ? 'Edit Chore' : 'Add Chore'}</h1>
+              {success ? <Alert variant='success'>{success}</Alert> : ''}
             </Col>
             <Col xs={2}></Col>
           </Row>

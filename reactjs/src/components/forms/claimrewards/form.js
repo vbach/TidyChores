@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from '../app.module.css';
 import container from './container';
 
@@ -17,7 +17,8 @@ class ClaimReward extends Component {
       points: '',
       value: '',
       childId: '',
-      error: ''
+      error: '',
+      success: ''
     };
     this.loadData();
   }
@@ -79,14 +80,15 @@ class ClaimReward extends Component {
     }
 
     let claimed = true;
-    if (id) {
+    if (id && claimedByName !== '') {
       updateReward({ id, claimedBy: claimedByName, claimed });
       updateChild({ id: claimedBy, points: newPoints });
+      this.setState({ success: "Success! You've claimed a reward!" });
     }
   };
 
   render() {
-    const { description, claimedBy } = this.state;
+    const { description, claimedBy, success } = this.state;
     const { children, error } = this.props;
     return (
       <Container className='mt-5 min-vh-100'>
@@ -95,6 +97,7 @@ class ClaimReward extends Component {
             <Col xs={2}></Col>
             <Col xs={8}>
               <h1>Claim Reward</h1>
+              {success ? <Alert variant='success'>{success}</Alert> : ''}
             </Col>
             <Col xs={2}></Col>
           </Row>

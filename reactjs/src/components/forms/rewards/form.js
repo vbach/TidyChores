@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from '../app.module.css';
 import container from './container';
 
@@ -12,7 +12,8 @@ class AddReward extends Component {
       description: '',
       value: '',
       claimed: '',
-      parentId: ''
+      parentId: '',
+      success: ''
     };
     this.loadData();
   }
@@ -60,14 +61,20 @@ class AddReward extends Component {
     const parentId = this.props.auth.user.id;
     const { description, value, claimedBy, claimed } = this.state;
     if (id) {
-      updateReward({ id, description, value, claimedBy, claimed });
+      if (description !== '' && value !== '') {
+        updateReward({ id, description, value, claimedBy, claimed });
+        this.setState({ success: 'Success! Reward has been updated.' });
+      }
     } else {
-      createReward({ parentId, description, value });
+      if (description !== '' && value !== '') {
+        createReward({ parentId, description, value });
+        this.setState({ success: 'Success! Reward has been created.' });
+      }
     }
   };
 
   render() {
-    const { description, value } = this.state;
+    const { description, value, success } = this.state;
     const {
       reward: { id }
     } = this.props;
@@ -78,6 +85,7 @@ class AddReward extends Component {
             <Col xs={2}></Col>
             <Col xs={8}>
               <h1>{id ? 'Edit Reward' : 'Add Reward'}</h1>
+              {success ? <Alert variant='success'>{success}</Alert> : ''}
             </Col>
             <Col xs={2}></Col>
           </Row>

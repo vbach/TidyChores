@@ -26,11 +26,11 @@ class ViewAll extends Component {
   }
 
   componentDidMount() {
+    this.props.fetchChildren();
+    this.props.fetchChores();
     this.setState({
       isLoading: false
     });
-    this.props.fetchChildren();
-    this.props.fetchChores();
   }
 
   handleChange = e => {
