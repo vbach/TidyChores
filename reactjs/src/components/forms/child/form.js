@@ -7,7 +7,9 @@ import container from './container';
 class NewChild extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      success: ''
+    };
   }
   handleInputChange = event => {
     // get the input from the event
@@ -32,10 +34,11 @@ class NewChild extends Component {
     const { name, avatar, points } = this.state;
 
     createChild({ parentId, name, avatar, points });
+    this.setState({ success: 'Success! Child added.' });
   };
 
   render() {
-    const { name, avatar } = this.state;
+    const { name, avatar, success } = this.state;
 
     return (
       <Container className='mt-5 pb-5'>
@@ -45,6 +48,11 @@ class NewChild extends Component {
               <Col xs={2}></Col>
               <Col xs={8}>
                 <h1>Add a Child</h1>
+                {success ? (
+                  <Alert variant='success'>{this.state.success}</Alert>
+                ) : (
+                  ''
+                )}
               </Col>
               <Col xs={2}></Col>
             </Row>

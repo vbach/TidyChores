@@ -18,6 +18,8 @@ const initialState = {
   loadedAt: 0,
   // tracking if the state is loading
   isLoading: false,
+  // success message
+  success: '',
   // any errors loading all the data
   error: null
 };
@@ -94,7 +96,8 @@ function addChildSuccess(state, action) {
         isLoading: false,
         error: null,
         loadedAt: Date.now(),
-        data: action.data
+        data: action.data,
+        success: 'Success! New child added!'
       }
     },
     allIds: [...new Set([...state.allIds, action.payload.id])]

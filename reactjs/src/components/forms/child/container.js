@@ -8,7 +8,7 @@ function mapStateToProps(state, props) {
     }
   } = props;
   const {
-    children: { byId, allIds },
+    children: { byId, allIds, success },
     chores: {
       choreId,
       choreId: { [id]: { data: chore } = {} },
@@ -21,6 +21,7 @@ function mapStateToProps(state, props) {
     children: allIds.map(id => byId[id].data),
     chores: allChoreIds.map(id => choreId[id].data),
     chore,
+    success,
     auth
   };
 }
