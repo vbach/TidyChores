@@ -30,7 +30,10 @@ export const signUpUser = (userData, history) => {
           localStorage.setItem('jwtToken', token);
           setAuthToken(token);
           const decoded = jwtDecode(token);
-          dispatch({ type: LOGIN_SUCCESS }, setCurrentUser(decoded));
+          dispatch(
+            { type: SET_CURRENT_USER, LOGIN_SUCCESS },
+            setCurrentUser(decoded)
+          );
         });
       })
       .catch(err =>
@@ -51,10 +54,10 @@ export const loginUser = (credentials, history) => {
       setAuthToken(token);
       const decoded = jwtDecode(token);
 
-      dispatch(
-        { type: LOGIN_SUCCESS, SET_CURRENT_USER },
-        setCurrentUser({ decoded })
-      );
+      dispatch(setCurrentUser({ decoded }), {
+        type: SET_CURRENT_USER,
+        LOGIN_SUCCESS
+      });
     });
   };
 };

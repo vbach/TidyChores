@@ -33,7 +33,8 @@ class View extends Component {
       ],
       weather: '',
       auth: {},
-      isLoading: true
+      isLoading: true,
+      message: null
     };
   }
 
@@ -41,19 +42,24 @@ class View extends Component {
     this.props.fetchChildren();
     this.props.fetchChores();
     let zipcode = this.props.auth.user.zipcode;
-    let api = 'e038624658d3122cd8d6d465b87695c5';
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&APPID=${api}`
-    )
-      .then(results => {
-        return results.json();
-      })
-      .then(data => {
-        let temp = data.main.temp;
-        let farTemp = Math.trunc((temp - 273.15) * 1.8 + 32);
-        this.setState({ weather: farTemp, isLoading: false });
-      })
-      .catch(console.log);
+
+    if (zipcode) {
+      let api = 'e038624658d3122cd8d6d465b87695c5';
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&APPID=${api}`
+      )
+        .then(results => {
+          return results.json();
+        })
+        .then(data => {
+          let temp = data.main.temp;
+          let farTemp = Math.trunc((temp - 273.15) * 1.8 + 32);
+          this.setState({ weather: farTemp, isLoading: false });
+        })
+        .catch(console.log);
+    } else {
+      this.setState({ isLoading: false, message: 'Unable to load weather.' });
+    }
   }
 
   randomEvent = temp => {
@@ -133,10 +139,15 @@ class View extends Component {
                   <Link to='/parent/viewall' url='/parent/viewwall'>
                     view all upcoming chores
                   </Link>
-                  <p>
-                    It is currently {this.state.weather} degrees outside. Today
-                    is a good day to {this.randomEvent(this.state.weather)}
-                  </p>
+                  {this.state.message ? (
+                    <p>{this.state.message}</p>
+                  ) : (
+                    <p>
+                      It is currently {this.state.weather} degrees outside.
+                      Today is a good day to{' '}
+                      {this.randomEvent(this.state.weather)}
+                    </p>
+                  )}
                 </span>
               </Col>
             </Row>

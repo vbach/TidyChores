@@ -23,6 +23,12 @@ class Login extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/parent');
+    }
+  }
+
   handleInputChange = event => {
     // get the input from the event
     const { target } = event;
@@ -65,7 +71,10 @@ class Login extends Component {
                   Don't have an account? <Link to='/signup'>Sign up!</Link>
                 </p>
                 {success ? (
-                  <Alert variant='success'>{this.state.success}</Alert>
+                  <Alert variant='success'>
+                    {this.state.success} Go to your{' '}
+                    <Link to='/parent'>dashboard!</Link>
+                  </Alert>
                 ) : (
                   ''
                 )}
