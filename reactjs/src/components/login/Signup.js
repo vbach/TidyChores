@@ -9,10 +9,10 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
-      email: null,
-      password: null,
-      zipcode: null,
+      name: '',
+      email: '',
+      password: '',
+      zipcode: '',
       error: null
     };
   }
@@ -46,10 +46,10 @@ class SignUp extends Component {
       zipcode: this.state.zipcode
     };
     if (
-      this.state.name !== null &&
-      this.state.email !== null &&
-      this.state.password !== null &&
-      this.state.zipcode !== null
+      this.state.name !== '' &&
+      this.state.email !== '' &&
+      this.state.password !== '' &&
+      this.state.zipcode !== ''
     ) {
       this.props.signUpUser(newUser);
       this.props.history.push('/login');

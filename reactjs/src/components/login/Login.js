@@ -10,8 +10,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
-      password: null,
+      email: '',
+      password: '',
       success: '',
       error: ''
     };
@@ -49,7 +49,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    if (this.state.email !== null && this.state.password !== null) {
+    if (this.state.email !== '' && this.state.password !== '') {
       this.props.loginUser(userData);
       this.setState({ success: 'You have logged in!' });
     } else {
