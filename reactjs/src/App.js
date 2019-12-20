@@ -52,14 +52,19 @@ class App extends Component {
 
           <Container className={styles.container}>
             <Router>
-              <Navbar history={this.props.history} />
-              <Route path='/' exact component={Home} />
-              <Route path='/login' exact component={Login} />
-              <Route path='/signup' exact component={SignUp} />
-              <Route path='/forgotpassword' exact component={ForgotPassword} />
-              <Route path='/resetpassword/' exact component={ResetPassword} />
+              <Navbar />
+
               <Switch>
-                <PrivateRoute exact path='/parent/' component={ParentView} />
+                <Route path='/' exact component={Home} />
+                <Route path='/login' exact component={Login} />
+                <Route path='/signup' exact component={SignUp} />
+                <Route
+                  path='/forgotpassword'
+                  exact
+                  component={ForgotPassword}
+                />
+                <Route path='/resetpassword/' exact component={ResetPassword} />
+                <PrivateRoute path='/parent/' exact component={ParentView} />
 
                 <PrivateRoute
                   path='/parent/viewall'

@@ -9,6 +9,7 @@ class NewChild extends Component {
     super(props);
     this.state = {
       success: null,
+      error: null,
       name: '',
       avatar: ''
     };
@@ -42,10 +43,12 @@ class NewChild extends Component {
       createChild({ parentId, name, avatar, points });
       this.setState({ success: 'Success! Child added.' });
     }
+
+    this.setState({ error: 'Uh oh! Something went wrong.' });
   };
 
   render() {
-    const { name, avatar, success } = this.state;
+    const { name, avatar, success, error } = this.state;
 
     return (
       <Container className='mt-5 pb-5'>
@@ -57,6 +60,11 @@ class NewChild extends Component {
                 <h1>Add a Child</h1>
                 {success ? (
                   <Alert variant='success'>{this.state.success}</Alert>
+                ) : (
+                  ''
+                )}
+                {error ? (
+                  <Alert variant='danger'>{this.state.error}</Alert>
                 ) : (
                   ''
                 )}

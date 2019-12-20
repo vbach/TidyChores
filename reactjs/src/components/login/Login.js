@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import RRPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
 
@@ -10,14 +10,11 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: null,
+      password: null,
+      success: '',
+      error: ''
     };
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/parent'); // push user to dashboard when they login
-    }
   }
   componentDidMount() {
     // If logged in and user navigates to Register page, should redirect them to dashboard
@@ -39,18 +36,23 @@ class Login extends Component {
     });
   };
 
-  save = async event => {
+  save = event => {
     event.preventDefault();
     event.target.className += ' was-validated';
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
-    await this.props.loginUser(userData);
+    if (this.state.email !== null && this.state.password !== null) {
+      this.props.loginUser(userData);
+      this.setState({ success: 'You have logged in!' });
+    } else {
+      this.setState({ error: 'Invalid username or password.' });
+    }
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, success, error } = this.state;
     return (
       <Container className='mt-5 pb-5'>
         <div className='sign__up__form'>
@@ -62,6 +64,16 @@ class Login extends Component {
                 <p>
                   Don't have an account? <Link to='/signup'>Sign up!</Link>
                 </p>
+                {success ? (
+                  <Alert variant='success'>{this.state.success}</Alert>
+                ) : (
+                  ''
+                )}
+                {error ? (
+                  <Alert variant='danger'>{this.state.error}</Alert>
+                ) : (
+                  ''
+                )}
                 <Form.Group>
                   <Form.Label>Username</Form.Label>
                   <Form.Control

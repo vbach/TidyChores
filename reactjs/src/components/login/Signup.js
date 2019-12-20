@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
 
@@ -9,10 +9,11 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      email: '',
-      password: '',
-      zipcode: ''
+      name: null,
+      email: null,
+      password: null,
+      zipcode: null,
+      error: null
     };
   }
 
@@ -44,11 +45,21 @@ class SignUp extends Component {
       password: this.state.password,
       zipcode: this.state.zipcode
     };
-    this.props.signUpUser(newUser);
+    if (
+      this.state.name !== null &&
+      this.state.email !== null &&
+      this.state.password !== null &&
+      this.state.zipcode !== null
+    ) {
+      this.props.signUpUser(newUser);
+      this.props.history.push('/login');
+    }
+
+    this.setState({ error: 'Uh oh! Something went wrong!' });
   };
 
   render() {
-    const { name, email, password, zipcode } = this.state;
+    const { name, email, password, zipcode, error } = this.state;
     return (
       <Container className='mt-5 pb-5'>
         <div className='sign__up__form'>
@@ -60,6 +71,11 @@ class SignUp extends Component {
                 <p>
                   Already have an acccount? <Link to='/login'>Login!</Link>
                 </p>
+                {error ? (
+                  <Alert variant='danger'>{this.state.error}</Alert>
+                ) : (
+                  ''
+                )}
                 <Form.Group>
                   <Form.Label>Name</Form.Label>
                   <Form.Control

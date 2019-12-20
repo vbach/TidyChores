@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,28 +27,30 @@ class Navigation extends Component {
           <Navbar.Collapse id='basic-navbar-nav'>
             {this.props.auth.isAuthenticated ? (
               <Fragment>
-                <Nav className='ml-auto' defaultActiveKey='/home'>
-                  <Nav.Item>
-                    <Nav.Link href='/parent'>Home</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href='/parent/chores/add'>Add Chore</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href='/parent/child/new'>Add Child</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href='/parent/rewards'>Rewards</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Button
-                      onClick={this.onLogoutClick}
-                      className={styles.nav__btn}
-                    >
-                      Logout
-                    </Button>
-                  </Nav.Item>
-                </Nav>
+                <Router>
+                  <Nav className='ml-auto' defaultActiveKey='/home'>
+                    <Nav.Item>
+                      <Nav.Link href='/parent'>Home</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link href='/parent/chores/add'>Add Chore</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link href='/parent/child/new'>Add Child</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link href='/parent/rewards'>Rewards</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Button
+                        onClick={this.onLogoutClick}
+                        className={styles.nav__btn}
+                      >
+                        Logout
+                      </Button>
+                    </Nav.Item>
+                  </Nav>
+                </Router>
               </Fragment>
             ) : (
               <Fragment>
