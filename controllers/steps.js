@@ -9,7 +9,7 @@ exports.getSteps = async (req, res) => {
 };
 
 // get all the chores that belong to one child
-exports.getSteps = async (req, res) => {
+exports.getStepsForChore = async (req, res) => {
   // get the child id from the query
   const { choreId } = req.query;
 
@@ -21,11 +21,11 @@ exports.getSteps = async (req, res) => {
 // add a new chore
 exports.createStep = async (req, res) => {
   // get the title and type values from the request body
-  const { description, choreId } = req.body;
+  const { stepDescription, choreId } = req.body;
 
   try {
     const newStep = await Steps.create({
-      description,
+      stepDescription,
       choreId
     });
     res.json({ id: newStep.id });

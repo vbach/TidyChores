@@ -19,7 +19,7 @@ const childrenRouter = require('./routes/children');
 const choresRouter = require('./routes/chores');
 const rewardsRouter = require('./routes/rewards');
 const usersRouter = require('./routes/users');
-// const stepsRouter = require('./routes/steps');
+const stepsRouter = require('./routes/steps');
 
 // checks to see if the content-type is json and parses it into req.body
 app.use(bodyParser.json());
@@ -33,7 +33,7 @@ app.use('/children', childrenRouter);
 // setup to use router at /chores
 app.use('/chores', choresRouter);
 // setup to use router at /steps
-// app.use('/steps', stepsRouter);
+app.use('/steps', stepsRouter);
 // setup to use router at /rewards
 app.use('/rewards', rewardsRouter);
 
