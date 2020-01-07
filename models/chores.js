@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Chores.associate = function(models) {
     Chores.belongsTo(models.Children, { foreignKey: 'childId' });
+    Chores.hasMany(models.Steps, { foreignKey: 'choreId' });
   };
   return Chores;
 };

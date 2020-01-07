@@ -87,15 +87,13 @@ class View extends Component {
   };
 
   handleChange = event => {
-    let chores = this.state.chores;
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
 
-    chores.forEach(chore => {
-      if (chore.id === event.target.value) {
-        chore.type = event.target.checked;
-      }
+    this.setState({
+      [name]: value
     });
-    this.setState = { chores: chores };
-    // this.setState({ checked: !this.state.checked });
   };
 
   save = event => {
@@ -190,13 +188,14 @@ class View extends Component {
                                 className={styles.list__group__item}
                                 key={chore.id}
                               >
-                                <Form onClick={this.save}>
+                                <Form>
                                   <span onClick={this.handleChange}>
                                     <input
+                                      name='type'
                                       type='checkbox'
-                                      checked={this.state.chores.type}
+                                      checked={chore.type}
                                       onChange={this.handleChange}
-                                      value={chore.id}
+                                      value={chore.type}
                                     />
                                     <span></span>
                                   </span>{' '}
