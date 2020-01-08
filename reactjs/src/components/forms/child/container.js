@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { createChild, fetchChildren } from '../../../store/children/actions';
-import { createChore, fetchChore } from '../../../store/chores/actions';
 function mapStateToProps(state, props) {
   const {
     match: {
@@ -9,29 +8,32 @@ function mapStateToProps(state, props) {
   } = props;
   const {
     children: { byId, allIds, success },
-    chores: {
-      choreId,
-      choreId: { [id]: { data: chore } = {} },
-      allChoreIds
-    },
     auth
   } = state;
   // turn the array of ids into an array of objects
   return {
     children: allIds.map(id => byId[id].data),
-    chores: allChoreIds.map(id => choreId[id].data),
-    chore,
     success,
     auth
   };
+  // const {
+  //   match: {
+  //     params: { id }
+  //   }
+  // } = props;
+  // const {
+  //   children: {
+  //     childId: { [id]: { data: child } = {} }
+  //   },
+  //   auth
+  // } = state;
+  // return { child, auth };
 }
 
 // set the actions we need in this component
 const mapDispatchToProps = {
   createChild,
-  fetchChildren,
-  createChore,
-  fetchChore
+  fetchChildren
 };
 
 export default connect(

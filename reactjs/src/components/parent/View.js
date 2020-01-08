@@ -170,7 +170,11 @@ class View extends Component {
                         alt='Child Avatar'
                       />
                       <Card.Title>
-                        <h2 className={styles.h2__parentView}>{child.name}</h2>
+                        <h2 className={styles.h2__parentView}>
+                          <Link to={`/parent/child/${child.id}`}>
+                            {child.name}
+                          </Link>
+                        </h2>
                         <span>
                           {child.name} has {child.points} points!
                         </span>
@@ -205,6 +209,16 @@ class View extends Component {
                                     style={{ float: 'right' }}
                                   >
                                     {' '}
+                                    <Link
+                                      to={`/parent/chores/view/${chore.id}`}
+                                    >
+                                      <i className='fas fa-check'></i>
+                                    </Link>{' '}
+                                    <Link
+                                      to={`/parent/chores/view/${chore.id}`}
+                                    >
+                                      <i className='fas fa-eye'></i>
+                                    </Link>{' '}
                                     <Link
                                       to={`/parent/chores/edit/${chore.id}`}
                                     >

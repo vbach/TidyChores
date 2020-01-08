@@ -187,7 +187,6 @@ AddChore.propTypes = {
   updateChore: PropTypes.func.isRequired,
   fetchChildren: PropTypes.func.isRequired,
   fetchChore: PropTypes.func.isRequired,
-  // chore: PropTypes.array.isRequired,
   chore: PropTypes.shape({
     description: PropTypes.string,
     points: PropTypes.string,

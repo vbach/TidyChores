@@ -4,14 +4,14 @@ const router = require('express').Router();
 const stepsCtrl = require('../controllers/steps');
 const auth = require('../middleware/auth');
 // GET /steps
-router.get('/', stepsCtrl.getSteps);
-// GET /steps/:id
-router.get('/:id', stepsCtrl.getStepsForChore);
+router.get('/', auth, stepsCtrl.getSteps);
+// // GET /steps/:id
+// router.get('/:id', stepsCtrl.getStepsForChore);
 // POST /steps
-router.post('/', stepsCtrl.createStep);
+router.post('/', auth, stepsCtrl.createStep);
 // PUT /steps/:id
-router.put('/:id', stepsCtrl.updateStep);
+router.put('/:id', auth, stepsCtrl.updateStep);
 // DELETE /steps/:id
-router.delete('/:id', stepsCtrl.removeStep);
+router.delete('/:id', auth, stepsCtrl.removeStep);
 // export the route from this file
 module.exports = router;

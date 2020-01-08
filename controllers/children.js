@@ -3,11 +3,13 @@ const { Children } = require('../models');
 // get all children
 exports.getChildren = async (req, res) => {
   // get the parent id from the query
-
   // run find all function
-  const children = await Children.findAll({
-    where: { parentId: req.user }
-  });
+  const children = await Children
+    .findAll
+    //   {
+    //   where: { parentId: req.user }
+    // }
+    ();
 
   res.json(children);
 };

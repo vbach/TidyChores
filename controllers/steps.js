@@ -4,7 +4,6 @@ const { Steps } = require('../models');
 exports.getSteps = async (req, res) => {
   // run find all function
   const steps = await Steps.findAll();
-
   res.json(steps);
 };
 

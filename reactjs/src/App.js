@@ -9,11 +9,13 @@ import Header from './components/layout/Header';
 import Login from './components/login/Login';
 import SignUp from './components/login/Signup';
 import ParentView from './components/parent/View';
+import ChoreForm from './components/forms/chores/form';
 import ViewAllChores from './components/parent/ViewAll';
 import styles from './app.module.css';
 import Rewards from './components/parent/Rewards';
 import NewChild from './components/forms/child/form';
-import ChoreForm from './components/forms/chores/form';
+
+import ChoreView from './components/chores/View';
 import RewardForm from './components/forms/rewards/form';
 import ClaimForm from './components/forms/claimrewards/form';
 import PrivateRoute from './components/privateRoute';
@@ -71,6 +73,12 @@ class App extends Component {
                   exact
                   component={ViewAllChores}
                 />
+
+                <PrivateRoute
+                  path='/parent/chores/view/:id'
+                  exact
+                  component={ChoreView}
+                />
                 <PrivateRoute
                   path='/parent/rewards'
                   exact
@@ -78,6 +86,11 @@ class App extends Component {
                 />
                 <PrivateRoute
                   path='/parent/child/new'
+                  exact
+                  component={NewChild}
+                />
+                <PrivateRoute
+                  path='/parent/child/:id'
                   exact
                   component={NewChild}
                 />

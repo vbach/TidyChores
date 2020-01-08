@@ -3,6 +3,7 @@ import { fetchChildren } from '../../store/children/actions';
 import { fetchChores, deleteChore } from '../../store/chores/actions';
 import { fetchRewards, deleteReward } from '../../store/rewards/actions';
 import { fetchUserInfo } from '../../store/users/actions';
+import { fetchSteps } from '../../store/steps/actions';
 
 function mapStateToProps(state) {
   const {

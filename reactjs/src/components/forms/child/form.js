@@ -7,15 +7,16 @@ import container from './container';
 class NewChild extends Component {
   constructor(props) {
     super(props);
+    this.props.fetchChildren();
     this.state = {
       success: null,
       error: null,
+      id: '',
       name: '',
       avatar: ''
     };
+    this.loadData();
   }
-
-  componentDidUpdate() {}
 
   handleInputChange = event => {
     // get the input from the event
@@ -30,6 +31,21 @@ class NewChild extends Component {
     });
   };
 
+  loadData = async () => {
+    const {
+      match: {
+        params: { id }
+      },
+      fetchChildren
+    } = this.props;
+    // if no id don't load the item
+    if (!id) return;
+    await fetchChildren(id);
+    // update the state with the data from the updated item
+    const { child } = this.props;
+    this.setState({ ...child });
+  };
+
   save = event => {
     // make sure the form doesn't submit with the browser
 
@@ -42,13 +58,16 @@ class NewChild extends Component {
     if (name !== '' && avatar !== '') {
       createChild({ parentId, name, avatar, points });
       this.setState({ success: 'Success! Child added.' });
+    } else {
+      this.setState({ error: 'Uh oh! Something went wrong.' });
     }
-
-    this.setState({ error: 'Uh oh! Something went wrong.' });
   };
 
   render() {
     const { name, avatar, success, error } = this.state;
+    const {
+      children: { id }
+    } = this.props;
 
     return (
       <Container className='mt-5 pb-5'>
@@ -57,7 +76,7 @@ class NewChild extends Component {
             <Row className='mt-5'>
               <Col xs={2}></Col>
               <Col xs={8}>
-                <h1>Add a Child</h1>
+                <h1>{id ? 'Edit Child' : 'Add Child'}</h1>
                 {success ? (
                   <Alert variant='success'>{this.state.success}</Alert>
                 ) : (
@@ -189,6 +208,7 @@ class NewChild extends Component {
 
 NewChild.propTypes = {
   createChild: PropTypes.func.isRequired,
+  fetchChild: PropTypes.func.isRequired,
   children: PropTypes.shape({
     name: PropTypes.string,
     avatar: PropTypes.string,
@@ -198,7 +218,7 @@ NewChild.propTypes = {
 };
 
 NewChild.defaultProps = {
-  children: {}
+  children: []
 };
 
 export default container(NewChild);

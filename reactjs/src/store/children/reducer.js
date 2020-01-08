@@ -1,12 +1,22 @@
 import createReducer from '../helpers/createReducer';
 
 import {
-  VIEW_CHILD,
-  VIEW_CHILD_ERROR,
-  VIEW_CHILD_SUCCESS,
-  ADD_CHILD,
+  REQ_CHILDREN_PENDING,
+  REQ_CHILDREN_SUCCESS,
+  REQ_CHILDREN_ERROR,
+  REQ_CHILD_PENDING,
+  REQ_CHILD_SUCCESS,
+  REQ_CHILD_ERROR,
+  ADD_CHILD_PENDING,
   ADD_CHILD_SUCCESS,
-  ADD_CHILD_ERROR
+  ADD_CHILD_ERROR,
+  UPDATE_CHILD_PENDING,
+  UPDATE_CHILD_SUCCESS,
+  UPDATE_CHILD_ERROR,
+  DELETE_CHILD_PENDING,
+  DELETE_CHILD_SUCCESS,
+  DELETE_CHILD_ERROR,
+  SET_LOADING
 } from '../actionTypes';
 
 const initialState = {
@@ -24,7 +34,7 @@ const initialState = {
   error: null
 };
 
-function viewChild(state, action) {
+function childrenPending(state, action) {
   // set loading state and clear error
   return {
     ...state,
@@ -33,7 +43,7 @@ function viewChild(state, action) {
   };
 }
 
-function childSuccess(state, action) {
+function childrenSuccess(state, action) {
   // clear loading and error, update cache time, add items
   return {
     ...state,
@@ -63,7 +73,7 @@ function childSuccess(state, action) {
   };
 }
 
-function childError(state, action) {
+function childrenError(state, action) {
   return {
     ...state,
     isLoading: false,
@@ -71,7 +81,9 @@ function childError(state, action) {
   };
 }
 
-function addChild(state, action) {
+////////////////
+
+function childPending(state, action) {
   // set loading state and clear error
   return {
     ...state,
@@ -86,7 +98,7 @@ function addChild(state, action) {
   };
 }
 
-function addChildSuccess(state, action) {
+function childSuccess(state, action) {
   // clear loading and error, update cache time, add items
   return {
     ...state,
@@ -104,7 +116,7 @@ function addChildSuccess(state, action) {
   };
 }
 
-function addChildError(state, action) {
+function childError(state, action) {
   // clear loading and set error
   return {
     ...state,
@@ -120,10 +132,19 @@ function addChildError(state, action) {
 }
 
 export default createReducer(initialState, {
-  [VIEW_CHILD]: viewChild,
-  [VIEW_CHILD_SUCCESS]: childSuccess,
-  [VIEW_CHILD_ERROR]: childError,
-  [ADD_CHILD]: addChild,
-  [ADD_CHILD_SUCCESS]: addChildSuccess,
-  [ADD_CHILD_ERROR]: addChildError
+  [REQ_CHILDREN_PENDING]: childrenPending,
+  [REQ_CHILDREN_SUCCESS]: childrenSuccess,
+  [REQ_CHILDREN_ERROR]: childrenError,
+  [REQ_CHILD_PENDING]: childPending,
+  [REQ_CHILD_SUCCESS]: childSuccess,
+  [REQ_CHILD_ERROR]: childError,
+  [ADD_CHILD_PENDING]: childPending,
+  [ADD_CHILD_SUCCESS]: childSuccess,
+  [ADD_CHILD_ERROR]: childError,
+  [UPDATE_CHILD_PENDING]: childPending,
+  [UPDATE_CHILD_SUCCESS]: childSuccess,
+  [UPDATE_CHILD_ERROR]: childError,
+  [DELETE_CHILD_PENDING]: childPending,
+  [DELETE_CHILD_SUCCESS]: childSuccess,
+  [DELETE_CHILD_ERROR]: childError
 });

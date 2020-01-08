@@ -1,21 +1,27 @@
 import API from '../../API';
 import uuid from 'uuid';
 import {
-  VIEW_CHILD,
-  VIEW_CHILD_ERROR,
-  VIEW_CHILD_SUCCESS,
-  ADD_CHILD,
+  REQ_CHILDREN_PENDING,
+  REQ_CHILDREN_SUCCESS,
+  REQ_CHILDREN_ERROR,
+  REQ_CHILD_PENDING,
+  REQ_CHILD_SUCCESS,
+  REQ_CHILD_ERROR,
+  ADD_CHILD_PENDING,
   ADD_CHILD_SUCCESS,
   ADD_CHILD_ERROR,
   UPDATE_CHILD_PENDING,
   UPDATE_CHILD_SUCCESS,
   UPDATE_CHILD_ERROR,
+  DELETE_CHILD_PENDING,
+  DELETE_CHILD_SUCCESS,
+  DELETE_CHILD_ERROR,
   SET_LOADING
 } from '../actionTypes';
 // cache data for 5 minutes
 const CACHE_TIME = 1000 * 60 * 5;
 export const fetchChildren = () => ({
-  types: [VIEW_CHILD, VIEW_CHILD_SUCCESS, VIEW_CHILD_ERROR],
+  types: [REQ_CHILDREN_PENDING, REQ_CHILDREN_SUCCESS, REQ_CHILDREN_ERROR],
 
   // function used to call api
   callAPI: () => API.get('/children'),
@@ -30,11 +36,25 @@ export const fetchChildren = () => ({
   }
 });
 
+// Request current chore to edit
+export const fetchChild = id => ({
+  types: [REQ_CHILD_PENDING, REQ_CHILD_SUCCESS, REQ_CHILD_ERROR],
+  callAPI: () => API.get(`/children/${id}`),
+  shouldCallAPI: state => {
+    const child = state.children.childId[id] || {};
+    const { loadedAt, isLoading } = child;
+    if (!child || isLoading) return false;
+    const isCached = Date.now() - loadedAt < CACHE_TIME;
+    return !loadedAt || !isCached;
+  },
+  payload: { id }
+});
+
 export const createChild = child => {
   // create a uuid for this item so that we can use it in the reducer for pending and loading
   const id = uuid();
   return {
-    types: [ADD_CHILD, ADD_CHILD_SUCCESS, ADD_CHILD_ERROR],
+    types: [ADD_CHILD_PENDING, ADD_CHILD_SUCCESS, ADD_CHILD_ERROR],
     callAPI: () => API.post('/children', { id, ...child }),
     payload: { id }
   };
@@ -45,6 +65,12 @@ export const updateChild = child => ({
   types: [UPDATE_CHILD_PENDING, UPDATE_CHILD_SUCCESS, UPDATE_CHILD_ERROR],
   callAPI: () => API.put(`/children/${child.id}`, child),
   payload: { child: { ...child } }
+});
+
+export const deleteChild = id => ({
+  types: [DELETE_CHILD_PENDING, DELETE_CHILD_SUCCESS, DELETE_CHILD_ERROR],
+  callAPI: () => API.delete(`/children/${id}`),
+  payload: { id }
 });
 
 // Set Loading

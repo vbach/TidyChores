@@ -1,0 +1,200 @@
+h1 {
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.h2__parentView {
+  font-weight: 900;
+  text-transform: capitalize !important;
+}
+
+h2 > a {
+  text-transform: capitalize;
+}
+
+h2 > a:hover {
+  text-transform: capitalize;
+  transition: ease-in 0.2s;
+}
+
+span > a,
+span > a:hover {
+  font-weight: 700;
+  text-transform: none;
+}
+
+.inline__heading {
+  display: inline;
+}
+.points {
+  font-size: 24px;
+}
+.userName {
+  color: var(--active-color);
+}
+
+.avatar {
+  width: 80px;
+  margin: 0 auto;
+  padding-bottom: 1.25rem;
+}
+
+.card {
+  border: 0;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.card__group {
+  border: 0 !important;
+}
+
+.list__group__item {
+  text-align: left !important;
+  border: 1px solid #dddddd !important;
+}
+
+.list__group__item__rewards {
+  width: 100% !important;
+  text-align: left !important;
+  border-bottom: 2px solid var(--primary-color) !important;
+  border-top: 0;
+}
+
+/* .list__group__item:hover {
+  background-color: var(--primary-color);
+  font-weight: 900;
+  transition: ease-in 0.5s;
+} */
+
+.child__view__list {
+  width: 35%;
+  margin: 0 auto;
+}
+
+.chore__controls {
+  margin-left: 10px;
+}
+
+.rewards__table {
+  border-bottom: 1px solid var(--primary-color);
+}
+
+/* Checkbox custom */
+/* Customize the label (the container) */
+.custom__check__container {
+  display: block;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.custom__check__container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.custom__check__mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 35px;
+  width: 35px;
+  background-color: #fff;
+  border: 1px solid var(--secondary-color);
+  border-radius: 50px;
+}
+
+/* On mouse-over, add a grey background color */
+.custom__check__container:hover input ~ .custom__check__mark {
+  background-color: #fff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.custom__check__container input:checked ~ .custom__check__mark {
+  background-color: #fff;
+}
+
+/* Create the custom__check__mark/indicator (hidden when not checked) */
+.custom__check__mark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the custom__check__mark when checked */
+.custom__check__container input:checked ~ .custom__check__mark:after {
+  display: block;
+}
+
+/* Style the custom__check__mark/indicator */
+.custom__check__container .custom__check__mark:after {
+  left: 8px;
+  top: 3px;
+  width: 15px;
+  height: 20px;
+  border: solid var(--primary-color);
+  border-width: 0 5px 5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* Checkbox */
+input[type='checkbox'] {
+  display: none;
+}
+input[type='checkbox'] + span {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  width: 30px;
+  height: 30px;
+  margin: -1px 0px 0 0;
+  vertical-align: middle;
+  background: white left top no-repeat;
+  border: 1px solid var(--primary-color);
+  border-radius: 50px;
+  cursor: pointer;
+}
+input[type='checkbox']:checked + span {
+  display: inline-block;
+  position: relative;
+
+  top: 3px;
+  width: 15px;
+  height: 20px;
+  margin-right: 5px;
+  padding: 15px 0 10px 0;
+  border: solid var(--primary-color);
+  border-width: 0 5px 5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+input[type='checkbox'] + span {
+  margin-right: 4px;
+}
+
+.update__button__home {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--text-color);
+  border: 0;
+}
