@@ -14,8 +14,8 @@ import ViewAllChores from './components/parent/ViewAll';
 import styles from './app.module.css';
 import Rewards from './components/parent/Rewards';
 import NewChild from './components/forms/child/form';
-
 import ChoreView from './components/chores/View';
+import AddStep from './components/forms/steps/form';
 import RewardForm from './components/forms/rewards/form';
 import ClaimForm from './components/forms/claimrewards/form';
 import PrivateRoute from './components/privateRoute';
@@ -72,6 +72,11 @@ class App extends Component {
                   path='/parent/viewall'
                   exact
                   component={ViewAllChores}
+                />
+                <PrivateRoute
+                  path='/parent/chores/steps/add/:id'
+                  exact
+                  component={AddStep}
                 />
 
                 <PrivateRoute

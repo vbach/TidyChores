@@ -83,9 +83,9 @@ class View extends Component {
             <Row>
               <Col xs={12}>
                 <h1>{description}</h1>
-                <p>Complete?</p>
                 <p>
-                  This chore is scheduled for {day} and is assigned to: name
+                  Complete |{' '}
+                  <Link to={`/parent/chores/steps/add/${id}`}>Add a Step</Link>
                 </p>
               </Col>
             </Row>
