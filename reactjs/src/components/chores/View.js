@@ -66,6 +66,11 @@ class View extends Component {
     });
   };
 
+  delete = id => {
+    const { deleteStep } = this.props;
+    deleteStep(id);
+  };
+
   render() {
     const { description, isLoading, day, id } = this.state;
     const { steps } = this.props;

@@ -8,7 +8,7 @@ router.get('/', auth, stepsCtrl.getSteps);
 // // GET /steps/:id
 // router.get('/:id', stepsCtrl.getStepsForChore);
 // POST /steps
-router.post('/', auth, stepsCtrl.createStep);
+router.post('/', stepsCtrl.createStep);
 // PUT /steps/:id
 router.put('/:id', auth, stepsCtrl.updateStep);
 // DELETE /steps/:id
