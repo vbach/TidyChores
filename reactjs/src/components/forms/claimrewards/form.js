@@ -7,7 +7,6 @@ import container from './container';
 class ClaimReward extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchReward();
     this.props.fetchChildren();
     this.state = {
       description: '',
@@ -58,8 +57,10 @@ class ClaimReward extends Component {
     event.target.className += ' was-validated';
 
     const {
-      updateReward,
+      // updateReward,
       updateChild,
+      deleteReward,
+      createClaimedReward,
       children,
       match: {
         params: { id }
@@ -68,28 +69,38 @@ class ClaimReward extends Component {
 
     // Need to set up foreign key restraint to children.
     // Need to pull child points and deduct reward value.
-    const { claimedBy, value } = this.state;
+    const { description, claimedBy, value } = this.state;
+    const parentId = this.props.auth.user.id;
     let newPoints;
     let claimedByName;
 
     for (let i = 0; i < children.length; i++) {
       if (claimedBy === children[i].id) {
-        newPoints = children[i].points - value;
-        claimedByName = children[i].name;
+        if (children[i].points < value) {
+          this.setState({
+            error: 'Child does not have enough points to claim reward.'
+          });
+          return;
+        } else {
+          newPoints = children[i].points - value;
+          claimedByName = children[i].name;
+        }
       }
     }
 
-    let claimed = true;
+    // if reward claimed delete from rewards and create in claimed rewards
+    // Update child's score.
     if (id && claimedByName !== '') {
-      updateReward({ id, claimedBy: claimedByName, claimed });
+      deleteReward(id);
       updateChild({ id: claimedBy, points: newPoints });
-      this.setState({ success: "Success! You've claimed a reward!" });
+      createClaimedReward({ description, claimedBy, parentId });
+      this.setState({ success: 'Congrats! You have claimed a reward!' });
     }
   };
 
   render() {
-    const { description, claimedBy, success } = this.state;
-    const { children, error } = this.props;
+    const { description, claimedBy, success, error } = this.state;
+    const { children } = this.props;
     return (
       <Container className='mt-5 min-vh-100'>
         <div className='sign__up__form'>
@@ -98,10 +109,11 @@ class ClaimReward extends Component {
             <Col xs={8}>
               <h1>Claim Reward</h1>
               {success ? <Alert variant='success'>{success}</Alert> : ''}
+              {error ? <Alert variant='warning'>{error}</Alert> : ''}
             </Col>
             <Col xs={2}></Col>
           </Row>
-          <Row className='mt-5 '>
+          <Row className='mt-3 '>
             <Col xs={2}></Col>
             <Col xs={8}>
               <Form onSubmit={this.save} noValidate>
@@ -152,6 +164,7 @@ ClaimReward.propTypes = {
   updateReward: PropTypes.func.isRequired,
   fetchChildren: PropTypes.func.isRequired,
   updateChild: PropTypes.func.isRequired,
+  createClaimedReward: PropTypes.func.isRequired,
   reward: PropTypes.array.isRequired,
   children: PropTypes.array.isRequired
 };

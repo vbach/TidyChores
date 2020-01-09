@@ -2,19 +2,9 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Loader from '../layout/Loader';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardGroup,
-  ListGroup,
-  Form
-} from 'react-bootstrap';
+import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
-import { REQ_STEPS_PENDING } from '../../store/actionTypes';
-
 class View extends Component {
   constructor(props) {
     super(props);
@@ -106,7 +96,7 @@ class View extends Component {
                           style={{ float: 'right' }}
                         >
                           {' '}
-                          <Link to={`/parent/chores/steps/${step.id}`}>
+                          <Link to={`/parent/chores/steps/edit/${step.id}`}>
                             <i className='fas fa-edit'></i>
                           </Link>{' '}
                           <span onClick={() => this.delete(step.id)}>

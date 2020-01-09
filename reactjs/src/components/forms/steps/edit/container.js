@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import {
-  createChild,
-  fetchChildren,
-  fetchChild
-} from '../../../store/children/actions';
+  createStep,
+  fetchStep,
+  updateStep
+} from '../../../../store/steps/actions';
+
 function mapStateToProps(state, props) {
   const {
     match: {
@@ -11,22 +12,19 @@ function mapStateToProps(state, props) {
     }
   } = props;
   const {
-    children: { byId, allIds, success },
+    steps: {
+      stepId: { [id]: { data: step } = {} }
+    },
     auth
   } = state;
-  // turn the array of ids into an array of objects
-  return {
-    children: allIds.map(id => byId[id].data),
-    success,
-    auth
-  };
+  return { step, auth };
 }
 
 // set the actions we need in this component
 const mapDispatchToProps = {
-  createChild,
-  fetchChild,
-  fetchChildren
+  createStep,
+  fetchStep,
+  updateStep
 };
 
 export default connect(

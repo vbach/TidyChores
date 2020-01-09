@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import styles from '../app.module.css';
+import styles from '../../app.module.css';
 import container from './container';
+import { updateChild, createChild } from '../../../../store/children/actions';
 
-class NewChild extends Component {
+class EditChild extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchChildren();
+    this.props.fetchChild();
     this.state = {
-      success: null,
-      error: null,
-      id: '',
-      name: '',
-      avatar: ''
+      success: '',
+      error: ''
     };
+
+    this.loadData();
   }
 
   handleInputChange = event => {
@@ -30,20 +30,50 @@ class NewChild extends Component {
     });
   };
 
+  loadData = async () => {
+    const {
+      match: {
+        params: { id }
+      },
+      fetchChild
+    } = this.props;
+    // if no id don't load the item
+    if (!id) return;
+    await fetchChild(id);
+    // update the state with the data from the updated item
+    const { child } = this.props;
+    this.setState({ ...child });
+  };
+
   save = event => {
     // make sure the form doesn't submit with the browser
 
     event.preventDefault();
     event.target.className += ' was-validated';
     const parentId = this.props.auth.user.id;
-    const { createChild } = this.props;
+    const {
+      createChild,
+      updateChild,
+      match: {
+        params: { id }
+      }
+    } = this.props;
     const { name, avatar, points } = this.state;
 
-    if (name !== '' && avatar !== '') {
-      createChild({ parentId, name, avatar, points });
-      this.setState({ success: 'Success! Child added.' });
+    if (id) {
+      if (name !== '' && avatar !== '') {
+        updateChild({ id, name, avatar });
+        this.setState({ success: 'Success! Child has been updated.' });
+      } else {
+        this.setState({ error: 'Uh oh! Something went wrong.' });
+      }
     } else {
-      this.setState({ error: 'Uh oh! Something went wrong.' });
+      if (name !== '' && avatar !== '') {
+        createChild({ parentId, name, avatar, points });
+        this.setState({ success: 'Success! Child added.' });
+      } else {
+        this.setState({ error: 'Uh oh! Something went wrong.' });
+      }
     }
   };
 
@@ -60,7 +90,7 @@ class NewChild extends Component {
             <Row className='mt-5'>
               <Col xs={2}></Col>
               <Col xs={8}>
-                <h1>Add Child</h1>
+                <h1>Edit Child</h1>
                 {success ? (
                   <Alert variant='success'>{this.state.success}</Alert>
                 ) : (
@@ -190,19 +220,19 @@ class NewChild extends Component {
   }
 }
 
-NewChild.propTypes = {
+EditChild.propTypes = {
+  updateChild: PropTypes.func.isRequired,
+  fetchChild: PropTypes.func.isRequired,
   createChild: PropTypes.func.isRequired,
-  fetchChildren: PropTypes.func.isRequired,
   children: PropTypes.shape({
     name: PropTypes.string,
-    avatar: PropTypes.string,
-    parentId: PropTypes.string
+    avatar: PropTypes.string
   }),
   auth: PropTypes.object.isRequired
 };
 
-NewChild.defaultProps = {
-  children: []
+EditChild.defaultProps = {
+  children: {}
 };
 
-export default container(NewChild);
+export default container(EditChild);

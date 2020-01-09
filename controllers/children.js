@@ -4,25 +4,9 @@ const { Children } = require('../models');
 exports.getChildren = async (req, res) => {
   // get the parent id from the query
   // run find all function
-  const children = await Children
-    .findAll
-    //   {
-    //   where: { parentId: req.user }
-    // }
-    ();
+  const children = await Children.findAll();
 
   res.json(children);
-};
-
-// get all children that belong to one user
-exports.getUserChild = async (req, res) => {
-  // get the parent id from the query
-  // filter to retrieve child for parent
-  const parentChildren = await Children.findAll({
-    where: { parentId: req.user.id }
-  });
-  // respond with json of the parents's children array
-  res.json(parentChildren);
 };
 
 // find one child

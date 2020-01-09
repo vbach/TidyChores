@@ -41,7 +41,7 @@ export const fetchChild = id => ({
   types: [REQ_CHILD_PENDING, REQ_CHILD_SUCCESS, REQ_CHILD_ERROR],
   callAPI: () => API.get(`/children/${id}`),
   shouldCallAPI: state => {
-    const child = state.children.childId[id] || {};
+    const child = state.children.byId[id] || {};
     const { loadedAt, isLoading } = child;
     if (!child || isLoading) return false;
     const isCached = Date.now() - loadedAt < CACHE_TIME;

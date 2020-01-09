@@ -71,7 +71,9 @@ class Rewards extends Component {
               <h2 className={styles.inline__heading}>Available Rewards</h2>
               {'     '}
               <Link to='/parent/rewards/add'>
-                <i className='fas fa-plus'></i> Add
+                <span style={{ float: 'right', margin: 'auto 0' }}>
+                  <i className='fas fa-plus'></i> Add
+                </span>
               </Link>
               {!isLoading && rewards.length === 0 ? (
                 <p>

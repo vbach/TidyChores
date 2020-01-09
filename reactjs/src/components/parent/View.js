@@ -22,11 +22,10 @@ class View extends Component {
     this.props.fetchChildren();
     this.props.fetchChores();
     this.state = {
-      // checked: false,
       chores: [
         {
           name: '',
-          type: false,
+          type: '',
           description: '',
           childId: ''
         }
@@ -105,6 +104,11 @@ class View extends Component {
     const { deleteChore } = this.props;
     deleteChore(id);
   };
+
+  deleteChild = id => {
+    const { deleteChild } = this.props;
+    deleteChild(id);
+  };
   render() {
     const { children, chores, auth } = this.props;
     const { isLoading } = this.state;
@@ -175,9 +179,17 @@ class View extends Component {
                             {child.name}
                           </Link>
                         </h2>
+                        <span onClick={() => this.deleteChild(child.id)}>
+                          <i className='fas fa-times'></i>
+                        </span>{' '}
                         <span>
-                          {child.name} has {child.points} points!
+                          <Link to={`/parent/child/edit/${child.id}`}>
+                            <i className='fas fa-edit'></i>
+                          </Link>
                         </span>
+                        <p>
+                          {child.name} has {child.points} points!
+                        </p>
                       </Card.Title>
                       <Card.Text>
                         <ListGroup variant='flush'>
@@ -192,46 +204,35 @@ class View extends Component {
                                 className={styles.list__group__item}
                                 key={chore.id}
                               >
-                                <Form>
-                                  <span onClick={this.handleChange}>
-                                    <input
-                                      name='type'
-                                      type='checkbox'
-                                      checked={chore.type}
-                                      onChange={this.handleChange}
-                                      value={chore.type}
-                                    />
-                                    <span></span>
-                                  </span>{' '}
-                                  {chore.description}
-                                  <span
-                                    className='chore__controls'
-                                    style={{ float: 'right' }}
-                                  >
-                                    {' '}
-                                    <Link
-                                      to={`/parent/chores/view/${chore.id}`}
-                                    >
+                                {chore.type ? (
+                                  <Link to={`/parent/chores/view/${chore.id}`}>
+                                    <span className={styles.chore__check}>
                                       <i className='fas fa-check'></i>
-                                    </Link>{' '}
-                                    <Link
-                                      to={`/parent/chores/view/${chore.id}`}
-                                    >
-                                      <i className='fas fa-eye'></i>
-                                    </Link>{' '}
-                                    <Link
-                                      to={`/parent/chores/edit/${chore.id}`}
-                                    >
-                                      <i className='fas fa-edit'></i>
-                                    </Link>{' '}
-                                    <span onClick={() => this.delete(chore.id)}>
-                                      <i className='fas fa-times'></i>
                                     </span>
-                                    {/* {submitBtn} */}
+                                  </Link>
+                                ) : (
+                                  <Link to={`/parent/chores/view/${chore.id}`}>
+                                    <span className={styles.chore__incomplete}>
+                                      <i className='fas fa-exclamation-circle'></i>
+                                    </span>
+                                  </Link>
+                                )}{' '}
+                                {chore.description}
+                                <span
+                                  className='chore__controls'
+                                  style={{ float: 'right' }}
+                                >
+                                  {' '}
+                                  <Link to={`/parent/chores/view/${chore.id}`}>
+                                    <i className='fas fa-eye'></i>
+                                  </Link>{' '}
+                                  <Link to={`/parent/chores/edit/${chore.id}`}>
+                                    <i className='fas fa-edit'></i>
+                                  </Link>{' '}
+                                  <span onClick={() => this.delete(chore.id)}>
+                                    <i className='fas fa-times'></i>
                                   </span>
-                                  {/* </span> */}
-                                </Form>{' '}
-                                {/* </span> */}
+                                </span>
                               </ListGroup.Item>
                             ))}
                         </ListGroup>

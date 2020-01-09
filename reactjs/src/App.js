@@ -6,25 +6,34 @@ import Home from './pages/Home';
 import Container from 'react-bootstrap/Container';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
+
 import Login from './components/login/Login';
 import SignUp from './components/login/Signup';
-import ParentView from './components/parent/View';
-import ChoreForm from './components/forms/chores/form';
-import ViewAllChores from './components/parent/ViewAll';
-import styles from './app.module.css';
-import Rewards from './components/parent/Rewards';
-import NewChild from './components/forms/child/form';
-import ChoreView from './components/chores/View';
-import AddStep from './components/forms/steps/form';
-import RewardForm from './components/forms/rewards/form';
-import ClaimForm from './components/forms/claimrewards/form';
 import PrivateRoute from './components/privateRoute';
 import ForgotPassword from './components/login/ForgotPassword';
 import ResetPassword from './components/login/ResetPassword';
+
+import ParentView from './components/parent/View';
+
+import ViewAllChores from './components/parent/ViewAll';
+import ChoreView from './components/chores/View';
+import ChoreForm from './components/forms/chores/form';
+
+import NewChild from './components/forms/child/form';
+import EditChild from './components/forms/child/edit/form';
+
+import AddStep from './components/forms/steps/form';
+import EditStep from './components/forms/steps/edit/form';
+
+import Rewards from './components/parent/Rewards';
+import RewardForm from './components/forms/rewards/form';
+import ClaimForm from './components/forms/claimrewards/form';
+
 import store from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './store/helpers/setAuthToken';
 import { setCurrentUser, logoutUser } from './store/users/actions';
+import styles from './app.module.css';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -68,15 +77,24 @@ class App extends Component {
                 <Route path='/resetpassword/' exact component={ResetPassword} />
                 <PrivateRoute path='/parent/' exact component={ParentView} />
 
+                {/* Children CRUD */}
+
+                <PrivateRoute
+                  path='/parent/child/new'
+                  exact
+                  component={NewChild}
+                />
+                <PrivateRoute
+                  path='/parent/child/edit/:id'
+                  exact
+                  component={EditChild}
+                />
+
+                {/* Chores CRUD */}
                 <PrivateRoute
                   path='/parent/viewall'
                   exact
                   component={ViewAllChores}
-                />
-                <PrivateRoute
-                  path='/parent/chores/steps/add/:id'
-                  exact
-                  component={AddStep}
                 />
 
                 <PrivateRoute
@@ -84,21 +102,7 @@ class App extends Component {
                   exact
                   component={ChoreView}
                 />
-                <PrivateRoute
-                  path='/parent/rewards'
-                  exact
-                  component={Rewards}
-                />
-                <PrivateRoute
-                  path='/parent/child/new'
-                  exact
-                  component={NewChild}
-                />
-                <PrivateRoute
-                  path='/parent/child/:id'
-                  exact
-                  component={NewChild}
-                />
+
                 <PrivateRoute
                   path='/parent/chores/edit/:id'
                   exact
@@ -109,6 +113,26 @@ class App extends Component {
                   exact
                   component={ChoreForm}
                 />
+
+                <PrivateRoute
+                  path='/parent/chores/steps/add/:id'
+                  exact
+                  component={AddStep}
+                />
+                <PrivateRoute
+                  path='/parent/chores/steps/edit/:id'
+                  exact
+                  component={EditStep}
+                />
+
+                {/* Rewards CRUD */}
+
+                <PrivateRoute
+                  path='/parent/rewards'
+                  exact
+                  component={Rewards}
+                />
+
                 <PrivateRoute
                   path='/parent/rewards/edit/:id'
                   exact

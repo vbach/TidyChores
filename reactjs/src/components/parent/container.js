@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchChildren } from '../../store/children/actions';
+import { fetchChildren, deleteChild } from '../../store/children/actions';
 import { fetchChores, deleteChore } from '../../store/chores/actions';
 import { fetchRewards, deleteReward } from '../../store/rewards/actions';
 import { fetchUserInfo } from '../../store/users/actions';
@@ -29,7 +29,8 @@ const mapDispatchToProps = {
   fetchChores,
   fetchRewards,
   deleteReward,
-  deleteChore
+  deleteChore,
+  deleteChild
 };
 
 export default connect(

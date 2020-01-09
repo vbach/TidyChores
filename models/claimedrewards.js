@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
           isUUID: { args: 4, msg: 'Id not valid, please try again' }
         }
       },
-      rewardDescription: {
+      description: {
         type: DataTypes.STRING,
         validate: {
           len: {
@@ -20,12 +20,13 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      childId: DataTypes.UUID
+      claimedBy: { type: DataTypes.STRING, defaultValue: '' },
+      parentId: DataTypes.UUID
     },
     {}
   );
   claimedRewards.associate = function(models) {
-    claimedRewards.belongsTo(models.Children, { foreignKey: 'childId' });
+    claimedRewards.belongsTo(models.Users, { foreignKey: 'parentId' });
   };
   return claimedRewards;
 };

@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import styles from '../app.module.css';
+import styles from '../../app.module.css';
 import container from './container';
 
-class AddStep extends Component {
+class EditStep extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchStep();
+    this.loadData();
     this.state = {
-      stepDescription: '',
-      choreId: this.props.match.params.id,
       success: '',
       error: ''
     };
-    // this.loadData();
   }
 
   handleInputChange = event => {
@@ -31,55 +28,50 @@ class AddStep extends Component {
     });
   };
 
-  // loadData = async () => {
-  //   const {
-  //     match: {
-  //       params: { id }
-  //     },
-  //     fetchStep
-  //   } = this.props;
-  //   // if no id don't load the item
-  //   if (!id) return;
-  //   await fetchStep(id);
-  //   // update the state with the data from the updated item
-  //   const { step } = this.props;
-  //   this.setState({ ...step });
-  // };
+  loadData = async () => {
+    const {
+      match: {
+        params: { id }
+      },
+      fetchStep
+    } = this.props;
+    // if no id don't load the item
+    if (!id) return;
+    await this.props.fetchStep(id);
+    // update the state with the data from the updated item
+    const { step } = this.props;
+    this.setState({ ...step });
+  };
 
   save = event => {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
     event.target.className += ' was-validated';
     const {
-      createStep,
       updateStep,
       match: {
         params: { id }
       }
     } = this.props;
-    const { stepDescription, choreId } = this.state;
+    const { stepDescription } = this.state;
 
-    if (stepDescription !== '' && choreId !== '') {
-      createStep({ stepDescription, choreId });
-      this.setState({
-        success: 'Success! You have created a step, go ahead and add another!'
-      });
-      // }
+    if (id) {
+      if (stepDescription !== '') {
+        updateStep({ id, stepDescription });
+        this.setState({ success: 'Success! Step has been updated.' });
+      }
     }
   };
 
   render() {
     const { stepDescription, success } = this.state;
-    const {
-      step: { id }
-    } = this.props;
     return (
       <Container className='mt-5 pb-5'>
         <div className='sign__up__form '>
           <Row className='mt-5'>
             <Col xs={2}></Col>
             <Col xs={8}>
-              <h1>Add Step</h1>
+              <h1>Edit Step</h1>
               {success ? <Alert variant='success'>{success}</Alert> : ''}
             </Col>
             <Col xs={2}></Col>
@@ -88,7 +80,7 @@ class AddStep extends Component {
             <Col xs={2}></Col>
             <Col xs={8}>
               <Form onSubmit={this.save} noValidate>
-                <Form.Group controlId='formAddStep'>
+                <Form.Group controlId='formEditStep'>
                   <Form.Label>Description</Form.Label>
                   <Form.Control
                     type='text'
@@ -102,7 +94,7 @@ class AddStep extends Component {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Button className={styles.submit__btn} type='submit'>
-                  Add
+                  Edit
                 </Button>
               </Form>
             </Col>
@@ -119,19 +111,17 @@ class AddStep extends Component {
   }
 }
 
-AddStep.propTypes = {
-  createStep: PropTypes.func.isRequired,
+EditStep.propTypes = {
   updateStep: PropTypes.func.isRequired,
   fetchStep: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   step: PropTypes.shape({
-    stepDescription: PropTypes.string,
-    choreId: PropTypes.string
+    stepDescription: PropTypes.string
   })
 };
 
-AddStep.defaultProps = {
+EditStep.defaultProps = {
   step: {}
 };
 
-export default container(AddStep);
+export default container(EditStep);

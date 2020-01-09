@@ -18,6 +18,7 @@ app.use(express.json({ extended: false }));
 const childrenRouter = require('./routes/children');
 const choresRouter = require('./routes/chores');
 const rewardsRouter = require('./routes/rewards');
+const claimedRewardsRouter = require('./routes/claimedRewards');
 const usersRouter = require('./routes/users');
 const stepsRouter = require('./routes/steps');
 
@@ -36,6 +37,8 @@ app.use('/chores', choresRouter);
 app.use('/steps', stepsRouter);
 // setup to use router at /rewards
 app.use('/rewards', rewardsRouter);
+// setup to use router at /claimedrewards
+app.use('/claimedRewards', claimedRewardsRouter);
 
 // Serve static assetts
 //serve static assets

@@ -8,14 +8,17 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      rewardDescription: {
+      description: {
         type: Sequelize.STRING
       },
-      childId: {
+      claimedBy: {
+        type: Sequelize.STRING
+      },
+      parentId: {
         type: Sequelize.UUID,
         onDelete: 'CASCADE',
         references: {
-          model: 'Children',
+          model: 'Users',
           key: 'id'
         }
       },

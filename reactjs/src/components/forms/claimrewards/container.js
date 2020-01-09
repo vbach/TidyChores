@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
-import { fetchReward, updateReward } from '../../../store/rewards/actions';
+import {
+  fetchReward,
+  updateReward,
+  deleteReward
+} from '../../../store/rewards/actions';
 import { fetchChildren, updateChild } from '../../../store/children/actions';
+import { createClaimedReward } from '../../../store/claimedrewards/actions';
 
 function mapStateToProps(state, props) {
   const {
@@ -12,17 +17,25 @@ function mapStateToProps(state, props) {
     children: { byId, allIds },
     rewards: {
       rewardId: { [id]: { data: reward } = {} }
-    }
+    },
+    claimedRewards,
+    auth
   } = state;
-  return { reward, children: allIds.map(id => byId[id].data) };
+  return {
+    reward,
+    children: allIds.map(id => byId[id].data),
+    claimedRewards,
+    auth
+  };
 }
 
 // set the actions we need in this component
 const mapDispatchToProps = {
   fetchReward,
-  updateReward,
+  deleteReward,
   fetchChildren,
-  updateChild
+  updateChild,
+  createClaimedReward
 };
 
 export default connect(

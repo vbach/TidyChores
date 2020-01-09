@@ -7,6 +7,23 @@ exports.getSteps = async (req, res) => {
   res.json(steps);
 };
 
+// find one step
+exports.getOneById = async (req, res) => {
+  // get id from params
+  const { id } = req.params;
+  // search step by id
+  const step = await Steps.findByPk(id);
+  // if no id is found
+  if (!step) {
+    // return a 404
+    res.sendStatus(404);
+    return;
+  }
+
+  // if id is found return data
+  res.json(step);
+};
+
 // get all the chores that belong to one child
 exports.getStepsForChore = async (req, res) => {
   // get the child id from the query

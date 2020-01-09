@@ -5,8 +5,9 @@ module.exports = {
     return queryInterface.bulkInsert('claimedRewards', [
       {
         id: '67f0efbb-174f-460d-ab34-b10a1c7cd280',
-        rewardDescription: 'Zoo trip.',
-        childId: 'c426fde0-3155-4c8b-aaaf-a3b7177b7f16',
+        description: 'Zoo trip.',
+        claimedBy: 'Abigale',
+        parentId: '813ab8e8-3bc7-42a3-b9fa-0f46e3c2e8e3',
         createdAt: Sequelize.literal('NOW()'),
         updatedAt: Sequelize.literal('NOW()')
       }
