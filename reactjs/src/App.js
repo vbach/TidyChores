@@ -25,7 +25,7 @@ import EditChild from './components/forms/child/edit/form';
 import AddStep from './components/forms/steps/form';
 import EditStep from './components/forms/steps/edit/form';
 
-import Rewards from './components/parent/Rewards';
+import Rewards from './components/rewards/View';
 import RewardForm from './components/forms/rewards/form';
 import ClaimForm from './components/forms/claimrewards/form';
 
@@ -114,6 +114,7 @@ class App extends Component {
                   component={ChoreForm}
                 />
 
+                {/* Steps CRUD */}
                 <PrivateRoute
                   path='/parent/chores/steps/add/:id'
                   exact

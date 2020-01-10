@@ -2,15 +2,7 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Loader from '../layout/Loader';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardGroup,
-  ListGroup,
-  Form
-} from 'react-bootstrap';
+import { Container, Row, Col, Card, ListGroup, Form } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
 

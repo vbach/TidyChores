@@ -57,7 +57,6 @@ class ClaimReward extends Component {
     event.target.className += ' was-validated';
 
     const {
-      // updateReward,
       updateChild,
       deleteReward,
       createClaimedReward,
@@ -67,8 +66,6 @@ class ClaimReward extends Component {
       }
     } = this.props;
 
-    // Need to set up foreign key restraint to children.
-    // Need to pull child points and deduct reward value.
     const { description, claimedBy, value } = this.state;
     const parentId = this.props.auth.user.id;
     let newPoints;
@@ -76,15 +73,14 @@ class ClaimReward extends Component {
 
     for (let i = 0; i < children.length; i++) {
       if (claimedBy === children[i].id) {
-        if (children[i].points < value) {
-          this.setState({
-            error: 'Child does not have enough points to claim reward.'
-          });
-          return;
-        } else {
-          newPoints = children[i].points - value;
-          claimedByName = children[i].name;
-        }
+        // if (value > children[i].points) {
+        //   this.setState({
+        //     error: 'Child does not have enough points to claim reward.'
+        //   });
+        //   return;
+        // } else { }
+        newPoints = children[i].points - value;
+        claimedByName = children[i].name;
       }
     }
 
@@ -93,7 +89,7 @@ class ClaimReward extends Component {
     if (id && claimedByName !== '') {
       deleteReward(id);
       updateChild({ id: claimedBy, points: newPoints });
-      createClaimedReward({ description, claimedBy, parentId });
+      createClaimedReward({ description, claimedBy: claimedByName, parentId });
       this.setState({ success: 'Congrats! You have claimed a reward!' });
     }
   };

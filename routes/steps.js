@@ -7,10 +7,10 @@ const auth = require('../middleware/auth');
 router.get('/', auth, stepsCtrl.getSteps);
 
 // GET /steps/:id
-router.get('/:id', stepsCtrl.getOneById);
+router.get('/:id', auth, stepsCtrl.getOneById);
 
 // POST /steps
-router.post('/', stepsCtrl.createStep);
+router.post('/', auth, stepsCtrl.createStep);
 
 // PUT /steps/:id
 router.put('/:id', auth, stepsCtrl.updateStep);

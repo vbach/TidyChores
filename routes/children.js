@@ -3,10 +3,10 @@ const router = require('express').Router();
 const childrenCtrl = require('../controllers/children');
 const auth = require('../middleware/auth');
 // GET /children
-router.get('/', childrenCtrl.getChildren);
+router.get('/', auth, childrenCtrl.getChildren);
 
 // GET /children/:id
-router.get('/:id', childrenCtrl.getOneById);
+router.get('/:id', auth, childrenCtrl.getOneById);
 
 // POST /children
 router.post('/', auth, childrenCtrl.createChild);

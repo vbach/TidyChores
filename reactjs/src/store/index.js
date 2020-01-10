@@ -12,6 +12,7 @@ import chores from './chores/reducer';
 import rewards from './rewards/reducer';
 import steps from './steps/reducer';
 import users from './users/reducers';
+import claimedRewards from './claimedrewards/reducer';
 
 // combine multiple reducers into one
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   chores,
   rewards,
   steps,
+  claimedRewards,
   auth: users
 });
 

@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import Loader from '../layout/Loader';
 import { Link } from 'react-router-dom';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardGroup,
-  ListGroup,
-  Form,
-  Button
-} from 'react-bootstrap';
+import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
 

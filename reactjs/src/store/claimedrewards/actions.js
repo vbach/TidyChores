@@ -26,7 +26,7 @@ export const fetchClaimedRewards = () => ({
     REQ_CLAIMEDREWARDS_ERROR
   ],
   // function used to call api
-  callAPI: () => API.get('/claimedRewards'),
+  callAPI: () => API.get('/claimedrewards'),
   // receives the current app state and returns true if we should call the api
   shouldCallAPI: state => {
     const { loadedAt, isLoading } = state.rewards;
@@ -44,9 +44,9 @@ export const fetchClaimedReward = id => ({
     REQ_CLAIMEDREWARD_SUCCESS,
     REQ_CLAIMEDREWARD_ERROR
   ],
-  callAPI: () => API.get(`/claimedRewards/${id}`),
+  callAPI: () => API.get(`/claimedrewards/${id}`),
   shouldCallAPI: state => {
-    const reward = state.rewards.rewardId[id] || {};
+    const reward = state.rewards.claimedRewardId[id] || {};
     const { loadedAt, isLoading } = reward;
     if (!reward || isLoading) return false;
     const isCached = Date.now() - loadedAt < CACHE_TIME;
@@ -65,7 +65,7 @@ export const createClaimedReward = reward => {
       ADD_CLAIMEDREWARD_SUCCESS,
       ADD_CLAIMEDREWARD_ERROR
     ],
-    callAPI: () => API.post('/claimedRewards', { id, ...reward }),
+    callAPI: () => API.post('/claimedrewards', { id, ...reward }),
     payload: { id }
   };
 };
@@ -77,16 +77,17 @@ export const updateClaimedReward = reward => ({
     UPDATE_CLAIMEDREWARD_SUCCESS,
     UPDATE_CLAIMEDREWARD_ERROR
   ],
-  callAPI: () => API.put(`/claimedRewards/${reward.id}`, reward),
+  callAPI: () => API.put(`/claimedrewards/${reward.id}`, reward),
   payload: { reward: { ...reward } }
 });
 
+// delete claimed reward
 export const deleteClaimedReward = id => ({
   types: [
     DELETE_CLAIMEDREWARD_PENDING,
     DELETE_CLAIMEDREWARD_SUCCESS,
     DELETE_CLAIMEDREWARD_ERROR
   ],
-  callAPI: () => API.delete(`/claimedRewards/${id}`),
+  callAPI: () => API.delete(`/claimedrewards/${id}`),
   payload: { id }
 });

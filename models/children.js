@@ -39,7 +39,6 @@ module.exports = (sequelize, DataTypes) => {
   Children.associate = function(models) {
     Children.belongsTo(models.Users, { foreignKey: 'parentId' });
     Children.hasMany(models.Chores, { foreignKey: 'childId' });
-    Children.hasMany(models.claimedRewards, { foreignKey: 'childId' });
   };
   return Children;
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Button, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import styles from './app.module.css';
 import container from './container';
 import Loader from '../layout/Loader';
@@ -9,13 +9,17 @@ import Loader from '../layout/Loader';
 class Rewards extends Component {
   constructor(props) {
     super(props);
+    this.props.fetchClaimedRewards();
+    this.props.fetchRewards();
+
     this.state = {
       isLoading: true
     };
-    this.props.fetchRewards();
   }
   componentDidMount() {
+    this.props.fetchClaimedRewards();
     this.props.fetchRewards();
+
     this.setState({ isLoading: false });
   }
 
@@ -24,8 +28,13 @@ class Rewards extends Component {
     deleteReward(id);
   };
 
+  deleteClaimed = id => {
+    const { deleteClaimedReward } = this.props;
+    deleteClaimedReward(id);
+  };
+
   render() {
-    const { rewards } = this.props;
+    const { rewards, claimedRewards } = this.props;
     const { isLoading } = this.state;
     if (isLoading) {
       return <Loader />;
@@ -45,34 +54,44 @@ class Rewards extends Component {
                 <p>There are no claimed rewards.</p>
               ) : (
                 <ListGroup variant='flush' horizontal='lg'>
-                  {rewards
-                    .filter(reward => reward.claimed)
-                    .map(reward => (
-                      <ListGroup.Item
-                        key={reward.id}
-                        className={styles.list__group__item__rewards}
+                  {claimedRewards.map(claimedReward => (
+                    <ListGroup.Item
+                      key={claimedReward.id}
+                      className={styles.list__group__item__rewards}
+                    >
+                      <span className={styles.points}></span>
+                      {claimedReward.description} - claimed by{' '}
+                      {claimedReward.claimedBy}{' '}
+                      <span
+                        style={{
+                          float: 'right',
+                          marginTop: '10px'
+                        }}
                       >
-                        <span className={styles.points}></span>
-                        {reward.description}
+                        <Link to={`/parent/rewards/edit/${claimedReward.id}`}>
+                          <i className='fas fa-edit mr-2'></i>
+                        </Link>
                         <span
-                          style={{
-                            float: 'right',
-                            marginTop: '10px'
-                          }}
+                          onClick={() => this.deleteClaimed(claimedReward.id)}
                         >
-                          Claimed by {reward.claimedBy}
+                          <Link to='/parent/rewards/'>
+                            <i className='fas fa-times'></i>
+                          </Link>
                         </span>
-                      </ListGroup.Item>
-                    ))}
+                      </span>
+                    </ListGroup.Item>
+                  ))}
                 </ListGroup>
               )}
             </Col>
             <Col md={6} className='mt-3 pr-5 pl-5'>
               <h2 className={styles.inline__heading}>Available Rewards</h2>
               {'     '}
-              <Link to='/parent/rewards/add'>
-                <i className='fas fa-plus'></i> Add
-              </Link>
+              <span style={{ float: 'right' }}>
+                <Link to='/parent/rewards/add'>
+                  <i className='fas fa-plus'></i> Add
+                </Link>
+              </span>
               {!isLoading && rewards.length === 0 ? (
                 <p>
                   There are no available rewards. Why don't you{' '}
@@ -119,12 +138,15 @@ class Rewards extends Component {
 
 Rewards.propTypes = {
   fetchRewards: PropTypes.func.isRequired,
+  fetchClaimedRewards: PropTypes.func.isRequired,
   deleteReward: PropTypes.func.isRequired,
-  rewards: PropTypes.array.isRequired
+  rewards: PropTypes.array.isRequired,
+  deleteClaimedReward: PropTypes.func.isRequired
 };
 
 Rewards.defaultProps = {
-  rewards: []
+  rewards: [],
+  claimedRewards: []
 };
 
 export default container(Rewards);

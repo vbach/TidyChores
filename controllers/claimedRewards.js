@@ -1,16 +1,16 @@
 const { claimedRewards } = require('../models');
 // get all rewards
-exports.getRewards = async (req, res) => {
+exports.getClaimedRewards = async (req, res) => {
   // run find all function
-  const rewards = await claimedRewards.findAll({
-    where: { parentId: req.user }
-  });
-
+  const rewards = await claimedRewards.findAll();
+  //   {
+  //   where: { parentId: req.user }
+  // }
   res.json(rewards);
 };
 
 // get one reward
-exports.getOneById = async (req, res) => {
+exports.getClaimedById = async (req, res) => {
   // get id from params
   const { id } = req.params;
   // search rewards for id
@@ -27,13 +27,13 @@ exports.getOneById = async (req, res) => {
 };
 
 // add a reward
-exports.createRewards = async (req, res) => {
-  const { description, value, parentId } = req.body;
+exports.createClaimedRewards = async (req, res) => {
+  const { description, claimedBy, parentId } = req.body;
 
   try {
     const newReward = await claimedRewards.create({
       description,
-      value,
+      claimedBy,
       parentId
     });
     res.json({ id: newReward.id });
@@ -44,7 +44,7 @@ exports.createRewards = async (req, res) => {
 };
 
 // update reward
-exports.updateReward = async (req, res) => {
+exports.updateClaimedReward = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -62,7 +62,7 @@ exports.updateReward = async (req, res) => {
 };
 
 // delete reward
-exports.removeReward = async (req, res) => {
+exports.removeClaimedReward = async (req, res) => {
   // get id
   const { id } = req.params;
   // remove reward

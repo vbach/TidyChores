@@ -22,7 +22,7 @@ const initialState = {
   // will hold each item with ids as keys
   claimedRewardId: {},
   // an array of all the ids
-  allClaimedRewardsId: [],
+  allClaimedRewardsIds: [],
   // needed for cache state
   loadedAt: 0,
   // tracking if the state is loading
@@ -50,12 +50,12 @@ function claimedRewardsSuccess(state, action) {
     claimedRewardId: {
       ...state.claimedRewardId,
       ...action.data.reduce(
-        (rewards, reward) => ({
+        (claimedRewards, claimedReward) => ({
           // keep the current object
-          ...rewards,
+          ...claimedRewards,
           // add the item id as the key and an item object for loading
-          [reward.id]: {
-            data: reward,
+          [claimedReward.id]: {
+            data: claimedReward,
             isLoading: false,
             loadedAt: Date.now(),
             error: null
@@ -64,10 +64,10 @@ function claimedRewardsSuccess(state, action) {
         {}
       )
     },
-    allClaimedRewardsId: [
+    allClaimedRewardsIds: [
       ...new Set([
-        ...state.allClaimedRewardsId,
-        ...action.data.map(reward => reward.id)
+        ...state.allClaimedRewardsIds,
+        ...action.data.map(claimedReward => claimedReward.id)
       ])
     ]
   };
@@ -111,8 +111,8 @@ function claimedRewardSuccess(state, action) {
         data: action.data
       }
     },
-    allClaimedRewardsId: [
-      ...new Set([...state.allClaimedRewardsId, action.payload.id])
+    allClaimedRewardsIds: [
+      ...new Set([...state.allClaimedRewardsIds, action.payload.id])
     ]
   };
 }

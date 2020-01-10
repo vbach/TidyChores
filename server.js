@@ -38,7 +38,7 @@ app.use('/steps', stepsRouter);
 // setup to use router at /rewards
 app.use('/rewards', rewardsRouter);
 // setup to use router at /claimedrewards
-app.use('/claimedRewards', claimedRewardsRouter);
+app.use('/claimedrewards', claimedRewardsRouter);
 
 // Serve static assetts
 //serve static assets
