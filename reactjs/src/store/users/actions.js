@@ -1,7 +1,6 @@
 import API from '../../API';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../helpers/setAuthToken';
-import { push } from 'react-router-redux';
 import {
   SIGNUP_USER_PENDING,
   SIGNUP_USER_SUCCESS,

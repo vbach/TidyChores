@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import RRPropTypes from 'react-router-prop-types';
-import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import styles from './app.module.css';
 import axios from 'axios';

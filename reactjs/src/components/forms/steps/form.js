@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from '../app.module.css';
@@ -15,7 +14,6 @@ class AddStep extends Component {
       success: '',
       error: ''
     };
-    // this.loadData();
   }
 
   handleInputChange = event => {
@@ -31,32 +29,11 @@ class AddStep extends Component {
     });
   };
 
-  // loadData = async () => {
-  //   const {
-  //     match: {
-  //       params: { id }
-  //     },
-  //     fetchStep
-  //   } = this.props;
-  //   // if no id don't load the item
-  //   if (!id) return;
-  //   await fetchStep(id);
-  //   // update the state with the data from the updated item
-  //   const { step } = this.props;
-  //   this.setState({ ...step });
-  // };
-
   save = event => {
     // make sure the form doesn't submit with the browser
     event.preventDefault();
     event.target.className += ' was-validated';
-    const {
-      createStep,
-      updateStep,
-      match: {
-        params: { id }
-      }
-    } = this.props;
+    const { createStep } = this.props;
     const { stepDescription, choreId } = this.state;
 
     if (stepDescription !== '' && choreId !== '') {
@@ -70,9 +47,6 @@ class AddStep extends Component {
 
   render() {
     const { stepDescription, success } = this.state;
-    const {
-      step: { id }
-    } = this.props;
     return (
       <Container className='mt-5 pb-5'>
         <div className='sign__up__form '>

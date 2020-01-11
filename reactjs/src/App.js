@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Navbar from './components/layout/Navbar';
@@ -28,6 +28,7 @@ import EditStep from './components/forms/steps/edit/form';
 import Rewards from './components/rewards/View';
 import RewardForm from './components/forms/rewards/form';
 import ClaimForm from './components/forms/claimrewards/form';
+import EditClaimedReward from './components/forms/claimrewards/edit/form';
 
 import store from './store';
 import jwt_decode from 'jwt-decode';
@@ -148,6 +149,11 @@ class App extends Component {
                   path='/parent/rewards/claim/:id'
                   exact
                   component={ClaimForm}
+                />
+                <PrivateRoute
+                  path='/parent/rewards/claim/edit/:id'
+                  exact
+                  component={EditClaimedReward}
                 />
               </Switch>
             </Router>

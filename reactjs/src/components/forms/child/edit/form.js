@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from '../../app.module.css';
 import container from './container';
-import { updateChild, createChild } from '../../../../store/children/actions';
 
 class EditChild extends Component {
   constructor(props) {
@@ -79,9 +78,6 @@ class EditChild extends Component {
 
   render() {
     const { name, avatar, success, error } = this.state;
-    const {
-      children: { id }
-    } = this.props;
 
     return (
       <Container className='mt-5 pb-5'>

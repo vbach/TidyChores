@@ -15,8 +15,7 @@ import {
   UPDATE_CHILD_ERROR,
   DELETE_CHILD_PENDING,
   DELETE_CHILD_SUCCESS,
-  DELETE_CHILD_ERROR,
-  SET_LOADING
+  DELETE_CHILD_ERROR
 } from '../actionTypes';
 
 const initialState = {

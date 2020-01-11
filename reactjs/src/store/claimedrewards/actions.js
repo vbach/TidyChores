@@ -46,7 +46,7 @@ export const fetchClaimedReward = id => ({
   ],
   callAPI: () => API.get(`/claimedrewards/${id}`),
   shouldCallAPI: state => {
-    const reward = state.rewards.claimedRewardId[id] || {};
+    const reward = state.claimedRewards.claimedRewardId[id] || {};
     const { loadedAt, isLoading } = reward;
     if (!reward || isLoading) return false;
     const isCached = Date.now() - loadedAt < CACHE_TIME;

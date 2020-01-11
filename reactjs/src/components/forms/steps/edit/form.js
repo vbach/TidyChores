@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from '../../app.module.css';
@@ -37,7 +36,7 @@ class EditStep extends Component {
     } = this.props;
     // if no id don't load the item
     if (!id) return;
-    await this.props.fetchStep(id);
+    await fetchStep(id);
     // update the state with the data from the updated item
     const { step } = this.props;
     this.setState({ ...step });

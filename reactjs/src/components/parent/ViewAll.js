@@ -37,16 +37,6 @@ class ViewAll extends Component {
   render() {
     const { children, chores, auth } = this.props;
 
-    let weekday = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ][new Date().getDay()];
-
     if (this.state.isLoading) {
       return <Loader />;
     } else {

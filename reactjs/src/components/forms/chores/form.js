@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from '../app.module.css';
@@ -56,7 +55,6 @@ class AddChore extends Component {
     const {
       createChore,
       updateChore,
-      history,
       match: {
         params: { id }
       }

@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { fetchChildren } from '../../store/children/actions';
 import { fetchChores, deleteChore } from '../../store/chores/actions';
 import { fetchRewards, deleteReward } from '../../store/rewards/actions';
-import { fetchUserInfo } from '../../store/users/actions';
 
 function mapStateToProps(state) {
   const {

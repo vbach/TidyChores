@@ -4,12 +4,7 @@ import {
   fetchChildren,
   fetchChild
 } from '../../../store/children/actions';
-function mapStateToProps(state, props) {
-  const {
-    match: {
-      params: { id }
-    }
-  } = props;
+function mapStateToProps(state) {
   const {
     children: { byId, allIds, success },
     auth

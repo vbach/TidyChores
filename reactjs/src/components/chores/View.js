@@ -62,7 +62,7 @@ class View extends Component {
   };
 
   render() {
-    const { description, isLoading, day, id } = this.state;
+    const { description, isLoading, id } = this.state;
     const { steps } = this.props;
     if (isLoading) {
       return <Loader />;

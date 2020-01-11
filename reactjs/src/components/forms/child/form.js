@@ -49,9 +49,6 @@ class NewChild extends Component {
 
   render() {
     const { name, avatar, success, error } = this.state;
-    const {
-      children: { id }
-    } = this.props;
 
     return (
       <Container className='mt-5 pb-5'>

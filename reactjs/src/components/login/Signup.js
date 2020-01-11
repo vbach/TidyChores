@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from './app.module.css';
