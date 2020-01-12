@@ -78,6 +78,11 @@ span > a:hover {
   color: var(--primary-color);
 }
 
+.chore__incomplete {
+  font-size: 25px;
+  color: var(--error-color);
+}
+
 .rewards__table {
   border-bottom: 1px solid var(--primary-color);
 }

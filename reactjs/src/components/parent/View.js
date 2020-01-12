@@ -15,6 +15,7 @@ class View extends Component {
     this.state = {
       chores: [
         {
+          id: '',
           name: '',
           type: '',
           description: '',
@@ -86,11 +87,6 @@ class View extends Component {
     });
   };
 
-  save = event => {
-    // make sure the form doesn't submit with the browser
-    event.preventDefault();
-  };
-
   delete = id => {
     const { deleteChore } = this.props;
     deleteChore(id);
@@ -99,6 +95,18 @@ class View extends Component {
   deleteChild = id => {
     const { deleteChild } = this.props;
     deleteChild(id);
+  };
+
+  updateCompletedChore = (id, type) => {
+    const chores = [];
+    if (type === 'false') {
+      type = 'true';
+      this.props.updateChore({ id, type });
+    } else {
+      type = 'false';
+      this.props.updateChore({ id, type });
+      this.setState({ chores });
+    }
   };
   render() {
     const { children, chores, auth } = this.props;
@@ -190,23 +198,35 @@ class View extends Component {
                                 chore.childId === child.id &&
                                 chore.day === weekday.toLowerCase()
                             )
-                            .map((chore, i) => (
+                            .map(chore => (
                               <ListGroup.Item
                                 className={styles.list__group__item}
                                 key={chore.id}
                               >
-                                {chore.type ? (
-                                  <Link to={`/parent/chores/view/${chore.id}`}>
-                                    <span className={styles.chore__check}>
-                                      <i className='fas fa-check'></i>
-                                    </span>
-                                  </Link>
+                                {chore.type === 'true' ? (
+                                  <span
+                                    className={styles.chore__check}
+                                    onClick={() =>
+                                      this.updateCompletedChore(
+                                        chore.id,
+                                        chore.type
+                                      )
+                                    }
+                                  >
+                                    <i className='fas fa-check'></i>
+                                  </span>
                                 ) : (
-                                  <Link to={`/parent/chores/view/${chore.id}`}>
-                                    <span className={styles.chore__incomplete}>
-                                      <i className='fas fa-exclamation-circle'></i>
-                                    </span>
-                                  </Link>
+                                  <span
+                                    className={styles.chore__incomplete}
+                                    onClick={() =>
+                                      this.updateCompletedChore(
+                                        chore.id,
+                                        chore.type
+                                      )
+                                    }
+                                  >
+                                    <i className='fas fa-exclamation-circle'></i>
+                                  </span>
                                 )}{' '}
                                 {chore.description}
                                 <span
@@ -243,6 +263,7 @@ class View extends Component {
 View.propTypes = {
   fetchChildren: PropTypes.func.isRequired,
   fetchChores: PropTypes.func.isRequired,
+  updateChore: PropTypes.func.isRequired,
   children: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

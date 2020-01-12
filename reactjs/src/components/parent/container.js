@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
 import { fetchChildren } from '../../store/children/actions';
-import { fetchChores, deleteChore } from '../../store/chores/actions';
+import {
+  fetchChores,
+  deleteChore,
+  updateChore
+} from '../../store/chores/actions';
 import { fetchRewards, deleteReward } from '../../store/rewards/actions';
 
 function mapStateToProps(state) {
@@ -27,7 +31,8 @@ const mapDispatchToProps = {
   fetchChores,
   fetchRewards,
   deleteReward,
-  deleteChore
+  deleteChore,
+  updateChore
 };
 
 export default connect(
