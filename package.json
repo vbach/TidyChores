@@ -11,6 +11,7 @@
     "reactjs-install": "npm install --prefix reactjs",
     "db-update": "sequelize db:migrate; sequelize db:seed:all;",
     "dev": "concurrently \"npm run server\" \"npm run reactjs\"",
+    "heroku-prebuild": "npm run db-update && --prefix reactjs && npm run build --prefix reactjs",
     "heroku-postbuild": "npm install --prefix reactjs && npm run build --prefix reactjs"
   },
   "dependencies": {

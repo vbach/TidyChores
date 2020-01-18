@@ -6,7 +6,13 @@ exports.getChildren = async (req, res) => {
   // run find all function
   const children = await Children.findAll();
 
-  res.json(children);
+  if (!children) {
+    // return a 404
+    res.sendStatus(404);
+    return;
+  }
+
+  res.json(children).sendStatus(200);
 };
 
 // find one child
@@ -23,7 +29,7 @@ exports.getOneById = async (req, res) => {
   }
 
   // if id is found return data
-  res.json(children);
+  res.json(children).sendStatus(200);
 };
 
 // create a new child

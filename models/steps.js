@@ -20,7 +20,12 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      choreId: DataTypes.UUID
+      choreId: {
+        type: DataTypes.UUID,
+        validate: {
+          isUUID: { args: 4, msg: 'Id not valid, please try again' }
+        }
+      }
     },
     {}
   );

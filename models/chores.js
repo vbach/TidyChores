@@ -39,7 +39,12 @@ module.exports = (sequelize, DataTypes) => {
         'Saturday'
       ),
       type: { type: DataTypes.ENUM('true', 'false'), defaultValue: 'false' },
-      childId: DataTypes.UUID
+      childId: {
+        type: DataTypes.UUID,
+        validate: {
+          isUUID: { args: 4, msg: 'Id not valid, please try again' }
+        }
+      }
     },
     {}
   );

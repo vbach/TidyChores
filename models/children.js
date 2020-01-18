@@ -32,7 +32,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: '0'
       },
-      parentId: DataTypes.UUID
+      parentId: {
+        type: DataTypes.UUID,
+        validate: {
+          isUUID: { args: 4, msg: 'Id not valid, please try again' }
+        }
+      }
     },
     {}
   );

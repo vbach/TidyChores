@@ -17,7 +17,7 @@ class View extends Component {
         {
           id: '',
           name: '',
-          type: '',
+          type: 'false',
           description: '',
           childId: ''
         }
@@ -93,7 +93,7 @@ class View extends Component {
   };
 
   deleteChild = id => {
-    const { deleteChild } = this.props;
+    const { deleteChild, chores } = this.props;
     deleteChild(id);
   };
 
@@ -101,13 +101,16 @@ class View extends Component {
     const chores = [];
     if (type === 'false') {
       type = 'true';
+      this.setState({ chores });
       this.props.updateChore({ id, type });
     } else {
       type = 'false';
       this.props.updateChore({ id, type });
-      this.setState({ chores });
+      this.setState({ id, chores: type });
     }
+    this.props.history.push('/parent');
   };
+
   render() {
     const { children, chores, auth } = this.props;
     const { isLoading } = this.state;

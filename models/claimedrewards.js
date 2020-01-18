@@ -21,7 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       claimedBy: { type: DataTypes.STRING, defaultValue: '' },
-      parentId: DataTypes.UUID
+      parentId: {
+        type: DataTypes.UUID,
+        validate: {
+          isUUID: { args: 4, msg: 'Id not valid, please try again' }
+        }
+      }
     },
     {}
   );
