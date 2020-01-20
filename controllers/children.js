@@ -4,13 +4,7 @@ const { Children } = require('../models');
 exports.getChildren = async (req, res) => {
   // get the parent id from the query
   // run find all function
-  const children = await Children.findAll();
-
-  if (!children) {
-    // return a 404
-    res.sendStatus(404);
-    return;
-  }
+  const children = await Children.findAll({ where: { parentId: req.user } });
 
   res.json(children).sendStatus(200);
 };
