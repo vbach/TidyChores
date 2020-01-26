@@ -75,7 +75,11 @@ class App extends Component {
                   exact
                   component={ForgotPassword}
                 />
-                <Route path='/resetpassword/' exact component={ResetPassword} />
+                <Route
+                  path='/resetpassword/:token'
+                  exact
+                  component={ResetPassword}
+                />
                 <PrivateRoute path='/parent/' exact component={ParentView} />
 
                 {/* Children CRUD */}

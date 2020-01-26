@@ -69,7 +69,7 @@ class View extends Component {
     } else {
       return (
         <Fragment>
-          <Container>
+          <Container className='vh-100'>
             <Row>
               <Col xs={12}>
                 <h1>{description}</h1>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from './app.module.css';
+import container from './container';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class ForgotPassword extends Component {
@@ -25,7 +27,8 @@ class ForgotPassword extends Component {
     if (email === '') {
       this.setState({
         showError: false,
-        messageFromServer: '',
+        messageFromServer:
+          'Email is invalid. Please check your email address and try again.',
         showNullError: true
       });
     } else {
@@ -36,8 +39,8 @@ class ForgotPassword extends Component {
             email
           }
         );
-        console.log(response.data);
-        if (response.data === 'recovery email sent') {
+        console.log(res.data);
+        if (res.data === 'recovery email sent') {
           this.setState({
             showError: false,
             messageFromServer: 'recovery email sent',
@@ -45,8 +48,8 @@ class ForgotPassword extends Component {
           });
         }
       } catch (error) {
-        console.error(error.response.data);
-        if (error.response.data === 'email not in db') {
+        console.error(error.res.data);
+        if (error.res.data === 'email not in db') {
           this.setState({
             showError: true,
             messageFromServer: '',
@@ -107,4 +110,8 @@ class ForgotPassword extends Component {
   }
 }
 
-export default ForgotPassword;
+ForgotPassword.propTypes = {
+  forgotPassword: PropTypes.func.isRequired
+};
+
+export default container(ForgotPassword);

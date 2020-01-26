@@ -10,7 +10,13 @@ import {
   SET_CURRENT_USER,
   USER_INFO_PENDING,
   USER_INFO_ERROR,
-  USER_INFO_SUCCESS
+  USER_INFO_SUCCESS,
+  FORGOT_PASSWORD_PENDING,
+  FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_ERROR,
+  RESET_PASSWORD_PENDING,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_ERROR
 } from '../actionTypes';
 const CACHE_TIME = 1000 * 60 * 5;
 export const signUpUser = (userData, history) => {
@@ -43,7 +49,7 @@ export const signUpUser = (userData, history) => {
   };
 };
 
-export const loginUser = (credentials, history) => {
+export const loginUser = credentials => {
   return dispatch => {
     dispatch({ type: LOGIN_PENDING });
 
@@ -60,6 +66,16 @@ export const loginUser = (credentials, history) => {
     });
   };
 };
+
+export const forgotPassword = email => ({
+  types: [
+    FORGOT_PASSWORD_PENDING,
+    FORGOT_PASSWORD_SUCCESS,
+    FORGOT_PASSWORD_ERROR
+  ],
+  // function used to call api
+  callAPI: () => API.post('/users/forgotPassword', email)
+});
 
 export const setCurrentUser = decoded => {
   return {
