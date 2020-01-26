@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from './app.module.css';
 import axios from 'axios';
 
@@ -31,7 +31,7 @@ class ForgotPassword extends Component {
     } else {
       try {
         const response = await axios.post(
-          'http://localhost:5000/forgotPassword',
+          'http://localhost:5000/users/forgotPassword',
           {
             email
           }
@@ -67,6 +67,22 @@ class ForgotPassword extends Component {
               <Col xs={2}></Col>
               <Col xs={6} className={styles.align__center}>
                 <h1>Forgot Password</h1>
+                {showNullError && (
+                  <Alert variant='danger'>
+                    The email address cannot be empty.
+                  </Alert>
+                )}
+                {showError && (
+                  <Alert variant='danger'>
+                    That email address isn&apos;t recognized. Please try again
+                    or register for a new account.
+                  </Alert>
+                )}
+                {messageFromServer === 'recovery email sent' && (
+                  <Alert variant='success'>
+                    Password Reset Email Successfully Sent!
+                  </Alert>
+                )}
                 <Form.Group>
                   <Form.Label>Email</Form.Label>
                   <Form.Control
@@ -77,24 +93,7 @@ class ForgotPassword extends Component {
                     value={email}
                   />
                 </Form.Group>
-                {showNullError && (
-                  <div>
-                    <p>The email address cannot be null.</p>
-                  </div>
-                )}
-                {showError && (
-                  <div>
-                    <p>
-                      That email address isn&apos;t recognized. Please try again
-                      or register for a new account.
-                    </p>
-                  </div>
-                )}
-                {messageFromServer === 'recovery email sent' && (
-                  <div>
-                    <h3>Password Reset Email Successfully Sent!</h3>
-                  </div>
-                )}
+
                 <Button className={styles.ForgotPassword__btn} type='submit'>
                   Submit
                 </Button>

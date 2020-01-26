@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
 /* eslint-disable no-console */
 const { Users } = require('../models');
-require('dotenv').config();
 const nodemailer = require('nodemailer');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 exports.forgotPassword = (req, res) => {
   if (req.body.email === '') {
@@ -18,29 +19,31 @@ exports.forgotPassword = (req, res) => {
       console.error('email not in database');
       res.status(403).send('email not in db');
     } else {
-      const token = crypto.randomBytes(20).toString('hex');
-      user.update({
-        resetPasswordToken: token,
-        resetPasswordExpires: Date.now() + 3600000
-      });
-
+      const token = jwt.sign(req.body.email, process.env.SECRET);
+      Users.update(
+        {
+          resetPasswordToken: token,
+          resetPasswordExpires: Date.now() + 3600000
+        },
+        { where: { email: req.body.email } }
+      );
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: `${process.env.EMAIL_ADDRESS}`,
-          pass: `${process.env.EMAIL_PASSWORD}`
+          user: 'tidychores@gmail.com',
+          pass: process.env.EMAIL_PASSWORD
         }
       });
 
       const mailOptions = {
         from: 'tidychores@gmail.com',
-        to: `${user.email}`,
-        subject: 'Link To Reset Password',
+        to: `${req.body.email}`,
+        subject: 'Tidy Chores Reset Password',
         text:
           'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n' +
-          `http://localhost:3000/reset/${token}\n\n` +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+          'Please click on the following link, or paste this into your browser to change your password:\n\n' +
+          `http://localhost:3000/ResetPassword/${token}\n\n` +
+          'Reset with expire within one hour. If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
 
       console.log('sending mail');
@@ -56,3 +59,5 @@ exports.forgotPassword = (req, res) => {
     }
   });
 };
+
+exports.resetPassword = (req, res) => {};
