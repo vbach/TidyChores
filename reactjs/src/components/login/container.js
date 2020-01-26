@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
-import { signUpUser, loginUser } from '../../store/users/actions';
+import {
+  signUpUser,
+  loginUser,
+  forgotPassword
+} from '../../store/users/actions';
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { auth, error } = state;
 
   return { auth, error };
@@ -10,7 +14,8 @@ function mapStateToProps(state, props) {
 // set the actions we need in this component
 const mapDispatchToProps = {
   loginUser,
-  signUpUser
+  signUpUser,
+  forgotPassword
 };
 
 export default connect(

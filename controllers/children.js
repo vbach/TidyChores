@@ -6,7 +6,7 @@ exports.getChildren = async (req, res) => {
   // run find all function
   const children = await Children.findAll({ where: { parentId: req.user } });
 
-  res.json(children).sendStatus(200);
+  res.json(children);
 };
 
 // find one child

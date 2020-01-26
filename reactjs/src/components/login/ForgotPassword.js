@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import styles from './app.module.css';
+import container from './container';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class ForgotPassword extends Component {
@@ -25,19 +27,20 @@ class ForgotPassword extends Component {
     if (email === '') {
       this.setState({
         showError: false,
-        messageFromServer: '',
+        messageFromServer:
+          'Email is invalid. Please check your email address and try again.',
         showNullError: true
       });
     } else {
       try {
-        const response = await axios.post(
-          'http://localhost:5000/forgotPassword',
+        const res = await axios.post(
+          'http://localhost:5000/users/forgotPassword',
           {
             email
           }
         );
-        console.log(response.data);
-        if (response.data === 'recovery email sent') {
+        console.log(res.data);
+        if (res.data === 'recovery email sent') {
           this.setState({
             showError: false,
             messageFromServer: 'recovery email sent',
@@ -45,8 +48,8 @@ class ForgotPassword extends Component {
           });
         }
       } catch (error) {
-        console.error(error.response.data);
-        if (error.response.data === 'email not in db') {
+        console.error(error.res.data);
+        if (error.res.data === 'email not in db') {
           this.setState({
             showError: true,
             messageFromServer: '',
@@ -67,6 +70,20 @@ class ForgotPassword extends Component {
               <Col xs={2}></Col>
               <Col xs={6} className={styles.align__center}>
                 <h1>Forgot Password</h1>
+                {showNullError && (
+                  <Alert variant='warning'>
+                    The email address cannot be blank.
+                  </Alert>
+                )}
+                {showError && (
+                  <Alert variant='warning'>
+                    There is no account with that email address. Check your
+                    email address and try again.
+                  </Alert>
+                )}
+                {messageFromServer === 'recovery email sent' && (
+                  <Alert variant='success'>Password reset sent!</Alert>
+                )}
                 <Form.Group>
                   <Form.Label>Email</Form.Label>
                   <Form.Control
@@ -77,24 +94,7 @@ class ForgotPassword extends Component {
                     value={email}
                   />
                 </Form.Group>
-                {showNullError && (
-                  <div>
-                    <p>The email address cannot be null.</p>
-                  </div>
-                )}
-                {showError && (
-                  <div>
-                    <p>
-                      That email address isn&apos;t recognized. Please try again
-                      or register for a new account.
-                    </p>
-                  </div>
-                )}
-                {messageFromServer === 'recovery email sent' && (
-                  <div>
-                    <h3>Password Reset Email Successfully Sent!</h3>
-                  </div>
-                )}
+
                 <Button className={styles.ForgotPassword__btn} type='submit'>
                   Submit
                 </Button>
@@ -108,4 +108,8 @@ class ForgotPassword extends Component {
   }
 }
 
-export default ForgotPassword;
+ForgotPassword.propTypes = {
+  forgotPassword: PropTypes.func.isRequired
+};
+
+export default container(ForgotPassword);

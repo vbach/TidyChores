@@ -13,5 +13,6 @@ router.post('/signup', usersCtrl.registerUsers);
 // POST /users/login
 router.post('/login', usersCtrl.loginUsers);
 router.post('/forgotPassword', passCtrl.forgotPassword);
+router.post('/resetPassword', passCtrl.resetPassword);
 
 module.exports = router;
